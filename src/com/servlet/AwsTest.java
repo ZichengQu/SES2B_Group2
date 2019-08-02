@@ -31,11 +31,15 @@ public class AwsTest extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		com.dao.AwsTest aws = new com.dao.AwsTest();
-		Integer studentId = 12990747;
+		//Integer studentId = Integer.parseInt();
+		Integer studentId = Integer.parseInt((String) request.getParameter("studentId"));
+		System.out.println(studentId);
 		Student student = aws.getStudent(studentId);
 		if(student!=null) {
 			String studentName = student.getFirstName();
 			request.getSession().setAttribute("student", studentName);
+			String description = student.getLastName();
+			request.getSession().setAttribute("description", description);
 			System.out.println("AWS Test Success");
 			response.sendRedirect("../AwsTestSuccess.jsp");
 		}else {

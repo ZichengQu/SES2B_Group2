@@ -8,8 +8,8 @@
 <script type="text/javascript" src="js/jquery-1.7.1.min.js" ></script>
 <script>
 	$(function(){
-		alert();
-		location.href = "AwsTest";
+		alert("Page load test");
+		location.href = "AwsTest?studentId=10000000";
 	});
 </script>
 </head>

@@ -8,5 +8,7 @@
 </head>
 <body>
 	<h1>Welcome: <%=session.getAttribute("student") %></h1>
+	<br/>
+	<h1><%=session.getAttribute("description") %></h1>
 </body>
 </html>
