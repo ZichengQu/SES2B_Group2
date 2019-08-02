@@ -16,7 +16,8 @@
 		<property name="publishTime"></property>
 		<property name="updateTime"></property>
 		<property name="subject"></property>
-		<many-to-one name="student" column="studentId" class="com.bean.Student" lazy="false"></many-to-one>
+		<property name="studentId"></property>
+		<!-- <many-to-one name="student" column="studentId" class="com.bean.Student" lazy="false"></many-to-one> -->
 		<many-to-one name="session" column="sessionId" class="com.bean.Session" lazy="false"></many-to-one>
 		<many-to-one name="workShop" column="workShopId" class="com.bean.WorkShop" lazy="false"></many-to-one>
 		<many-to-one name="admin" column="adminId" class="com.bean.Admin" lazy="false"></many-to-one>

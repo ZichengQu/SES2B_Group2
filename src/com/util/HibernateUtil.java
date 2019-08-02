@@ -15,8 +15,6 @@ public class HibernateUtil {
 		sessionFactory = configuration.buildSessionFactory();
 	}
 	public static Session getCurrentSession() {
-		
-		
 		return sessionFactory.getCurrentSession();
 	}
 	public static void main(String[] args) {

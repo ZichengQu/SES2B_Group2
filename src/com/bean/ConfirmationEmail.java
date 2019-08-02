@@ -7,7 +7,7 @@ public class ConfirmationEmail {
 	private Boolean isWkshConfSent;
 	private String WkshConfDateTime;
 	
-	private Student student;//n:1
+	private String studentId;//n:1
 	private Session session;//n:1
 	private WorkShop workShop;//n:1
 	private Admin admin;//n:1
@@ -23,7 +23,7 @@ public class ConfirmationEmail {
 		// TODO Auto-generated constructor stub
 	}
 	public ConfirmationEmail(Integer confirmationId, Boolean isSessConfSent, String sessConfDateTime,
-			Boolean isWkshConfSent, String wkshConfDateTime, Student student, Session session, WorkShop workShop,
+			Boolean isWkshConfSent, String wkshConfDateTime, String studentId, Session session, WorkShop workShop,
 			Admin admin, ReminderEmail reminderEmail, String template, String title, String publishTime,
 			String updateTime, String subject) {
 		super();
@@ -32,7 +32,7 @@ public class ConfirmationEmail {
 		SessConfDateTime = sessConfDateTime;
 		this.isWkshConfSent = isWkshConfSent;
 		WkshConfDateTime = wkshConfDateTime;
-		this.student = student;
+		this.studentId = studentId;
 		this.session = session;
 		this.workShop = workShop;
 		this.admin = admin;
@@ -73,11 +73,11 @@ public class ConfirmationEmail {
 	public void setWkshConfDateTime(String wkshConfDateTime) {
 		WkshConfDateTime = wkshConfDateTime;
 	}
-	public Student getStudent() {
-		return student;
+	public String getStudentId() {
+		return studentId;
 	}
-	public void setStudent(Student student) {
-		this.student = student;
+	public void setStudentId(String studentId) {
+		this.studentId = studentId;
 	}
 	public Session getSession() {
 		return session;
@@ -133,6 +133,7 @@ public class ConfirmationEmail {
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
+	
 	
 	
 	

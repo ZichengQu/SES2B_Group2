@@ -22,10 +22,10 @@
 			<key column="studentId"></key>
 			<many-to-many class="com.bean.WaitingList" column="waitingListId"/>
 		</set>
-		<set name="confirmationEmails" lazy="false">
+		<!-- <set name="confirmationEmails" lazy="false">
 			<key column="studentId"></key>
 			<one-to-many class="com.bean.ConfirmationEmail"/>
-		</set>
+		</set> -->
 		<set name="reminderEmails" lazy="false">
 			<key column="studentId"></key>
 			<one-to-many class="com.bean.ReminderEmail"/>
