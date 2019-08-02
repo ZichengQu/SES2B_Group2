@@ -43,7 +43,7 @@ public class AwsTest extends HttpServlet {
 			System.out.println("AWS Test Success");
 			response.sendRedirect("../AwsTestSuccess.jsp");
 		}else {
-			response.sendRedirect("AwsTestFail.jsp");
+			response.sendRedirect("../AwsTestFail.jsp");
 		}
 		
 		
