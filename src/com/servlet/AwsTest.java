@@ -41,9 +41,9 @@ public class AwsTest extends HttpServlet {
 			String description = student.getLastName();
 			request.getSession().setAttribute("description", description);
 			System.out.println("AWS Test Success");
-			response.sendRedirect("../AwsTestSuccess.jsp");
+			response.sendRedirect("AwsTestSuccess.jsp");
 		}else {
-			response.sendRedirect("../AwsTestFail.jsp");
+			response.sendRedirect("AwsTestFail.jsp");
 		}
 		
 		
