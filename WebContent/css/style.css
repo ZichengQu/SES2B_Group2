@@ -1,0 +1,58 @@
+/* writeen by Œ‚≤” || Œ¢–≈:kingdomWC; */
+/* css reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {padding:0; margin:0;}
+body{ font-family:'Microsoft Yahei',Arial,Simsun;font-size:14px;min-width: 1200px;}
+table {border-collapse:collapse; border-spacing:0;}
+fieldset,img {border:0;}
+/* address,caption,cite,code,dfn,em,strong,th,var {font-weight: normal;font-style: normal;} */
+ol,ul {list-style:none;}
+caption,th {text-align:left;}
+h1,h2,h3,h4,h5,h6 {font-weight:normal;font-size:100%;}
+q:before,q:after {content:'';}
+abbr,acronym {border:0;}
+a{text-decoration:none; outline:none; blr:expression(this.onFocus=this.blur());}
+.clear{ display:block; clear:both;}
+.relative{ position:relative;}
+.grayscale{ filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 3.5+ */ filter: gray; /* IE6-9 */ -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */}
+.fl{float:left;}
+.fr{float:right;}
+/* css reset */
+.Header .header_liBlock {-webkit-transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;transition:all .3s ease-in-out;}
+.Header{position:absolute;width:100%;height:80px;z-index:999;top:0}
+.Header.H2{position:absolute;top:0;min-width:1200px;}
+.header_bg{width:100%;height:80px;position:absolute;top:0;left:0;background:#fff;opacity:0.8;filter:Alpha(opacity=70)}
+.header_content {position: relative;width:1200px;margin: auto;}
+.header_logo {position: relative;float: left;padding:13px 0;}
+.header_contentBlock {position: relative;float: right;width:820px;height:80px}
+.header_ulBlock {position:absolute;left:0}
+.header_ulBlock.ulb2{left:-8px}
+.header_rightBlock {position:absolute;right:0;width:88px}
+.Header .header_liBlock {position: relative;display: block;float: left;height: 80px;line-height: 80px;padding: 0px 16px;color:#4c4c4c;}
+.header_wcWb {position: relative;float: left;padding: 19px 0;}
+.header_wb,.header_wc {position: relative;display: block;width:34px;height:34px;float:left;margin-left:10px;margin-top:3px}
+.header_wb {background:url(../images/wb.png) no-repeat center;}
+.header_wc {background:url(../images/wc.png) no-repeat center;}
+.header_select {position: relative;float: right;color:#e8a171;height: 30px;line-height: 30px;padding: 25px 0;cursor: pointer;}
+.header_showBlock {width:52px;background: url(../images/b_1.png) no-repeat right;}
+.Header .header_liBlock.current,.header_liBlock:hover{color:#e84137;border-bottom: 2px solid #e84137;height:78px;}
+.Header.H2 .header_liBlock.current,.Header.H2 .header_liBlock:hover{color:#e84137;border-bottom:2px solid #e84137;height:78px}
+.Footer{position:relative;width:100%;background: #1a1a1a;color:#bfbfbf;height:40px}
+.Footer.F2{color:white;position:relative;}
+.footer_content {position: relative;width:1200px;margin:auto;font-size:12px;}
+.footer_text{position: relative;float:left;line-height:40px;height:40px;}
+.footer_ulBlock {position: relative;float:right}
+.footer_ulBlock a{color:#bfbfbf}
+.footer_map,.footer_friendship {position:relative;float:right;padding:12px 0}
+.footer_map {padding-left:12px;margin-left:10px;background: url(../images/b_4.jpg) no-repeat left}
+.bodyer {position: relative;min-height: 800px;}
+.titleImg_content {position: relative;width:100%;height: 266px;}
+.titleImg_img {position: relative;width:600px;height:80px;margin: auto;text-align: center;padding-top:130px;}
+.nav_content {position: relative;width:100%;height: 60px;border-bottom:1px solid #f8e8e2;}
+.nav_contentBlock {position: relative;width:1200px;margin: auto;}
+.nav_aContent {position: relative;float: left;}
+.nav_ulBlock {position: relative;float: right;}
+.nav_aBlock {position: relative;display: block;color:#666666;height: 60px;line-height: 60px;float: left;padding-right:18px;margin-right:14px;}
+.nav_aBlock.icon {background: url(../images/b_5.png) no-repeat right;}
+.nav_liBlock {position: relative;float: left;display: block;height: 60px;line-height: 60px;padding:0px 16px;background: url(../images/b_6.jpg) no-repeat left;color:#808080;}
+.nav_liBlock.current,.nav_liBlock:hover,.nav_aBlock.icon:hover {color:#e84137;}
+.icon{height: 24px; margin-top: 8px; margin-right: 3px;}
