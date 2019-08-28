@@ -46,12 +46,46 @@ body {
 .wrapper input[type=radio]:disabled{
 	background: #33adff;
 }
+
 select {
-	width: auto;
+	width: 50%;
 }
 select:focus {
-	width: auto;
+	width: 50%;
 } 
+
+.wrapper .tab ul {
+  position: sticky;
+  list-style-type: none;
+  margin-bottom: 3%; 
+  margin-top: 3%;
+  padding: 0;
+  overflow: hidden;
+  background-color: #f2f2f2;
+  text-align:center;
+}
+
+.wrapper .tab li {
+  float: left;
+  width: 50%;
+}
+
+.wrapper .tab li a {
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.wrapper .tab li a:hover:not(.active) {
+  background-color: #111;
+  color: white;
+}
+
+.wrapper .tab .active {
+  background-color: #9b9b9b;
+  color: black;
+}
 
 .wrapper p {
 	display: block;
@@ -62,13 +96,33 @@ select:focus {
 }
 
 .wrapper p.header_name{
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	margin-left: 1%;
 	display: block;
 	font-weight:bold;
 	font-size: 18pt;
 	line-height: 100%;
 	letter-spacing: 0.5px;
+}
+
+.wrapper .layout{
+	 float:left; 
+	 margin-top: 5%;
+	 width:100%;
+}
+
+.dataTables_wrapper{
+	width:98%; 
+	float:left; 
+	margin-left:1%; 
+	margin-bottom: 1%
+}
+.dataTables_wrapper .dataTables_length{
+	width: 20%;
+}
+.dataTables_wrapper .dataTables_length label{
+	width: 100%;
 }
 
 #bookedName{
@@ -91,7 +145,7 @@ select:focus {
 	cursor:pointer;
 }
 
-.wrapper input[type=submit]{
+.wrapper input[type=submit], .wrapper input[type=button], .wrapper input[type=reset]{
     text-align: center;
     cursor: default;
     color: buttontext;
@@ -99,19 +153,7 @@ select:focus {
     background-color: #ffffff;
     box-sizing: border-box;
 }
-.wrapper input[type=submit]:hover{
-	background-color: #33adff;
-}
-
-.wrapper input[type=reset]{
-    text-align: center;
-    cursor: default;
-    color: buttontext;
-	border: 1px solid #ccc;
-    background-color: #ffffff;
-    box-sizing: border-box;
-}
-.wrapper input[type=reset]:hover{
+.wrapper input[type=submit]:hover, .wrapper input[type=button]:hover, .wrapper input[type=reset]:hover{
 	background-color: #33adff;
 }
 
@@ -158,8 +200,6 @@ select:focus {
 	background-color: #00ace6;
 	font-weight:bold;
 }
-
-
 
 .wrapper .table_session_available{
 	padding: 1px 12px;
@@ -217,3 +257,14 @@ select:focus {
 	border: 1px solid #ccc;
 	width:70%;
 }
+.wrapper .filter, .wrapper .filter_selected, .layout{
+	background: #f2f2f2;
+	border: 1px solid;
+	border-radius: 15px;
+	box-shadow: 5px 10px 18px #888888
+}
+
+.wrapper .filter p, .wrapper .filter_selected p{
+	margin-left: 10%;
+}
+

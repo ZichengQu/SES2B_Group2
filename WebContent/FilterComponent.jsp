@@ -3,10 +3,10 @@ import="java.sql.*"
 import="java.text.*"
 %>
 
-<p class="header_name" id="filter_sessions_header" style="width:90%" >Filter Sessions</p>
+<p class="header_name" id="filter_sessions_header" style="width:90%; padding-top: 3%;" >Filter Sessions</p>
 <form class="filter_sessions" action="Adm_Sessions_Home.jsp" method="POST">
-	<p id="date_filter">1. Date:&nbsp;&nbsp;
-		<input type="text" name="datefilter" value="" />
+	<p id="date_filter" class="input-group input-daterange">1. Date:&nbsp;&nbsp;
+		<input type="text" name="dateRange" value="" />
 	</p>
 	<p id="type_filter">2. Type:&nbsp;&nbsp;
 		<select name="typeDropbtn">
@@ -21,14 +21,14 @@ import="java.text.*"
 			<%
 			try{
 				String Query="SELECT * FROM room";
-				String host = "jdbc:mysql://localhost:3306/uts_help";
+				String host = "jdbc:mysql://aagmqmvaq3h3zl.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help?useSSL=false";
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
 				Connection conn=DriverManager.getConnection(host, "root", "rootroot");
 				Statement stm = conn.createStatement();
 				ResultSet rs = stm.executeQuery(Query);
 				while(rs.next()){
 					%>
-					<option value="<%=rs.getInt("roomId")%>"><%=rs.getString("roomLocation") %></option>
+					<option value="<%=rs.getInt("roomId")%>"><%=rs.getString("roomId") %></option>
 					<%
 				}
 			} catch(Exception ex){
@@ -42,15 +42,15 @@ import="java.text.*"
 			<option value=""></option>
 			<%
 			try{
-				String Query="SELECT * FROM admin";
-				String host = "jdbc:mysql://localhost:3306/uts_help";
+				String Query="SELECT * FROM advisor";
+				String host = "jdbc:mysql://aagmqmvaq3h3zl.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help?useSSL=false";
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
 				Connection conn=DriverManager.getConnection(host, "root", "rootroot");
 				Statement stm = conn.createStatement();
 				ResultSet rs = stm.executeQuery(Query);
 				while(rs.next()){
 					%>
-					<option value="<%=rs.getInt("adminId")%>"><%=rs.getString("firstName") %> <%=rs.getString("lastName") %></option>
+					<option value="<%=rs.getInt("advisorId")%>"><%=rs.getString("firstName") %> <%=rs.getString("lastName") %></option>
 					<%
 				}
 			} catch(Exception ex){
@@ -59,10 +59,11 @@ import="java.text.*"
 			%>
 		</select>
 	</p>
-	<div class="submitFilter">
-		<input type="submit" name="btnSubmitFilter" value="Submit" id="btnSubmitFilter" style="float:left"/>
-		<input type="reset" value="Reset" style="float:left">
+	<div class="submitFilter" style="padding-bottom:1%">
+		<input type="submit" name="btnSubmitFilter" value="Submit" id="btnSubmitFilter" style="float:left; margin-left: 30%"/>
+		<input type="reset" value="Reset" style="float:right; margin-right: 30%">
 	</div>
+	<p><br></p>
 
 </form>
 
@@ -70,19 +71,6 @@ import="java.text.*"
 <script type="text/javascript">
 	$(function() {
 		//DateRangePicker
-		$('input[name="datefilter"]').daterangepicker({
-			autoUpdateInput: false,
-			locale: {
-				cancelLabel: 'Clear'
-			}
-		});
-		$('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
-			
-			$(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
-		});
-		$('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
-			$(this).val('');
-		});
+		$('input[name="dateRange"]').daterangepicker();
 	});
 </script>
-
