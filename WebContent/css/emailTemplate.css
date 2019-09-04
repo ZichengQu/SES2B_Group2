@@ -1,0 +1,67 @@
+@charset "UTF-8";
+body {
+	background-color: #0099cc url(../img/background.png) no-repeat scroll
+		left top;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+}
+
+.wrapper {
+	width: 90%;
+	margin: 0 auto;
+	padding-top: 20px;
+}
+
+.wrapper nav {
+	margin-top: 10px;
+	font-size: 0.8em;
+}
+
+.wrapper h2 {
+	letter-spacing: 0.5px;
+}
+
+.wrapper .selectArea {
+	padding-bottom: 10px;
+}
+
+.wrapper .selectArea .emailType {
+	float: left;
+}
+
+.wrapper #changeTemplate { 
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-top: 1px #cacaca solid;
+	border-bottom: 1px #cacaca solid;
+}
+
+.wrapper #changeTemplate h3 {
+	text-align: center;
+}
+
+.wrapper #changeTemplate table th {
+	font-weight: normal;
+	font-size: 1em;
+	margin: 0 auto;
+	
+}
+
+.wrapper #changeTemplate textarea {
+	width: 95%;
+}
+
+.wrapper #changeTemplate .publishArea {
+	background-color: #dadbdd40;
+	color: #bc4115;
+	width: 100%;
+}
+
+.wrapper .instruction {
+	border-top: 1px #cacaca solid;
+	padding: 10px;
+}
+
+.wrapper .instruction .bullet {
+	padding: 15px;
+}

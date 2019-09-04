@@ -1,8 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.bean.ConfirmationEmail"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% 
+	String emailTempSel = request.getParameter("emailTempSelection");
+	request.setAttribute("emailTempSel", emailTempSel);
+	String test = "this is a test for email selection";
+%>
+
 <head>
 	<meta charset="UTF-8">
 	<title>Change Email Template</title>
@@ -130,6 +138,7 @@
 	</style>
 </head>
 <body>
+
 	<div class="head"></div>
 	<div class="wrapper">
 			<!-- <nav>
@@ -152,21 +161,22 @@
 				<option value="9">9 - Confirmation of waiting list (to student)</option>
 			</select>
 		</div>
+		
 			<div id="changeTemplate" class="hide">
 				<h3></h3>
 				<table>
 					<tr>
 						<th></th>
-						<th style="font-weiteght:bold;">Current content</th>
+						<th style="font-weight:bold;">Current content</th>
 						<th style="font-weight:bold;">New content</th>
 					</tr>
 					<tr>
 						<th>Subject</th>
 						<th>
-							<textarea id="current_subject" class="publishArea" id="" rows="" cols="" readonly="readonly" name="subject"></textarea>
+							<textarea id="current_subject" class="publishArea" id="" rows="" cols="20" readonly="readonly" name="subject"></textarea>
 						</th>
 						<th>
-							<textarea id="new_subject" rows="" cols="" readonly="readonly" name="subject"></textarea>
+							<textarea id="new_subject" rows="" cols="20" readonly="readonly" name="subject"></textarea>
 						</th>
 					</tr>
 					<tr>
@@ -176,7 +186,6 @@
 						</th>
 						<th>
 							<textarea id="new_body" rows="" cols="" style="height: 100px;" name="template"></textarea>
-						
 						</th>
 					</tr>
 					<tr>
@@ -249,6 +258,30 @@
 					$(changeTemplate).removeClass('hide');
 				}else{
 					$(changeTemplate).addClass('hide');
+				}
+			})
+		})
+	</script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('select').change(function(){
+				var value=$("select").find("option:selected").val();
+				
+				if(value == "1"){
+					$('#current_body').val('Dear [% student_givenname %], \n \
+							Your appointment detail: \n \
+							• When:		 [% date %] \
+							• Start time:[% start_time %] \
+							• End time:	 [% end_time %] \
+							• Where:	 [% campus %] \n \
+							<u> Upload your document </u> \
+							To make this session helpful, is is essential tht you \
+							upload* any material that is relevant to the assignment \
+							(your draft, assignment question, marking criteria). \
+							');
+				}else{
+					$('#current_body').val('not equal to 1 test');
 				}
 			})
 		})
