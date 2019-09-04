@@ -43,8 +43,6 @@ body {
 .wrapper #changeTemplate table th {
 	font-weight: normal;
 	font-size: 1em;
-	margin: 0 auto;
-	
 }
 
 .wrapper #changeTemplate textarea {
@@ -54,7 +52,6 @@ body {
 .wrapper #changeTemplate .publishArea {
 	background-color: #dadbdd40;
 	color: #bc4115;
-	width: 100%;
 }
 
 .wrapper .instruction {
@@ -65,3 +62,4 @@ body {
 .wrapper .instruction .bullet {
 	padding: 15px;
 }
+

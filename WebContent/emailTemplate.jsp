@@ -184,6 +184,7 @@
 						<th>
 							<textarea class="publishArea" id="current_body" rows="" cols="" style="height: 100px;" readonly="readonly" name="template"></textarea>
 						</th>
+						
 						<th>
 							<textarea id="new_body" rows="" cols="" style="height: 100px;" name="template"></textarea>
 						</th>
@@ -260,12 +261,17 @@
 					$(changeTemplate).addClass('hide');
 				}
 			})
+			
 		})
 	</script>
+	
+
+
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('select').change(function(){
+				
 				var value=$("select").find("option:selected").val();
 				
 				if(value == "1"){
@@ -279,9 +285,66 @@
 							To make this session helpful, is is essential tht you \
 							upload* any material that is relevant to the assignment \
 							(your draft, assignment question, marking criteria). \
-							');
-				}else{
-					$('#current_body').val('not equal to 1 test');
+							You must do this by 12 midnight the day before your \
+							appointment. \
+							 * To upload, logon onto <a href="http://helps- \
+							booking.uts.edu.au">HELPS booking system</a> and click \
+							on "My Bookings" tab \n \
+							<u>No longer avaliable?</u> \
+							If your circumstances change and you are no longer \
+							avaliable');
+					$('#new_body').val('Dear [% student_givenname %], \n \
+							Your appointment detail: \n \
+							• When:		 [% date %] \
+							• Start time:[% start_time %] \
+							• End time:	 [% end_time %] \
+							• Where:	 [% campus %] \n \
+							<u> Upload your document </u> \
+							To make this session helpful, is is essential tht you \
+							upload* any material that is relevant to the assignment \
+							(your draft, assignment question, marking criteria). \
+							You must do this by 12 midnight the day before your \
+							appointment. \
+							 * To upload, logon onto <a href="http://helps- \
+							booking.uts.edu.au">HELPS booking system</a> and click \
+							on "My Bookings" tab \n \
+							<u>No longer avaliable?</u> \
+							If your circumstances change and you are no longer \
+							avaliable');
+							
+					
+				}else if (value == "2"){
+					$('#current_body').val('[% student_givenname %][% student_surname %] has \
+							booked a one-to-one appointment with you. \
+							Appointment time: [% datetime %]');
+					$('#new_body').val('[% student_givenname %][% student_surname %] has \
+							booked a one-to-one appointment with you. \
+							Appointment time: [% datetime %]');
+					
+				}else if (value == "3"){
+					$('#current_body').val('Dear [% student_givenname %], \n \
+							This message is to confirm that you have cancelled \
+							an indvidual consultation appointment on \
+							[% datetime %] at [% campus %]. \n \
+							regards, \
+							HELPS');
+					$('#new_body').val('Dear [% student_givenname %], \n \
+							This message is to confirm that you have cancelled \
+							an indvidual consultation appointment on \
+							[% datetime %] at [% campus %]. \n \
+							regards, \
+							HELPS');
+				}else if (value == "4"){
+					$('#current_body').val('[% student_givenname %][% student_surname %] has \
+							cancelled a one-to-one appointment with you on \
+							[% datetime %].');
+					$('#new_body').val('[% student_givenname %][% student_surname %] has \
+							cancelled a one-to-one appointment with you on \
+							[% datetime %].');
+				}
+				else {
+					$('#current_body').val('');
+					$('#new_body').val('');
 				}
 			})
 		})
