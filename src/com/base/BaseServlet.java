@@ -1,25 +1,23 @@
-package com.servlet;
+package com.base;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
+
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bean.Student;
-
 /**
- * Servlet implementation class AwsTest
+ * Servlet implementation class BaseServlet
  */
-@WebServlet("/AwsTest")
-public class AwsTest extends HttpServlet {
+public class BaseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AwsTest() {
+    public BaseServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,24 +26,18 @@ public class AwsTest extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		
-		com.dao.AwsTest aws = new com.dao.AwsTest();
-		//Integer studentId = Integer.parseInt();
-		Integer studentId = Integer.parseInt((String) request.getParameter("studentId"));
-		System.out.println(studentId);
-		Student student = aws.getStudent(studentId);
-		if(student!=null) {
-			String studentName = student.getFirstName();
-			request.getSession().setAttribute("student", studentName);
-			String description = student.getLastName();
-			request.getSession().setAttribute("description", description);
-			System.out.println("AWS Test Success");
-			response.sendRedirect("AwsTestSuccess.jsp");
-		}else {
-			response.sendRedirect("AwsTestFail.jsp");
+		try {
+			String action = request.getParameter("action");
+			Class cls = this.getClass();
+			Method method = cls.getDeclaredMethod(action, HttpServletRequest.class,HttpServletResponse.class);
+			Object obj = this.getClass().newInstance();
+			method.invoke(obj, request,response);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
 		
 	}
 

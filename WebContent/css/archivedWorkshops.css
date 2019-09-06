@@ -1,0 +1,61 @@
+body {
+	background-color: #0099cc url(../img/background.png) no-repeat scroll
+		left top;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+}
+
+.wrapper {
+	width: 90%;
+	margin: 0 auto;
+	padding-top: 20px;
+}
+
+.wrapper h2 {
+	letter-spacing: 0.5px;
+}
+
+.wrapper .title {
+	float: left;
+}
+
+.wrapper #skillsInput {
+	width: 50%;
+}
+
+.wrapper table {
+	margin-top: 10px;
+}
+
+.wrapper table tr {
+	border-bottom: 1px #cacaca solid; //
+	background-color: #eff0f3;
+}
+
+.wrapper table input {
+	width: 95%;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: black;
+	opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	color: black;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+	color: black;
+}
+
+.wrapper table th a {
+	font-size: 0.8em;
+	font-weight: normal;
+}
+
+.wrapper .buttonArea {
+	text-align: center;
+	padding: 5px;
+}
+
