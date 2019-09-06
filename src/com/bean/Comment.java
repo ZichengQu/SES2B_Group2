@@ -2,6 +2,10 @@ package com.bean;
 
 import java.util.Date;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class Comment {
 	private Integer commentId;
 	private String description;
