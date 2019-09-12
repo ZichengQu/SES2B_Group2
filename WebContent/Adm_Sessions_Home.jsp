@@ -50,12 +50,9 @@
 			  <li><a href="OneToOneSessionsAdmin.jsp">Admin Sessions</a></li>
 			</ul>
 		</div>
-		
-		<div id="BookSessionsContent" class="tabcontent">
-			<div class="filter" style="width:30%; float:left; margin-left: 10%"></div>
-		</div>
+		<div class="filter" style="width:30%; float:left; margin-left: 10%"></div>
 	</div>
-	<div class="footer" style="width:100%; float:left; margin-top:5%"></div>
+	<div class="footer"></div>
 	
 </body>
 </html>
