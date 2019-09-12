@@ -2,11 +2,23 @@
 import="java.sql.*" 
 import="java.text.*"
 %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<%@page import="com.bean.Admin"%>
+<%@page import="com.bean.Session"%>
+<%@page import="com.bean.Room"%>
+
+<sql:setDataSource var="myDS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://aagmqmvaq3h3zl.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help?useSSL=false" user="root" password="rootroot"/>
+     
+<sql:query var="listRooms" dataSource="${myDS}"> SELECT * FROM room;</sql:query>
+<sql:query var="listAdvisors" dataSource="${myDS}"> SELECT * FROM advisor;</sql:query>
+
+
 
 <p class="header_name" id="filter_sessions_header" style="width:90%; padding-top: 3%;" >Filter Sessions</p>
 <form class="filter_sessions" action="Adm_Sessions_Home.jsp" method="POST">
-	<p id="date_filter" class="input-group input-daterange">1. Date:&nbsp;&nbsp;
-		<input type="text" name="dateRange" value="" />
+	<p id="date_filter">1. Date:&nbsp;&nbsp;
+		<input type="date" name="startDate" style="width:35%"> to <input type="date" name="endDate" style="width:35%">
 	</p>
 	<p id="type_filter">2. Type:&nbsp;&nbsp;
 		<select name="typeDropbtn">
@@ -18,45 +30,17 @@ import="java.text.*"
 	<p id="room_filter">3. Room:&nbsp;&nbsp;
 		<select name="roomDropbtn">
 			<option value=""></option>
-			<%
-			try{
-				String Query="SELECT * FROM room";
-				String host = "jdbc:mysql://aagmqmvaq3h3zl.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help?useSSL=false";
-				Class.forName("com.mysql.jdbc.Driver").newInstance();
-				Connection conn=DriverManager.getConnection(host, "root", "rootroot");
-				Statement stm = conn.createStatement();
-				ResultSet rs = stm.executeQuery(Query);
-				while(rs.next()){
-					%>
-					<option value="<%=rs.getInt("roomId")%>"><%=rs.getString("roomId") %></option>
-					<%
-				}
-			} catch(Exception ex){
-				ex.printStackTrace();
-			}
-			%>
+			<c:forEach var="item" items="${listRooms.rows}" >
+				<option value="${item.campus}.${item.level}.${item.roomNumber}"><c:out value="${item.campus}.${item.level}.${item.roomNumber}" /></option>
+			</c:forEach>
 		</select>
 	</p>
 	<p id="advisor_filter">4. Advisor:&nbsp;&nbsp;
 		<select name="advisorDropbtn">
 			<option value=""></option>
-			<%
-			try{
-				String Query="SELECT * FROM advisor";
-				String host = "jdbc:mysql://aagmqmvaq3h3zl.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help?useSSL=false";
-				Class.forName("com.mysql.jdbc.Driver").newInstance();
-				Connection conn=DriverManager.getConnection(host, "root", "rootroot");
-				Statement stm = conn.createStatement();
-				ResultSet rs = stm.executeQuery(Query);
-				while(rs.next()){
-					%>
-					<option value="<%=rs.getInt("advisorId")%>"><%=rs.getString("firstName") %> <%=rs.getString("lastName") %></option>
-					<%
-				}
-			} catch(Exception ex){
-				ex.printStackTrace();
-			}
-			%>
+			<c:forEach var="item" items="${listAdvisors.rows}" >
+				<option value="${item.firstName} ${item.lastName}"><c:out value="${item.firstName} ${item.lastName}"/></option>
+			</c:forEach>
 		</select>
 	</p>
 	<div class="submitFilter" style="padding-bottom:1%">
@@ -69,8 +53,7 @@ import="java.text.*"
 
 <!-- Date Range Picker -->
 <script type="text/javascript">
-	$(function() {
-		//DateRangePicker
-		$('input[name="dateRange"]').daterangepicker();
+	$(function () {
+	    $("#datepicker").datepicker();
 	});
 </script>

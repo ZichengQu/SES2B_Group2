@@ -49,8 +49,7 @@ body {
 	background-color: #33adff;
 }
 
-
-.wrapper button {
+.wrapper button{
 	align-items: flex-start;
     text-align: center;
     cursor: default;
@@ -63,13 +62,73 @@ body {
 	background-color: #33adff;
 }
 
-.wrapper .form_part1{
-	width:35%;
+.form_left input[type=submit], .form_left button{
+	align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    font-size: 12pt;
+    color: buttontext;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    width:18%;
+    padding: 1% 0;
+    margin-bottom:2%;
+}
+.form_left input[type=button]{
+	align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    font-size: 12pt;
+    color: buttontext;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    width: 80%;
+    padding: 2% 0;
+    margin:2% 10%;
+}
+.form_right button, .form_right input[type=submit]{
+	align-items: flex-start;
+    text-align: center;
+    font-size: 12pt;
+    cursor: default;
+    color: buttontext;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    width:28%;
+    padding: 2% 0;
+    margin-bottom:4%;
+}
+.form_left button:hover, .form_right button:hover, .form_left input[type=button]:hover{
+	background-color: #33adff;
+}
+
+.form_left{
+	width:25%;
 	float:left;
 }
-.wrapper .form_part2{
+.form_right{
 	width:65%;
 	float:right;
+}
+.form_left, .form_right, .layout{
+	background: #f2f2f2;
+	border: 1px solid;
+	border-radius: 15px;
+	box-shadow: 5px 10px 18px #888888
+}
+.form_left p, .form_left h3{
+	margin-left: 10%;
+	padding-top:1%;
+	padding-bottom:1%;
+}
+.form_right p, .form_right input{
+	margin-left: 5%;
+}
+.layout p, .layout input, .layout textarea, .layout button{
+	margin-left: 2%;
 }
 
 #otherHelpTypeRichText{
@@ -108,4 +167,10 @@ body {
 .wrapper .table_session_available td{
 	border: 1px solid #ddd;
 	padding: 8px;
+}
+
+#btnSaveComment {
+    margin: 50% 0%;
+    padding: 10% 40%;
+    font-size: 12pt;
 }

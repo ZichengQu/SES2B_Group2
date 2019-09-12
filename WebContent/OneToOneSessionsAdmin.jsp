@@ -90,7 +90,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 			<div class="filter" style="width:30%; float:left; margin-left: 10%"></div>
 			<form method="GET" style="width:30%; float:right; margin-right: 10%" class="filter_selected">
 				<p class="header_name" style="width:95%" >Your Selection:</p>
-				<p>Date: <%=request.getParameter("datefilter")%></p>
+				<p>Date: <%=request.getParameter("startDate")%> - <%=request.getParameter("endDate")%></p>
 				<p>Type: <%=request.getParameter("typeDropbtn")%></p>
 				<p>Room: <%=request.getParameter("roomDropbtn")%></p>
 				<p>Advisor: <%=request.getParameter("advisorDropbtn")%></p>
@@ -101,6 +101,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 				<table class="display" id="tAdminSessionAvailable">
 					<thead>
 						<tr class="header" align="left">
+							<th style="width:2%;">No. </th>
 							<th style="width:9%;">Date</th>
 							<th style="width:7%;">Start Time</th>
 							<th style="width:7%;">End Time</th>
@@ -115,12 +116,13 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 					</thead>
 					<tbody>
 						<c:if test="${showAll}">
-							<c:forEach var="item" items="${queryAllSessions.rows }">
+							<c:forEach var="item" items="${queryAllSessions.rows }" varStatus="count">
 								<tr class="filter_result">
+									<td>${count.index+1}</td>
 									<td><fmt:formatDate type="date" value="${item.date}"/>
 									<td><fmt:formatDate pattern="HH:mm" value="${item.startTime}"/>
 									<td><fmt:formatDate pattern="HH:mm" value="${item.endTime}"/>
-									<td>${item.roomLocation}</td>
+									<td>${item.campus}.${item.level}.${item.roomNumber}</td>
 									<td>${item.advisorName}</td>
 									<td>${item.type}</td>
 									<c:choose>
@@ -130,7 +132,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 													<input type="hidden" name="get_date" value = "${item.date}">
 													<input type="hidden" name="get_startTime" value = "${item.startTime}">
 													<input type="hidden" name="get_endTime" value = "${item.endTime}">
-													<input type="hidden" name="get_room" value = "${item.roomLocation}">
+													<input type="hidden" name="get_room" value = "${item.campus}.${item.level}.${item.roomNumber}">
 													<input type="hidden" name="get_type" value = "${item.type}">
 													<input type="hidden" name="get_advisorId" value = "${item.advisorId}">
 													<input type="hidden" name="get_advisorName" value = "${item.advisorName}">
@@ -153,7 +155,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 													<input type="hidden" name="get_date" value = "${item.date}">
 													<input type="hidden" name="get_startTime" value = "${item.startTime}">
 													<input type="hidden" name="get_endTime" value = "${item.endTime}">
-													<input type="hidden" name="get_room" value = "${item.roomLocation}">
+													<input type="hidden" name="get_room" value = "${item.campus}.${item.level}.${item.roomNumber}">
 													<input type="hidden" name="get_type" value = "${item.type}">
 													<input type="hidden" name="get_advisorId" value = "${item.advisorId}">
 													<input type="hidden" name="get_advisorName" value = "${item.advisorName}">
@@ -168,12 +170,13 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 							</c:forEach>
 						</c:if>
 						<c:if test="${filtered}">
-							<c:forEach var="item" items="${queryFilterSessions.rows }">
+							<c:forEach var="item" items="${queryFilterSessions.rows }" varStatus="count">
 								<tr class="filter_result">
+									<td>${count.index+1}</td>
 									<td><fmt:formatDate type="date" value="${item.date}"/>
 									<td><fmt:formatDate pattern="HH:mm" value="${item.startTime}"/>
 									<td><fmt:formatDate pattern="HH:mm" value="${item.endTime}"/>
-									<td>${item.roomLocation}</td>
+									<td>${item.campus}.${item.level}.${item.roomNumber}</td>
 									<td>${item.advisorName}</td>
 									<td>${item.type}</td>
 									<c:choose>
@@ -183,7 +186,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 													<input type="hidden" name="get_date" value = "${item.date}">
 													<input type="hidden" name="get_startTime" value = "${item.startTime}">
 													<input type="hidden" name="get_endTime" value = "${item.endTime}">
-													<input type="hidden" name="get_room" value = "${item.roomLocation}">
+													<input type="hidden" name="get_room" value = "${item.campus}.${item.level}.${item.roomNumber}">
 													<input type="hidden" name="get_type" value = "${item.type}">
 													<input type="hidden" name="get_advisorId" value = "${item.advisorId}">
 													<input type="hidden" name="get_advisorName" value = "${item.advisorName}">
@@ -206,7 +209,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 													<input type="hidden" name="get_date" value = "${item.date}">
 													<input type="hidden" name="get_startTime" value = "${item.startTime}">
 													<input type="hidden" name="get_endTime" value = "${item.endTime}">
-													<input type="hidden" name="get_room" value = "${item.roomLocation}">
+													<input type="hidden" name="get_room" value = "${item.campus}.${item.level}.${item.roomNumber}">
 													<input type="hidden" name="get_type" value = "${item.type}">
 													<input type="hidden" name="get_advisorId" value = "${item.advisorId}">
 													<input type="hidden" name="get_advisorName" value = "${item.advisorName}">

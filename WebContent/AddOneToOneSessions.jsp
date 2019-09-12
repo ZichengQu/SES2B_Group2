@@ -17,7 +17,7 @@ import="java.text.*"
 	<p class="header_name" id="sessions_available_header" style="float:left; width:100%">Add a New Session</p>
 	<p style="margin-left: 1%; margin-right:1%">To add sessions, please enter their details below and click "Add". If you do not wish to add a session that you selected date & time, please click "Clear" next to that session before adding.</p>
 	<p style="margin-left: 1%; margin-right:1%">Please note: all the fields are compulsory, otherwise that session will not be added.</p>
-	<table class="table table-hover" id="tAddSessions" style="padding-bottom:10px; margin-left: 1%; margin-right:1%">
+	<table class="table table-hover" id="tAddSessions" style="padding-bottom:10px; margin-left: 1%; margin-right:1%; width:98%">
 		<tr class="header" align="left" style="width:90%">
 			<th style="width:10%;">Date</th>
 			<th style="width:10%;">Start Time</th>
@@ -36,7 +36,7 @@ import="java.text.*"
 				<select name="roomDropbtn" style="width:100%">
 					<option value=""></option>
 					<c:forEach var="item" items="${listRooms.rows}" >
-						<option value="${item.roomId}"><c:out value="${item.roomId}" /></option>
+						<option value="${item.roomId}"><c:out value="${item.campus}.${item.level}.${item.roomNumber}" /></option>
 					</c:forEach>
 				</select>
 				

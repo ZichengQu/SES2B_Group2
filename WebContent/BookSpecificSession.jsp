@@ -55,6 +55,7 @@ request.setAttribute("advisorId", advisorId);
 	  	/* help others box */
 		$(function(){
 	  		$('[name="helpType"][value="Others"]').change(function(){
+	  			
 	  			if ($(this).is(':checked')) {
 	  				document.getElementById('otherHelpTypeRichText').style.display = "block";
 				}else{
@@ -79,27 +80,37 @@ request.setAttribute("advisorId", advisorId);
 			$('.head').load('admin_head.html');
 			$('.footer').load('admin_footer.html');
 		});
+   		$(document).ready(function() {
+   			var heightRight = $(".form_right").height() + $(".checkRuleDetails").height()
+	        var height = Math.max($(".form_left").height(), heightRight);
+	        $(".form_left").height(height);
+	        $(".form_right").height(height);
+	    });
+   		function goBacks() {
+   		  window.history.back();
+   		}
 	</script>
 </head>
 <body>
 	<div class="head"></div>
 	<div class="wrapper">
-		<p class="header_name" id="specific_book_header">Book Session</p>
+		<p class="header_name" id="specific_book_header" style="text-align:center; margin:2% 0">Book Session</p>
 		<form method="POST" action="BookSpecSessConfirm.jsp" id="specific_book_form">
 			<input type="hidden" name="get_sessionId" value = "${sessionId}">
-			<div>
-				<div class="form_part1">
-					<p>Date: <strong><fmt:formatDate type="date" value="${date}" /></strong></p>
-					<p>Time: <strong><fmt:formatDate pattern="HH:mm" value="${startTime}"/> - <fmt:formatDate pattern="HH:mm" value="${endTime}"/></strong></p>
-				</div>
-				<div class="form_part2">
-					<p>Advisor: <strong><c:out value="${advisorName}"/></strong></p>
-					<p>Campus: <strong><c:out value="${room}"/></strong></p>
-				</div>
+			<div class="form_left">
+				<p><br><br></p>
+				<p>Date: <strong><fmt:formatDate type="date" value="${date}" /></strong></p>
+				<p>Time: <strong><fmt:formatDate pattern="HH:mm" value="${startTime}"/> - <fmt:formatDate pattern="HH:mm" value="${endTime}"/></strong></p>
+				<p>Advisor: <strong><c:out value="${advisorName}"/></strong></p>
+				<p>Campus: <strong><c:out value="${room}"/></strong></p>
+				<p>Type: <strong><c:out value="${type}"/></strong></p>
+				<!-- <div align="center" style="margin-top:20%">
+					<button onclick="goBack()">Go Back</button>
+				</div> -->
 			</div>
 			
-			<div class="form_part3" style="width:100%">
-				<p>Type: <strong><c:out value="${type}"/></strong></p>
+			<div class="form_right">
+				<p><br></p>
 				<p>Student ID*: <input type="Text" name="studentId" value="" maxlength="10"/></p>
 				<p>Subject Name* <input type="Text" name="subjectName" value="" width="70%"/></p>
 				<p>Assignment Type* 
@@ -128,14 +139,14 @@ request.setAttribute("advisorId", advisorId);
 				<input type="checkbox" name="helpType" value="Referencing">Referencing<br>
 				<input type="checkbox" name="helpType" value="Grammar">Grammar<br>
 				<input type="checkbox" name="helpType" value="Others">Other, please specify below<br>
-				<textarea rows="4" cols="50" id="otherHelpTypeRichText"></textarea>
+				<textarea rows="4" cols="50" id="otherHelpTypeRichText" style="margin-left: 5%;"></textarea>
 				<div align="center" style="margin-top:3em">
 					<input type="submit" name="btnBookSpecificSession" value="Book this sessions" id="btnBookSpecificSession"><br>
 					<input type="checkbox" name="sendToStudent" value="true">Send email to student<br>
 					<input type="checkbox" name="sendToLecture" value="true">Send email to lecturer (by default, no email is sent to lecturer)<br>
 					<input type="checkbox" name="additionalBook" value="checkRule">Check rule<br>
 				</div>
-				<div id="checkRuleDetails" style="display:none">
+				<div id="checkRuleDetails" style="display:none;" class="checkRuleDetails">
 					<p>Rule:</p>
 					<p>- A session must be booked / cancelled / put into the waiting list at least 24 hour before appointment.</p>
 					<p>- Student can only be put into the waiting list for the max 3 sessions for the week</p>
@@ -147,6 +158,6 @@ request.setAttribute("advisorId", advisorId);
 			
 		</form>
 	</div>
-	<div class="footer" style="margin-top:3em"></div>
+	<div class="footer" style="width:100%; float:left; margin-top:5%"></div>
 </body>
 </html>

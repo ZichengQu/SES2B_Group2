@@ -8,16 +8,18 @@
 <%@page import="com.bean.Session"%>
 <%@page import="com.bean.Room"%>
 
-<sql:setDataSource var="myDS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/uts_help" user="root" password="rootroot"/>
+<sql:setDataSource var="myDS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://aagmqmvaq3h3zl.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help?useSSL=false" user="root" password="rootroot"/>
 
 <%
-String date = request.getParameter("datefilter");
+String startDate = request.getParameter("startDate");
+String endDate = request.getParameter("endDate");
 String type = request.getParameter("typeDropbtn");
 String room = request.getParameter("roomDropbtn");
 String advisor = request.getParameter("advisorDropbtn");
 boolean showAll = (type==null && room==null && advisor==null) || (type=="" && room=="" && advisor=="");
 boolean filtered = (type!=null || room!=null || advisor!=null) && (type!="" || room!="" || advisor!="");
-request.setAttribute("date", date);
+request.setAttribute("startDate", startDate);
+request.setAttribute("endDate", endDate);
 request.setAttribute("type", type);
 request.setAttribute("room", room);
 request.setAttribute("advisor", advisor);
@@ -43,15 +45,17 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 	<meta http-equiv="Content-Type" content="text/html;" charset="UTF-8">
 	<title>HELPS Booking System</title>
 	<link rel="stylesheet" href="css/Adm_Sessions.css" />
+	
+	<!-- table viewer -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js" ></script>
 	
-	<!-- Include jQuery, Monment.js and Date Range Picker's file -->
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 	
-
+	
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	
 	<script type="text/javascript">
@@ -61,6 +65,9 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 			$('.filter').load('FilterComponent.jsp');
 			$('.addOneToOneSessions').load('AddOneToOneSessions.jsp');
 		});
+		$(document).ready(function() {
+		    $('#tSessionAvailable').DataTable();
+		} );
 	</script>
 
 	
@@ -70,169 +77,158 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 	
 	<div class="wrapper">
 		<!-- Tab: Book Session; Admin Session -->
-		<nav align="center">
-			<a href="Adm_Sessions_Home.jsp" style="border: 1px #000000 solid">Book Sessions</a> 
-			<a href="OneToOneSessionsAdmin.jsp">Admin Sessions</a>
-		</nav>
+		<div class="tab">
+			<ul>
+			  <li><a class="active" href="Adm_Sessions_Home.jsp">Book Sessions</a></li>
+			  <li><a href="OneToOneSessionsAdmin.jsp">Admin Sessions</a></li>
+			</ul>
+		</div>
 		
 		<div id="BookSessionsContent" class="tabcontent">
-			<div class="filter" style="width:50%; float:left;"></div>
-			<form method="GET" style="width:50%; float:right;">
-				<p class="header_name" style="width:95%">Your Selection:</p>
-				<p>Date: <%=request.getParameter("datefilter")%></p>
+			<div class="filter" style="width:30%; float:left; margin-left: 10%"></div>
+			<form method="GET" style="width:30%; float:right; margin-right: 10%" class="filter_selected">
+				<p class="header_name" style="width:95%; padding-top:3%">Your Selection:</p>
+				<p>Date: <%=request.getParameter("startDate")%> - <%=request.getParameter("endDate")%></p>
 				<p>Type: <%=request.getParameter("typeDropbtn")%></p>
 				<p>Room: <%=request.getParameter("roomDropbtn")%></p>
 				<p>Advisor: <%=request.getParameter("advisorDropbtn")%></p>
 				<p><br></p>
 			</form>
+			<div class="layout">
+				<p class="header_name" id="sessions_available_header" style="float:left; width:100%">Sessions Available</p>
 			
-			<p class="header_name" id="sessions_available_header" style="float:left; width:97%">Sessions Available</p>
-			
-			<table class="table_session_available" id="tSessionAvailable" style="width:100%; float:left">
-				<tr class="header" align="left" style="width:90%">
-					<th style="width:2%;"><input type="checkbox" name="attendance" value="No"><br></th>
-					<th style="width:12%;">Date</th>
-					<th style="width:10%;">Start Time</th>
-					<th style="width:10%;">End Time</th>
-					<th style="width:15%;">Room</th>
-					<th style="width:22%;">Type</th>
-					<th style="width:10%;">Booked by</th>
-					<th style="width:5%;">Waiting</th>
-				</tr>				
-				
-				<c:if test="${showAll}">
-					<c:forEach var="item" items="${queryAllSessions.rows }">
-						<tr class="filter_result">
-							<td><input type="checkbox" name="stu_attendance" value="No" /></td>
-							<td><fmt:formatDate type="date" value="${item.date}"/>
-							<td><fmt:formatDate pattern="HH:mm" value="${item.startTime}"/>
-							<td><fmt:formatDate pattern="HH:mm" value="${item.endTime}"/>
-							<td>${item.roomLocation}</td>
-							<td>${item.type}</td>
-							<c:choose>
-									<c:when test="${item.booked =='1'}">
-										<td><form action="StudentBookingDetails.jsp" method="POST">
-											<input type="hidden" name="get_sessionId" value = "${item.sessionId}">
-											<input type="hidden" name="get_date" value = "${item.date}">
-											<input type="hidden" name="get_startTime" value = "${item.startTime}">
-											<input type="hidden" name="get_endTime" value = "${item.endTime}">
-											<input type="hidden" name="get_room" value = "${item.roomLocation}">
-											<input type="hidden" name="get_type" value = "${item.type}">
-											<input type="hidden" name="get_adminId" value = "${item.adminId}">
-											<input type="hidden" name="get_advisorName" value = "${item.advisorName}">
-											<input type="hidden" name="get_studentId" value = "${item.studentId}">
-											<input type="hidden" name="get_studentFirstName" value = "${item.firstName}">
-											<input type="hidden" name="get_studentLastName" value = "${item.lastName}">
-											<input type="hidden" name="get_studentEmail" value = "${item.email}">
-											<input type="hidden" name="get_subjectName" value = "${item.subjectName}">
-											<input type="hidden" name="get_assignType" value = "${item.assignType}">
-											<input type="hidden" name="get_isAssignment" value = "${item.isAssignment}">
-											<input type="hidden" name="get_helpType" value = "${item.rule}">
-											<input type="hidden" name="get_isSendToStudent" value = "${item.isSendToStudent}">
-											<input type="hidden" name="get_isSendToLecture" value = "${item.isSendToLecture}">
-											<input type="submit" value="Booked" id="bookedName"/>
-											</form></td>
-									</c:when>
-									<c:otherwise>
-										<td><form action="BookSpecificSession.jsp" method="POST">
-											<input type="hidden" name="get_sessionId" value = "${item.sessionId}">
-											<input type="hidden" name="get_date" value = "${item.date}">
-											<input type="hidden" name="get_startTime" value = "${item.startTime}">
-											<input type="hidden" name="get_endTime" value = "${item.endTime}">
-											<input type="hidden" name="get_room" value = "${item.roomLocation}">
-											<input type="hidden" name="get_type" value = "${item.type}">
-											<input type="hidden" name="get_adminId" value = "${item.adminId}">
-											<input type="hidden" name="get_advisorName" value = "${item.advisorName}">
-											<input type="submit" value="Student Name" id="bookedName"/>
-										</form></td>
-									</c:otherwise>
-								</c:choose>
-							<td><a href="AddToWaitingList.jsp">Add</a></td>
-						</tr>
-					</c:forEach>
-				</c:if>
-				<c:if test="${filtered}">
-					<c:forEach var="item" items="${queryFilterSessions.rows }">
-						<tr class="filter_result">
-							<td><input type="checkbox" name="stu_attendance" value="No" /></td>
-							<td><fmt:formatDate type="date" value="${item.date}"/>
-							<td><fmt:formatDate pattern="HH:mm" value="${item.startTime}"/>
-							<td><fmt:formatDate pattern="HH:mm" value="${item.endTime}"/>
-							<td>${item.roomLocation}</td>
-							<td>${item.type}</td>
-							<c:choose>
-									<c:when test="${item.booked =='1'}">
-										<td><form action="StudentBookingDetails.jsp" method="POST">
-											<input type="hidden" name="get_sessionId" value = "${item.sessionId}">
-											<input type="hidden" name="get_date" value = "${item.date}">
-											<input type="hidden" name="get_startTime" value = "${item.startTime}">
-											<input type="hidden" name="get_endTime" value = "${item.endTime}">
-											<input type="hidden" name="get_room" value = "${item.roomLocation}">
-											<input type="hidden" name="get_type" value = "${item.type}">
-											<input type="hidden" name="get_adminId" value = "${item.adminId}">
-											<input type="hidden" name="get_advisorName" value = "${item.advisorName}">
-											<input type="hidden" name="get_studentId" value = "${item.studentId}">
-											<input type="hidden" name="get_studentFirstName" value = "${item.firstName}">
-											<input type="hidden" name="get_studentLastName" value = "${item.lastName}">
-											<input type="hidden" name="get_studentEmail" value = "${item.email}">
-											<input type="hidden" name="get_subjectName" value = "${item.subjectName}">
-											<input type="hidden" name="get_assignType" value = "${item.assignType}">
-											<input type="hidden" name="get_isAssignment" value = "${item.isAssignment}">
-											<input type="hidden" name="get_helpType" value = "${item.rule}">
-											<input type="hidden" name="get_isSendToStudent" value = "${item.isSendToStudent}">
-											<input type="hidden" name="get_isSendToLecture" value = "${item.isSendToLecture}">
-											<input type="submit" value="Booked" id="bookedName"/>
-											</form></td>
-									</c:when>
-									<c:otherwise>
-										<td><form action="BookSpecificSession.jsp" method="POST">
-											<input type="hidden" name="get_sessionId" value = "${item.sessionId}">
-											<input type="hidden" name="get_date" value = "${item.date}">
-											<input type="hidden" name="get_startTime" value = "${item.startTime}">
-											<input type="hidden" name="get_endTime" value = "${item.endTime}">
-											<input type="hidden" name="get_room" value = "${item.roomLocation}">
-											<input type="hidden" name="get_type" value = "${item.type}">
-											<input type="hidden" name="get_adminId" value = "${item.adminId}">
-											<input type="hidden" name="get_advisorName" value = "${item.advisorName}">
-											<input type="submit" value="Student Name" id="bookedName"/>
-										</form></td>
-									</c:otherwise>
-								</c:choose>
-							<td><a href="AddToWaitingList.jsp">Add</a></td>
-						</tr>
-					</c:forEach>
-				</c:if>
-				
-			</table>
-				
-			<div class="edit_available_sessions" align="center" style="width:100%; float:left; padding-top:5px">
-				<button onclick="updAvlbSess()" id="updateAblbSess">Update</button>
-				<button onclick="delAvlbSess()" id="deleteAvlbSess">Delete</button>
-			</div>
-			<div class="attendance" style="width:100%; float:left">
-			
-				<p align="center">Did student(s) attend these selected session(s)?</p>
-				<div align="center">
-					<select name="isAttended" style="width:5%">
-							<option value="">---</option>
-							<option value="Yes">Yes</option>
-							<option value="No">No</option>
-					</select>
-					<input type="submit" name="btnMarkAttendance" value="Mark Attendance" id="btnMarkAttendance"/>
-				</div>
+				<table class="display" id="tSessionAvailable">
+					<thead>
+						<tr class="header" align="left">
+							<th style="width:2%;">No. </th>
+							<th style="width:12%;">Date</th>
+							<th style="width:10%;">Start Time</th>
+							<th style="width:10%;">End Time</th>
+							<th style="width:15%;">Room</th>
+							<th style="width:22%;">Type</th>
+							<th style="width:10%;">Booked by</th>
+							<th style="width:5%;">Waiting</th>
+							<th style="width:5%;">Delete</th>
+						</tr>				
+					</thead>
+					<tbody>
+						<c:if test="${showAll}">
+							<c:forEach var="item" items="${queryAllSessions.rows }" varStatus="count">
+								<tr class="filter_result">
+									<td>${count.index+1}</td>
+									<td><fmt:formatDate type="date" value="${item.date}"/>
+									<td><fmt:formatDate pattern="HH:mm" value="${item.startTime}"/>
+									<td><fmt:formatDate pattern="HH:mm" value="${item.endTime}"/>
+									<td>${item.campus}.${item.level}.${item.roomNumber}</td>
+									<td>${item.type}</td>
+									<c:choose>
+											<c:when test="${item.booked =='1'}">
+												<td><form action="StudentBookingDetails.jsp" method="POST">
+													<input type="hidden" name="get_sessionId" value = "${item.sessionId}">
+													<input type="hidden" name="get_date" value = "${item.date}">
+													<input type="hidden" name="get_startTime" value = "${item.startTime}">
+													<input type="hidden" name="get_endTime" value = "${item.endTime}">
+													<input type="hidden" name="get_room" value = "${item.campus}.${item.level}.${item.roomNumber}">
+													<input type="hidden" name="get_type" value = "${item.type}">
+													<input type="hidden" name="get_advisorId" value = "${item.advisorId}">
+													<input type="hidden" name="get_advisorName" value = "${item.advisorName}">
+													<input type="hidden" name="get_studentId" value = "${item.studentId}">
+													<input type="hidden" name="get_studentFirstName" value = "${item.firstName}">
+													<input type="hidden" name="get_studentLastName" value = "${item.lastName}">
+													<input type="hidden" name="get_studentEmail" value = "${item.email}">
+													<input type="hidden" name="get_subjectName" value = "${item.subjectName}">
+													<input type="hidden" name="get_assignType" value = "${item.assignType}">
+													<input type="hidden" name="get_isAssignment" value = "${item.isAssignment}">
+													<input type="hidden" name="get_helpType" value = "${item.rule}">
+													<input type="hidden" name="get_isSendToStudent" value = "${item.isSendToStudent}">
+													<input type="hidden" name="get_isSendToLecture" value = "${item.isSendToLecture}">
+													<input type="submit" value="Booked" id="bookedName"/>
+													</form></td>
+											</c:when>
+											<c:otherwise>
+												<td><form action="BookSpecificSession.jsp" method="POST">
+													<input type="hidden" name="get_sessionId" value = "${item.sessionId}">
+													<input type="hidden" name="get_date" value = "${item.date}">
+													<input type="hidden" name="get_startTime" value = "${item.startTime}">
+													<input type="hidden" name="get_endTime" value = "${item.endTime}">
+													<input type="hidden" name="get_room" value = "${item.campus}.${item.level}.${item.roomNumber}">
+													<input type="hidden" name="get_type" value = "${item.type}">
+													<input type="hidden" name="get_advisorId" value = "${item.advisorId}">
+													<input type="hidden" name="get_advisorName" value = "${item.advisorName}">
+													<input type="submit" value="Student Name" id="bookedName"/>
+												</form></td>
+											</c:otherwise>
+										</c:choose>
+									<td><a href="AddToWaitingList.jsp">Add</a></td>
+									<td><input type="button" name="btnDeleteSessions" value="Delete" id="btnDeleteSessions" onclick="deleteSession()"/></td>
+								</tr>
+							</c:forEach>
+						</c:if>
+						<c:if test="${filtered}">
+							<c:forEach var="item" items="${queryFilterSessions.rows }" varStatus="count">
+								<tr class="filter_result">
+									<td>${count.index+1}</td>
+									<td><fmt:formatDate type="date" value="${item.date}"/>
+									<td><fmt:formatDate pattern="HH:mm" value="${item.startTime}"/>
+									<td><fmt:formatDate pattern="HH:mm" value="${item.endTime}"/>
+									<td>${item.campus}.${item.level}.${item.roomNumber}</td>
+									<td>${item.type}</td>
+									<c:choose>
+											<c:when test="${item.booked =='1'}">
+												<td><form action="StudentBookingDetails.jsp" method="POST">
+													<input type="hidden" name="get_sessionId" value = "${item.sessionId}">
+													<input type="hidden" name="get_date" value = "${item.date}">
+													<input type="hidden" name="get_startTime" value = "${item.startTime}">
+													<input type="hidden" name="get_endTime" value = "${item.endTime}">
+													<input type="hidden" name="get_room" value = "${item.campus}.${item.level}.${item.roomNumber}">
+													<input type="hidden" name="get_type" value = "${item.type}">
+													<input type="hidden" name="get_advisorId" value = "${item.advisorId}">
+													<input type="hidden" name="get_advisorName" value = "${item.advisorName}">
+													<input type="hidden" name="get_studentId" value = "${item.studentId}">
+													<input type="hidden" name="get_studentFirstName" value = "${item.firstName}">
+													<input type="hidden" name="get_studentLastName" value = "${item.lastName}">
+													<input type="hidden" name="get_studentEmail" value = "${item.email}">
+													<input type="hidden" name="get_subjectName" value = "${item.subjectName}">
+													<input type="hidden" name="get_assignType" value = "${item.assignType}">
+													<input type="hidden" name="get_isAssignment" value = "${item.isAssignment}">
+													<input type="hidden" name="get_helpType" value = "${item.rule}">
+													<input type="hidden" name="get_isSendToStudent" value = "${item.isSendToStudent}">
+													<input type="hidden" name="get_isSendToLecture" value = "${item.isSendToLecture}">
+													<input type="submit" value="Booked" id="bookedName"/>
+													</form></td>
+											</c:when>
+											<c:otherwise>
+												<td><form action="BookSpecificSession.jsp" method="POST">
+													<input type="hidden" name="get_sessionId" value = "${item.sessionId}">
+													<input type="hidden" name="get_date" value = "${item.date}">
+													<input type="hidden" name="get_startTime" value = "${item.startTime}">
+													<input type="hidden" name="get_endTime" value = "${item.endTime}">
+													<input type="hidden" name="get_room" value = "${item.campus}.${item.level}.${item.roomNumber}">
+													<input type="hidden" name="get_type" value = "${item.type}">
+													<input type="hidden" name="get_advisorId" value = "${item.advisorId}">
+													<input type="hidden" name="get_advisorName" value = "${item.advisorName}">
+													<input type="submit" value="Student Name" id="bookedName"/>
+												</form></td>
+											</c:otherwise>
+										</c:choose>
+									<td><a href="AddToWaitingList.jsp">Add</a></td>
+									<td><input type="button" name="btnDeleteSessions" value="Delete" id="btnDeleteSessions" onclick="deleteSession()"/></td>
+								</tr>
+							</c:forEach>
+						</c:if>
+					</tbody>
+					
+					
+				</table>
 			</div>
 			
 			
-			<div class="addOneToOneSessions" style="width:100%; float:left"></div>
-			
-			<div align="left" id="legendDesc" style="width:100%; float:left">
-				<p style="font-weight:bold">Legend</p>
-				<p>A: Attended</p>
-				<p>NA: Not Attended</p>
+			<div class="layout">
+				<div class="addOneToOneSessions" style="width:100%; float:left"></div>
 			</div>
 		</div>
 	</div>
-	<div class="footer" style="width:100%; float:left"></div>
+	<div class="footer" style="width:100%; float:left; margin-top:5%"></div>
 	
 </body>
 </html>
