@@ -16,7 +16,7 @@ import="java.text.*"
 
 
 <p class="header_name" id="filter_sessions_header" style="width:90%; padding-top: 3%;" >Filter Sessions</p>
-<form class="filter_sessions" action="Adm_Sessions_Home.jsp" method="POST">
+<form class="filter_sessions" action="OneToOneSessions.jsp" method="POST">
 	<p id="date_filter">1. Date:&nbsp;&nbsp;
 		<input type="date" name="startDate" style="width:35%"> to <input type="date" name="endDate" style="width:35%">
 	</p>
@@ -50,10 +50,3 @@ import="java.text.*"
 	<p><br></p>
 
 </form>
-
-<!-- Date Range Picker -->
-<script type="text/javascript">
-	$(function () {
-	    $("#datepicker").datepicker();
-	});
-</script>
