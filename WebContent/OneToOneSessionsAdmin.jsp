@@ -70,6 +70,18 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 		});
 		$(document).ready(function() {
 		    $('#tAdminSessionAvailable').DataTable();
+		    
+		    var $selectAll = $('#selectAll'); 
+		    var $table = $('.display');
+		    var $tdCheckbox = $table.find('tbody input:checkbox');
+		    var $tdCheckboxChecked = []; 
+		    $selectAll.on('click', function () {
+		        $tdCheckbox.prop('checked', this.checked);
+		    });
+		    $tdCheckbox.on('change', function(){
+		        $tdCheckboxChecked = $table.find('tbody input:checkbox:checked');
+		        $selectAll.prop('checked', ($tdCheckboxChecked.length == $tdCheckbox.length));
+		    });
 		} );
 	</script>
 </head>
@@ -101,6 +113,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 				<table class="display" id="tAdminSessionAvailable">
 					<thead>
 						<tr class="header" align="left">
+							<th style="width:2%;"><input type="checkbox" id="selectAll"><br></th>
 							<th style="width:2%;">No. </th>
 							<th style="width:9%;">Date</th>
 							<th style="width:7%;">Start Time</th>
@@ -111,13 +124,13 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 							<th style="width:10%;">Booked by</th>
 							<th style="width:5%;">A/NA</th>
 							<th style="width:5%;">Waiting</th>
-							<th style="width:5%;">Delete</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:if test="${showAll}">
 							<c:forEach var="item" items="${queryAllSessions.rows }" varStatus="count">
 								<tr class="filter_result">
+									<td><input type="checkbox" name="chk"/></td>
 									<td>${count.index+1}</td>
 									<td><fmt:formatDate type="date" value="${item.date}"/>
 									<td><fmt:formatDate pattern="HH:mm" value="${item.startTime}"/>
@@ -165,13 +178,13 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 										</c:choose>
 									<td><a href="AddToWaitingList.jsp">A/Na</a></td>
 									<td><a href="AddToWaitingList.jsp">Add</a></td>
-									<td><input type="button" name="btnDeleteSessions" value="Delete" id="btnDeleteSessions" onclick="deleteSession()"/></td>
 								</tr>
 							</c:forEach>
 						</c:if>
 						<c:if test="${filtered}">
 							<c:forEach var="item" items="${queryFilterSessions.rows }" varStatus="count">
 								<tr class="filter_result">
+									<td><input type="checkbox" name="chk"/></td>
 									<td>${count.index+1}</td>
 									<td><fmt:formatDate type="date" value="${item.date}"/>
 									<td><fmt:formatDate pattern="HH:mm" value="${item.startTime}"/>
@@ -219,7 +232,6 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 										</c:choose>
 									<td><a href="AddToWaitingList.jsp">A/Na</a></td>
 									<td><a href="AddToWaitingList.jsp">Add</a></td>
-									<td><input type="button" name="btnDeleteSessions" value="Delete" id="btnDeleteSessions" onclick="deleteSession()"/></td>
 								</tr>
 							</c:forEach>
 						</c:if>

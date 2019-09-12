@@ -26,14 +26,14 @@ request.setAttribute("advisor", advisor);
 request.setAttribute("showAll", showAll);
 request.setAttribute("filtered", filtered);
 
-/* out.println("date: " + date + " | type: " + type + " | room " + room + " | advisor: " + advisor + "\n");
-out.println("showAll? " + showAll + " | filtered? " + filtered); */
+/* out.println("date: " + startDate + endDate + " | type: " + type + " | room " + room + " | advisor: " + advisor + "\n");
+out.println("showAll? " + showAll + " | filtered? " + filtered);  */
 %>
 <sql:query var="queryAllSessions" dataSource="${myDS}">
 	SELECT * FROM session INNER JOIN room ON session.roomId=room.roomId LEFT JOIN student ON session.studentId=student.studentID;
 </sql:query>
 <sql:query var="queryFilterSessions" dataSource="${myDS}">
-	SELECT * FROM session INNER JOIN room ON session.roomId=room.roomId LEFT JOIN student ON session.studentId=student.studentID WHERE type=? OR session.roomId=? OR adminId=?;
+	SELECT * FROM session INNER JOIN room ON session.roomId=room.roomId LEFT JOIN student ON session.studentId=student.studentID WHERE type=? OR session.roomId=? OR advisorId=?;
 	<sql:param value="${type}" />
 	<sql:param value="${room}" />
 	<sql:param value="${advisor}" />
@@ -67,6 +67,19 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 		});
 		$(document).ready(function() {
 		    $('#tSessionAvailable').DataTable();
+		    
+		    var $selectAll = $('#selectAll'); 
+		    var $table = $('.display');
+		    var $tdCheckbox = $table.find('tbody input:checkbox');
+		    var $tdCheckboxChecked = []; 
+		    $selectAll.on('click', function () {
+		        $tdCheckbox.prop('checked', this.checked);
+		    });
+		    $tdCheckbox.on('change', function(){
+		        $tdCheckboxChecked = $table.find('tbody input:checkbox:checked');
+		        $selectAll.prop('checked', ($tdCheckboxChecked.length == $tdCheckbox.length));
+		    });
+		    
 		} );
 	</script>
 
@@ -100,6 +113,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 				<table class="display" id="tSessionAvailable">
 					<thead>
 						<tr class="header" align="left">
+							<th style="width:2%;"><input type="checkbox" id="selectAll"></th>
 							<th style="width:2%;">No. </th>
 							<th style="width:12%;">Date</th>
 							<th style="width:10%;">Start Time</th>
@@ -108,13 +122,13 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 							<th style="width:22%;">Type</th>
 							<th style="width:10%;">Booked by</th>
 							<th style="width:5%;">Waiting</th>
-							<th style="width:5%;">Delete</th>
 						</tr>				
 					</thead>
 					<tbody>
 						<c:if test="${showAll}">
 							<c:forEach var="item" items="${queryAllSessions.rows }" varStatus="count">
 								<tr class="filter_result">
+									<td><input type="checkbox" name="chk"/></td>
 									<td>${count.index+1}</td>
 									<td><fmt:formatDate type="date" value="${item.date}"/>
 									<td><fmt:formatDate pattern="HH:mm" value="${item.startTime}"/>
@@ -160,13 +174,13 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 											</c:otherwise>
 										</c:choose>
 									<td><a href="AddToWaitingList.jsp">Add</a></td>
-									<td><input type="button" name="btnDeleteSessions" value="Delete" id="btnDeleteSessions" onclick="deleteSession()"/></td>
 								</tr>
 							</c:forEach>
 						</c:if>
 						<c:if test="${filtered}">
 							<c:forEach var="item" items="${queryFilterSessions.rows }" varStatus="count">
 								<tr class="filter_result">
+									<td><input type="checkbox" name="chk"/></td>
 									<td>${count.index+1}</td>
 									<td><fmt:formatDate type="date" value="${item.date}"/>
 									<td><fmt:formatDate pattern="HH:mm" value="${item.startTime}"/>
@@ -212,14 +226,16 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 											</c:otherwise>
 										</c:choose>
 									<td><a href="AddToWaitingList.jsp">Add</a></td>
-									<td><input type="button" name="btnDeleteSessions" value="Delete" id="btnDeleteSessions" onclick="deleteSession()"/></td>
 								</tr>
 							</c:forEach>
 						</c:if>
 					</tbody>
-					
-					
 				</table>
+				<div align="center" style="margin-bottom: 1%">
+					<button onclick="markAttendance()" id="markAttendance">Mark Attendance</button>
+					<button onclick="delAvlbSess()" id="deleteAvlbSess">Delete Session(s)</button>
+					<p id="demo"></p>
+				</div>
 			</div>
 			
 			

@@ -10,34 +10,6 @@
 
 <sql:setDataSource var="myDS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://aagmqmvaq3h3zl.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help?useSSL=false" user="root" password="rootroot"/>
 
-<%
-String startDate = request.getParameter("startDate");
-String endDate = request.getParameter("endDate");
-String type = request.getParameter("typeDropbtn");
-String room = request.getParameter("roomDropbtn");
-String advisor = request.getParameter("advisorDropbtn");
-boolean showAll = (type==null && room==null && advisor==null) || (type=="" && room=="" && advisor=="");
-boolean filtered = (type!=null || room!=null || advisor!=null) && (type!="" || room!="" || advisor!="");
-request.setAttribute("startDate", startDate);
-request.setAttribute("endDate", endDate);
-request.setAttribute("type", type);
-request.setAttribute("room", room);
-request.setAttribute("advisor", advisor);
-request.setAttribute("showAll", showAll);
-request.setAttribute("filtered", filtered);
-
-/* out.println("date: " + date + " | type: " + type + " | room " + room + " | advisor: " + advisor + "\n");
-out.println("showAll? " + showAll + " | filtered? " + filtered); */
-%>
-<sql:query var="queryAllSessions" dataSource="${myDS}">
-	SELECT * FROM session INNER JOIN room ON session.roomId=room.roomId LEFT JOIN student ON session.studentId=student.studentID;
-</sql:query>
-<sql:query var="queryFilterSessions" dataSource="${myDS}">
-	SELECT * FROM session INNER JOIN room ON session.roomId=room.roomId LEFT JOIN student ON session.studentId=student.studentID WHERE type=? OR session.roomId=? OR adminId=?;
-	<sql:param value="${type}" />
-	<sql:param value="${room}" />
-	<sql:param value="${advisor}" />
-</sql:query>
 
 <!DOCTYPE html>
 <html>

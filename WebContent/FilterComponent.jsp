@@ -31,7 +31,7 @@ import="java.text.*"
 		<select name="roomDropbtn">
 			<option value=""></option>
 			<c:forEach var="item" items="${listRooms.rows}" >
-				<option value="${item.campus}.${item.level}.${item.roomNumber}"><c:out value="${item.campus}.${item.level}.${item.roomNumber}" /></option>
+				<option value="${item.roomId}"><c:out value="${item.campus}.${item.level}.${item.roomNumber}" /></option>
 			</c:forEach>
 		</select>
 	</p>
@@ -39,7 +39,7 @@ import="java.text.*"
 		<select name="advisorDropbtn">
 			<option value=""></option>
 			<c:forEach var="item" items="${listAdvisors.rows}" >
-				<option value="${item.firstName} ${item.lastName}"><c:out value="${item.firstName} ${item.lastName}"/></option>
+				<option value="${item.advisorId}"><c:out value="${item.firstName} ${item.lastName}"/></option>
 			</c:forEach>
 		</select>
 	</p>
