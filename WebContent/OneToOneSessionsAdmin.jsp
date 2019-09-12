@@ -83,6 +83,23 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 		        $selectAll.prop('checked', ($tdCheckboxChecked.length == $tdCheckbox.length));
 		    });
 		} );
+		function delAvlbSess(){
+			var message = "Date + Room\n"
+			$('.display input[type=checkbox]:checked').each(function (){
+				var row = $(this).closest('tr')[0];
+				message += row.cells[2].innerHTML;
+				message += " + " + row.cells[5].innerHTML;
+				message += "\n";
+			})
+			var txt;
+			var alert = "Are you sure you want to delete?\n\nSelected Details:\n";
+			if (confirm(alert + message)) {
+			  txt = "You pressed OK!";
+			} else {
+			  txt = "You pressed Cancel!";
+			}
+			document.getElementById("result").innerHTML = txt;
+		};
 	</script>
 </head>
 <body>
@@ -236,8 +253,12 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 							</c:forEach>
 						</c:if>
 					</tbody>
-					
 				</table>
+				<div align="center" style="margin-bottom: 1%">
+					<button onclick="markAttendance()" id="markAttendance">Mark Attendance</button>
+					<button onclick="delAvlbSess()" id="deleteAvlbSess">Delete Session(s)</button>
+					<p id="result"></p>
+				</div>
 			</div>
 			<div class="layout">
 				<div class="addOneToOneSessions" style="width:100%; float:left"></div>
