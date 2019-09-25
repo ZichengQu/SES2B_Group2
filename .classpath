@@ -8,10 +8,14 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_221">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Dio/Downloads/jdbc-api-1.4.jar.zip"/>
+	<classpathentry kind="lib" path="/SES2A_Group2/SES2A/WebContent/WEB-INF/lib/mysql-connector-java-5.1.47.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dio/Downloads/javax.servlet-3.0.jar.zip"/>
+	<classpathentry kind="lib" path="C:/Users/Dio/Downloads/servlet-api.jar.zip"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

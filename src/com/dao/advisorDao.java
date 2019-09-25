@@ -43,20 +43,21 @@ public class advisorDao {
 		}
 	}
 
-	public void update(int advisorId, String staffNumberupdate, String firstNameupdate, String lastNameupdate, String emailupdate) {
+	public void update(int advisorId, String staffNumberupdate, String firstNameupdate, String lastNameupdate,
+			String emailupdate) {
 		try {
 			// Configuring hibernate
 			Configuration cfg = new Configuration();
 			cfg.configure("hibernate.cfg.xml");
-			
-			// Create sessionfactory 
+
+			// Create sessionfactory
 			SessionFactory factory = cfg.buildSessionFactory();
-			
+
 			// Get Session object
 			Session session = factory.openSession();
 			Object o = session.load(Advisor.class, advisorId);
 			Advisor advisorupdate = (Advisor) o;
-			
+
 			// Starting Transaction
 			Transaction transaction = session.beginTransaction();
 			advisorupdate.setStaffNumber(staffNumberupdate);
@@ -78,11 +79,11 @@ public class advisorDao {
 		// Configuring hibernate
 		Configuration cfg = new Configuration();
 		cfg.configure("hibernate.cfg.xml");
-		
-		// Create sessionfactory 
+
+		// Create sessionfactory
 		SessionFactory factory = cfg.buildSessionFactory();
 		Session session = factory.openSession();
-		
+
 		// Get Session object
 		Object o = session.load(Advisor.class, advisorId);
 		Advisor a = (Advisor) o;
@@ -101,11 +102,11 @@ public class advisorDao {
 			// Configuring hibernate
 			Configuration cfg = new Configuration();
 			cfg.configure("hibernate.cfg.xml");
-			
-			// Create sessionfactory 
+
+			// Create sessionfactory
 			SessionFactory factory = cfg.buildSessionFactory();
 			Session session = factory.openSession();
-			
+
 			// Get Session object
 			Object o = session.load(Advisor.class, advisorId);
 			Advisor advisorinactivate = (Advisor) o;
@@ -128,11 +129,11 @@ public class advisorDao {
 			// Configuring hibernate
 			Configuration cfg = new Configuration();
 			cfg.configure("hibernate.cfg.xml");
-			
-			// Create sessionfactory 
+
+			// Create sessionfactory
 			SessionFactory factory = cfg.buildSessionFactory();
 			Session session = factory.openSession();
-			
+
 			// Get Session object
 			Object o = session.load(Advisor.class, advisorId);
 			Advisor advisoractivate = (Advisor) o;
