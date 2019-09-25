@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.bean.StudentList" table="studentList">
+		<id name="studentListId" column="studentListId">
+			<generator class="native"></generator>
+		</id>
+		<property name="isPresent"></property>
+		<property name="isEmail"></property>
+		<many-to-one name="workShop" unique="true" column="workShopId" class="com.bean.WorkShop" not-null="false"></many-to-one>
+		<many-to-one name="student" unique="true" column="studentId" class="com.bean.Student" not-null="false"></many-to-one>
+	</class>
+</hibernate-mapping>

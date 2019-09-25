@@ -22,6 +22,8 @@ public class Student {
 	private Set<WorkShop> workShops = new HashSet<WorkShop>();//n:n
 	private Set<Session> sessions = new HashSet<Session>();//1:n
 	private Set<Attendance> attendances = new HashSet<Attendance>();//1:n
+	private WaitList waitList;
+	private StudentList studentList;
 	public Student() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -29,7 +31,8 @@ public class Student {
 	public Student(Integer studentId, String firstName, String lastName, String password, String faculty, String course,
 			String email, String phone, String mobile, String dob, StudentProfile studentProfile,
 			Set<WaitingList> waitingLists, Set<ConfirmationEmail> confirmationEmails, Set<ReminderEmail> reminderEmails,
-			Set<Comment> comments, Set<WorkShop> workShops, Set<Session> sessions, Set<Attendance> attendances) {
+			Set<Comment> comments, Set<WorkShop> workShops, Set<Session> sessions, Set<Attendance> attendances,
+			WaitList waitList, StudentList studentList) {
 		super();
 		this.studentId = studentId;
 		this.firstName = firstName;
@@ -49,6 +52,8 @@ public class Student {
 		this.workShops = workShops;
 		this.sessions = sessions;
 		this.attendances = attendances;
+		this.waitList = waitList;
+		this.studentList = studentList;
 	}
 	public Integer getStudentId() {
 		return studentId;
@@ -158,9 +163,17 @@ public class Student {
 	public void setAttendances(Set<Attendance> attendances) {
 		this.attendances = attendances;
 	}
-	
-	
-	
-	
+	public WaitList getWaitList() {
+		return waitList;
+	}
+	public void setWaitList(WaitList waitList) {
+		this.waitList = waitList;
+	}
+	public StudentList getStudentList() {
+		return studentList;
+	}
+	public void setStudentList(StudentList studentList) {
+		this.studentList = studentList;
+	}
 	
 }
