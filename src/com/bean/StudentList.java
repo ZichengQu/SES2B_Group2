@@ -2,19 +2,19 @@ package com.bean;
 
 public class StudentList {
 	private Integer studentListId;
-	private WorkShop workShop;
-	private Student student;
+	private Integer workShopId;
+	private Integer studentId;
 	private String isPresent;
 	private String isEmail;
 	public StudentList() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public StudentList(Integer studentListId, WorkShop workShop, Student student, String isPresent, String isEmail) {
+	public StudentList(Integer studentListId, Integer workShopId, Integer studentId, String isPresent, String isEmail) {
 		super();
 		this.studentListId = studentListId;
-		this.workShop = workShop;
-		this.student = student;
+		this.workShopId = workShopId;
+		this.studentId = studentId;
 		this.isPresent = isPresent;
 		this.isEmail = isEmail;
 	}
@@ -24,17 +24,17 @@ public class StudentList {
 	public void setStudentListId(Integer studentListId) {
 		this.studentListId = studentListId;
 	}
-	public WorkShop getWorkShop() {
-		return workShop;
+	public Integer getWorkShopId() {
+		return workShopId;
 	}
-	public void setWorkShop(WorkShop workShop) {
-		this.workShop = workShop;
+	public void setWorkShopId(Integer workShopId) {
+		this.workShopId = workShopId;
 	}
-	public Student getStudent() {
-		return student;
+	public Integer getStudentId() {
+		return studentId;
 	}
-	public void setStudent(Student student) {
-		this.student = student;
+	public void setStudentId(Integer studentId) {
+		this.studentId = studentId;
 	}
 	public String getIsPresent() {
 		return isPresent;
@@ -48,5 +48,4 @@ public class StudentList {
 	public void setIsEmail(String isEmail) {
 		this.isEmail = isEmail;
 	}
-	
 }

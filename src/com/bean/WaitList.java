@@ -2,18 +2,18 @@ package com.bean;
 
 public class WaitList {
 	private Integer waitListId;
-	private WorkShop workShop;
-	private Student student;
+	private Integer workShopId;
+	private Integer studentId;
 	private String rank;
 	public WaitList() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public WaitList(Integer waitListId, WorkShop workShop, Student student, String rank) {
+	public WaitList(Integer waitListId, Integer workShopId, Integer studentId, String rank) {
 		super();
 		this.waitListId = waitListId;
-		this.workShop = workShop;
-		this.student = student;
+		this.workShopId = workShopId;
+		this.studentId = studentId;
 		this.rank = rank;
 	}
 	public Integer getWaitListId() {
@@ -22,17 +22,17 @@ public class WaitList {
 	public void setWaitListId(Integer waitListId) {
 		this.waitListId = waitListId;
 	}
-	public WorkShop getWorkShop() {
-		return workShop;
+	public Integer getWorkShopId() {
+		return workShopId;
 	}
-	public void setWorkShop(WorkShop workShop) {
-		this.workShop = workShop;
+	public void setWorkShopId(Integer workShopId) {
+		this.workShopId = workShopId;
 	}
-	public Student getStudent() {
-		return student;
+	public Integer getStudentId() {
+		return studentId;
 	}
-	public void setStudent(Student student) {
-		this.student = student;
+	public void setStudentId(Integer studentId) {
+		this.studentId = studentId;
 	}
 	public String getRank() {
 		return rank;
@@ -40,6 +40,4 @@ public class WaitList {
 	public void setRank(String rank) {
 		this.rank = rank;
 	}
-	
-	
 }
