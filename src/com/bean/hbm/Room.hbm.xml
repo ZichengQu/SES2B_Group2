@@ -7,7 +7,9 @@
 		<id name="roomId">
 			<generator class="native"></generator>
 		</id>
-		<property name="roomLocation"></property>
+		<property name="campus"></property>
+		<property name="level"></property>
+		<property name="roomNumber"></property>
 		<set name="workShops" lazy="false">
 			<key column="roomId"></key>
 			<one-to-many class="com.bean.WorkShop"/>

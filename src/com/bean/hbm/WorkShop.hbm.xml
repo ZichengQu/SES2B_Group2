@@ -35,5 +35,7 @@
 			<key column="workShopId"></key>
 			<many-to-many class="com.bean.Student" column="studentId"/>
 		</set>
+		<many-to-one name="waitList" unique="true" column="waitListId" class="com.bean.WaitList"></many-to-one>
+		<many-to-one name="studentList" unique="true" column="studentListId" class="com.bean.StudentList"></many-to-one>
 	</class>
 </hibernate-mapping>

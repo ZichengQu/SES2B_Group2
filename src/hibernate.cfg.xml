@@ -30,5 +30,7 @@
 		<mapping resource="com/bean/hbm/StudentProfile.hbm.xml"/>
 		<mapping resource="com/bean/hbm/WaitingList.hbm.xml"/>
 		<mapping resource="com/bean/hbm/WorkShop.hbm.xml"/>
+		<mapping resource="com/bean/hbm/StudentList.hbm.xml"/>
+		<mapping resource="com/bean/hbm/WaitList.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>
