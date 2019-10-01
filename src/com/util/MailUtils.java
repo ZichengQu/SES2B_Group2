@@ -46,7 +46,7 @@ public class MailUtils {
         props.setProperty("mail.smtp.host", myEmailSMTPHost);
         props.setProperty("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
-        props.setProperty("mail.smtp.port", "587");
+        props.setProperty("mail.smtp.port", "25");
         props.setProperty("mail.smtp.starttls.enable", "true");
  
         Session session = Session.getDefaultInstance(props);
