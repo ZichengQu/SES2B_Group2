@@ -4,12 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<% 
-	String emailTempSel = request.getParameter("emailTempSelection");
-	request.setAttribute("emailTempSel", emailTempSel);
-	String test = "this is a test for email selection";
-%>
 
 <head>
 	<meta charset="UTF-8">
@@ -91,6 +85,7 @@
 			$("#publish_email").click(function(){
 				var emailTemplate = $("#new_body").val();
 				var id =$("#select_email").val();
+				
 				$("#current_body").val(emailTemplate);
 				$.ajax({
 					url: "EmailServlet_publish", 
@@ -112,11 +107,13 @@
 			
 			$("#send_email").click(function(){
 				var emailTemplate = $("#new_body").val();
+				var emailSubject=$("select").find("option:selected").val();
 				$.ajax({
 					url: "EmailServlet_sendEmail", 
 					type: "post",
 					data: {
-			            emailTemplate: emailTemplate
+						emailSubject: emailSubject,
+						emailTemplate: emailTemplate
 			         },
 					dataType: "text", 
 					success: function(data){
@@ -264,14 +261,12 @@
 			
 		})
 	</script>
-	
-
 
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('select').change(function(){
-				
+			
 				var value=$("select").find("option:selected").val();
 				
 				if(value == "1"){
