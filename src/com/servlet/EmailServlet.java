@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.bean.ConfirmationEmail;
 import com.dao.emailDao;
 import com.util.MailUtils;
-//import com.util.MailUtils;
+import com.util.MailUtils;
 
 /**
  * Servlet implementation class EmailServlet
@@ -59,14 +59,35 @@ public class EmailServlet extends HttpServlet {
 			
 			String emailTemplate = request.getParameter("emailTemplate");
 			   
-			   String sendTime = "";
-			   Date date = new Date();
-			   SimpleDateFormat u = new SimpleDateFormat("HH:mm aa dd-MM-yyyy ");
-			   sendTime = u.format(date);
-			   
-			   emailTemplate = emailTemplate.replace("[% datetime %]", sendTime);
-			   
-			   MailUtils.sendMail(toEmail, emailTemplate, emailSubject);
+			String sendTime = "";
+			Date datetime = new Date();
+			SimpleDateFormat u = new SimpleDateFormat("HH:mm aa dd-MM-yyyy ");
+			sendTime = u.format(datetime);
+			
+			String currentdate = "";
+			Date date = new Date();
+			SimpleDateFormat d = new SimpleDateFormat(" dd-MM-yyyy ");
+			currentdate = d.format(date); 
+			
+			emailTemplate = emailTemplate.replace("[% datetime %]", sendTime);
+			emailTemplate = emailTemplate.replace("[% student_givenname %]", "Michelle");
+			emailTemplate = emailTemplate.replace("[% student_surname %]", "Michelle");
+			emailTemplate = emailTemplate.replace("[% date %]", currentdate);
+			emailTemplate = emailTemplate.replace("[% start_time %]", "10:00 AM");
+			emailTemplate = emailTemplate.replace("[% end_time %]", "11:00 AM");
+			emailTemplate = emailTemplate.replace("[% campus %]", "CB05C.01.020");
+			emailTemplate = emailTemplate.replace("[% lecturer_givenname %]", "Tianqing");
+			emailTemplate = emailTemplate.replace("[% lecturer_surname %]", "Zhu");
+			emailTemplate = emailTemplate.replace("[% lecturer_email %]", "tianqing.zhu@uts.edu.au");
+			emailTemplate = emailTemplate.replace("[% skillset %]", "Academic Writing");
+			emailTemplate = emailTemplate.replace("[% topic %]", "Formal Language");
+			emailTemplate = emailTemplate.replace("[% description %]", "Workshop covers: writing in academic style, characteristics of academic writing, types of academic writing and lectures expectation.");
+			emailTemplate = emailTemplate.replace("[% targetingGroup %]", "All UTS students");
+			emailTemplate = emailTemplate.replace("[% recurring_sessions %]", "Tue 30 Jul 10:30 - 12:00 CB05C.01.020\nThu 8 Aug 12:00 - 13:30 CB05C.02.038 (repeat)");
+			emailTemplate = emailTemplate.replace("-", "\n-");
+			emailTemplate = emailTemplate.replace("*To", "\n*To");
+			
+			MailUtils.sendMail(toEmail, emailTemplate, emailSubject);
 			writer.print("true");
 			
 		} catch (Exception e) {
@@ -99,7 +120,7 @@ public class EmailServlet extends HttpServlet {
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm aa");/*("yyyy-MM-dd HH:mm:ss aa")*/
 		publishTime = sdf.format(date);
-//		System.out.println(publishTime);
+		//System.out.println(publishTime);
 		
 //		boolean flag = eDao.updateEmail(Integer.parseInt(emailId), emailTemplate);
 //		if(flag) {

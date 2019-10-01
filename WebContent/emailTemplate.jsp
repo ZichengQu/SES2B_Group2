@@ -216,7 +216,7 @@
 				</div>
 				<div>Available data fields: to use these fields, enter [% fieldname %] within the email content where you
 				want it to appear</p></div>
-				<div>For 1:1 session</div>
+				<div>Common data fields</div>
 				<div class="bullet">
 					• [% student_givenname %]: inserts student's given name</p>
 					• [% student_surname %]: inserts student's surname</p>
@@ -225,19 +225,15 @@
 					• [% start_time %]: inserts appointment's start time</p>
 					• [% end_time %]: inserts appointment's end time</p>
 					• [% campus %]: inserts campus/ room location</p>
+				</div>
+				<div>For 1:1 session</div>
+				<div class="bullet">
 					• [% lecturer_givenname %]: inserts lecturer's given name</p>
 					• [% lecturer_surname %]: inserts lecturer's surname</p>
 					• [% lecturer_email %]: inserts lecturer's email address</p>
 				</div>
 				<div>For workshop</div>
 				<div class="bullet">
-					• [% student_givenname %]: inserts student's given name</p>
-					• [% student_surname %]: inserts student's surname</p>
-					• [% datetime %]: inserts appointment's date and time</p>
-					• [% date %]: inserts appointment's date</p>
-					• [% start_time %]: inserts appointment's start time</p>
-					• [% end_time %]: inserts appointment's end time</p>
-					• [% campus %]: inserts campus/ room location</p>
 					• [% skillset %]: inserts workshop skill-set</p>
 					• [% topic %]: inserts workshop topic</p>
 					• [% description %]: inserts workshop description</p>
@@ -272,28 +268,25 @@
 				if(value == "1"){
 					$('#current_body').val('Dear [% student_givenname %], \n \
 							Your appointment detail: \n \
-							• When:		 [% date %] \
-							• Start time:[% start_time %] \
-							• End time:	 [% end_time %] \
-							• Where:	 [% campus %] \n \
+							- When:		 [% date %] \
+							- Start time:[% start_time %] \
+							- End time:	 [% end_time %] \
+							- Where:	 [% campus %] \n \
 							<u> Upload your document </u> \
-							To make this session helpful, is is essential tht you \
+							To make this session helpful, is is essential that you \
 							upload* any material that is relevant to the assignment \
 							(your draft, assignment question, marking criteria). \
 							You must do this by 12 midnight the day before your \
 							appointment. \
 							 * To upload, logon onto <a href="http://helps- \
 							booking.uts.edu.au">HELPS booking system</a> and click \
-							on "My Bookings" tab \n \
-							<u>No longer avaliable?</u> \
-							If your circumstances change and you are no longer \
-							avaliable');
+							on "My Bookings" tab');
 					$('#new_body').val('Dear [% student_givenname %], \n \
 							Your appointment detail: \n \
-							• When:		 [% date %] \
-							• Start time:[% start_time %] \
-							• End time:	 [% end_time %] \
-							• Where:	 [% campus %] \n \
+							- When:		 [% date %] \
+							- Start time:[% start_time %] \
+							- End time:	 [% end_time %] \
+							- Where:	 [% campus %] \n \
 							<u> Upload your document </u> \
 							To make this session helpful, is is essential tht you \
 							upload* any material that is relevant to the assignment \
@@ -302,12 +295,8 @@
 							appointment. \
 							 * To upload, logon onto <a href="http://helps- \
 							booking.uts.edu.au">HELPS booking system</a> and click \
-							on "My Bookings" tab \n \
-							<u>No longer avaliable?</u> \
-							If your circumstances change and you are no longer \
-							avaliable');
+							on "My Bookings" tab');
 							
-					
 				}else if (value == "2"){
 					$('#current_body').val('[% student_givenname %][% student_surname %] has \
 							booked a one-to-one appointment with you. \
@@ -336,7 +325,51 @@
 					$('#new_body').val('[% student_givenname %][% student_surname %] has \
 							cancelled a one-to-one appointment with you on \
 							[% datetime %].');
+				}else if (value == "5"){
+					$('#current_body').val('[% student_givenname %][% student_surname %] you have\
+							been automatically booked for a session at [% datetime %]\
+							regards, \
+							HELPS');
+					$('#new_body').val('[% student_givenname %][% student_surname %] you have\
+							been automatically booked for a session at [% datetime %]\
+							regards, \
+							HELPS');
+				}else if (value == "6"){
+					$('#current_body').val('[% student_givenname %][% student_surname %] has \
+							been automatically booked for a session with you at \
+							[% datetime %].');
+					$('#new_body').val('[% student_givenname %][% student_surname %] has \
+							been automatically booked for a session with you at \
+							[% datetime %].');
+				}else if (value == "7"){
+					$('#current_body').val('Dear [% student_givenname %], \
+							you have registered for the [% topic %] workshop \
+							at [% datetime %].');
+					$('#new_body').val('Dear [% student_givenname %], \
+							you have registered for the [% topic %] workshop \
+							at [% datetime %].');
+				}else if (value == "8"){
+					$('#current_body').val('Dear [% student_givenname %],\n\
+							Your appointment detail: \n \
+							- When:		 [% date %] \
+							- Start time:[% start_time %] \
+							- End time:	 [% end_time %] \
+							- Where:	 [% campus %]');
+					$('#new_body').val('Dear [% student_givenname %],\n\
+							Your appointment detail: \n \
+							- When:		 [% date %] \
+							- Start time:[% start_time %] \
+							- End time:	 [% end_time %] \
+							- Where:	 [% campus %]');
+				}else if (value == "8"){
+					$('#current_body').val('Dear [% student_givenname %],\
+							you have been added to the waiting list \
+							of the [% topic %] workshop.');
+					$('#new_body').val('Dear [% student_givenname %],\
+							you have been added to the waiting list \
+							of the [% topic %] workshop.');
 				}
+				
 				else {
 					$('#current_body').val('');
 					$('#new_body').val('');
