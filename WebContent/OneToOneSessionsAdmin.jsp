@@ -84,19 +84,34 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 		    });
 		} );
 		function delAvlbSess(){
-			var message = "Date + Room\n"
+			var message = "Date + Room\n";
+			var sessionId = [];
+			var date = [];
+			var room = [];
+			var session = [];
 			$('.display input[type=checkbox]:checked').each(function (){
 				var row = $(this).closest('tr')[0];
-				message += row.cells[2].innerHTML;
-				message += " + " + row.cells[5].innerHTML;
-				message += "\n";
+				date.push(row.cells[3].innerHTML);
+				room.push(row.cells[6].innerHTML);
+				sessionId.push(row.cells[2].innerHTML);
 			})
-			var txt;
-			var alert = "Are you sure you want to delete?\n\nSelected Details:\n";
-			if (confirm(alert + message)) {
-			  txt = "You pressed OK!";
-			} else {
-			  txt = "You pressed Cancel!";
+			var txt = "";
+			var alertText = "Are you sure you want to delete?\n\nSelected Details:\nDate + Room\n";
+			var update = "";
+	        
+			if(sessionId.length == 0){
+				alert("Please select sessions to delete.");
+				
+			} else{
+				for(i=0; i<sessionId.length; i++){
+					if (confirm(alertText + date[i] + room[i])) {
+						session[i] = sessionId[i];
+						txt = "Deleted!";
+					} else {
+						sessionId = [];
+						txt = "Canceled! ";
+					}
+				}
 			}
 			document.getElementById("result").innerHTML = txt;
 		};
@@ -116,9 +131,9 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 		</div>
 
 		<div id="AdminSessionsContent" class="tabcontent">
-			<div class="filter" style="width:30%; float:left; margin-left: 10%"></div>
-			<form method="GET" style="width:30%; float:right; margin-right: 10%" class="filter_selected">
-				<p class="header_name" style="width:95%" >Your Selection:</p>
+			<div class="filter" id="filter" style="width:30%; float:left; margin-left: 10%; height:300px"></div>
+			<form method="GET" style="width:30%; float:right; margin-right: 10%; height:300px" class="filter_selected" id="filter_selected">
+				<p class="header_name" style="width:95%; padding-top:10%">Your Selection:</p>
 				<p>Date: <%=request.getParameter("startDate")%> - <%=request.getParameter("endDate")%></p>
 				<p>Type: <%=request.getParameter("typeDropbtn")%></p>
 				<p>Room: <%=request.getParameter("roomDropbtn")%></p>
@@ -132,6 +147,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 						<tr class="header" align="left">
 							<th style="width:2%;"><input type="checkbox" id="selectAll"><br></th>
 							<th style="width:2%;">No. </th>
+							<th style="display:none" >SessionId</th>
 							<th style="width:9%;">Date</th>
 							<th style="width:7%;">Start Time</th>
 							<th style="width:7%;">End Time</th>
@@ -149,6 +165,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 								<tr class="filter_result">
 									<td><input type="checkbox" name="chk"/></td>
 									<td>${count.index+1}</td>
+									<td style="display:none" >${item.sessionId}</td>
 									<td><fmt:formatDate type="date" value="${item.date}"/>
 									<td><fmt:formatDate pattern="HH:mm" value="${item.startTime}"/>
 									<td><fmt:formatDate pattern="HH:mm" value="${item.endTime}"/>
@@ -203,6 +220,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 								<tr class="filter_result">
 									<td><input type="checkbox" name="chk"/></td>
 									<td>${count.index+1}</td>
+									<td style="display:none" >${item.sessionId}</td>
 									<td><fmt:formatDate type="date" value="${item.date}"/>
 									<td><fmt:formatDate pattern="HH:mm" value="${item.startTime}"/>
 									<td><fmt:formatDate pattern="HH:mm" value="${item.endTime}"/>

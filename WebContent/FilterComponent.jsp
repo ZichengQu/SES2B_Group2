@@ -13,12 +13,10 @@ import="java.text.*"
 <sql:query var="listRooms" dataSource="${myDS}"> SELECT * FROM room;</sql:query>
 <sql:query var="listAdvisors" dataSource="${myDS}"> SELECT * FROM advisor;</sql:query>
 
-
-
 <p class="header_name" id="filter_sessions_header" style="width:90%; padding-top: 3%;" >Filter Sessions</p>
 <form class="filter_sessions" action="OneToOneSessions.jsp" method="POST">
 	<p id="date_filter">1. Date:&nbsp;&nbsp;
-		<input type="date" name="startDate" style="width:35%"> to <input type="date" name="endDate" style="width:35%">
+		<input type="date" name="startDate" style="width:50%"> to <input type="date" name="endDate" style="width:50%">
 	</p>
 	<p id="type_filter">2. Type:&nbsp;&nbsp;
 		<select name="typeDropbtn">
@@ -43,7 +41,7 @@ import="java.text.*"
 			</c:forEach>
 		</select>
 	</p>
-	<div class="submitFilter" style="padding-bottom:1%">
+	<div class="submitFilter" style="padding-bottom:1%; padding-top:5%">
 		<input type="submit" name="btnSubmitFilter" value="Submit" id="btnSubmitFilter" style="float:left; margin-left: 30%"/>
 		<input type="reset" value="Reset" style="float:right; margin-right: 30%">
 	</div>
