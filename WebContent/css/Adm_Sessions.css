@@ -1,0 +1,279 @@
+@charset "UTF-8";
+html {
+	height:100%;
+}
+body {
+	background-color: #0099cc url(../img/background.png) no-repeat scroll
+		left top;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+	height:100%;
+}
+
+
+.wrapper {
+	width: 90%;
+	margin: 0 auto;
+	padding-left: 10px;
+	padding-right: 10px;
+	min-height: 100%;
+}
+
+.wrapper nav {
+	margin-top: 10px;
+}
+
+.wrapper nav a {
+	padding: 5px;
+	font-weight: 600;
+	font-size: 1.2em;
+	text-decoration: none;
+	color: black;
+}
+
+.wrapper nav a:hover {
+	padding: 5px;
+	background-color: #fff;
+	font-weight: 600;
+	font-size: 1.2em;
+	color: black;
+	text-decoration: none;
+	border: 1px #000000 solid;
+}
+
+.wrapper input[type=text]{
+	
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	width: auto;
+}
+.wrapper input[type=radio]:disabled{
+	background: #33adff;
+}
+
+select {
+	width: 50%;
+}
+select:focus {
+	width: 50%;
+} 
+
+.wrapper .tab ul {
+  position: sticky;
+  list-style-type: none;
+  margin-bottom: 3%; 
+  margin-top: 3%;
+  padding: 0;
+  overflow: hidden;
+  background-color: #f2f2f2;
+  text-align:center;
+}
+
+.wrapper .tab li {
+  float: left;
+  width: 50%;
+}
+
+.wrapper .tab li a {
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.wrapper .tab li a:hover:not(.active) {
+  background-color: #111;
+  color: white;
+}
+
+.wrapper .tab .active {
+  background-color: #9b9b9b;
+  color: black;
+}
+
+.wrapper p {
+	display: block;
+	margin-block-start: 10px;
+	margin-block-end: 10px;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+}
+
+.wrapper p.header_name{
+	margin-top: 1%;
+	margin-bottom: 1%;
+	margin-left: 1%;
+	display: block;
+	font-weight:bold;
+	font-size: 18pt;
+	line-height: 100%;
+	letter-spacing: 0.5px;
+}
+
+.wrapper .layout{
+	 float:left; 
+	 margin-top: 5%;
+	 width:100%;
+}
+
+.dataTables_wrapper{
+	width:98%; 
+	float:left; 
+	margin-left:1%; 
+	margin-bottom: 1%
+}
+.dataTables_wrapper .dataTables_length{
+	width: 20%;
+}
+.dataTables_wrapper .dataTables_length label{
+	width: 100%;
+}
+
+#bookedName{
+	background:none!important;
+	border:none; 
+	padding:0!important;
+	font-size: 10pt;
+	color:#069;
+	text-decoration:underline;
+	cursor:pointer;
+	
+}
+#OneToOneProfile, #StudentBookingHistory{
+	background:none!important;
+	border:none; 
+	padding:0!important;
+	font-size: 13pt;
+	color:#069;
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+.wrapper input[type=submit], .wrapper input[type=button], .wrapper input[type=reset]{
+    text-align: center;
+    cursor: default;
+    color: buttontext;
+	border: 1px solid #ccc;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+.wrapper input[type=submit]:hover, .wrapper input[type=button]:hover, .wrapper input[type=reset]:hover{
+	background-color: #33adff;
+}
+
+.wrapper button {
+	align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    color: buttontext;
+	border: 1px solid #ccc;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+.wrapper button:hover {
+	background-color: #33adff;
+}
+
+
+/* Style the tab */
+.wrapper .tab {
+	overflow: hidden;
+	background-color: none;
+	box-sizing: border-box;
+	
+	width: 100%;
+}
+
+/* Style the buttons that are used to open the tab content */
+.wrapper .tab button {
+	background-color: inherit;
+	float: left;
+	border: 1px solid #33adff;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+}
+
+.wrapper .tab button:hover {
+	background-color: #33d6ff;
+}
+
+/* Create an active/current tablink class */
+.wrapper .tab button.active {
+	background-color: #00ace6;
+	font-weight:bold;
+}
+
+.wrapper .table_session_available{
+	padding: 1px 12px;
+	border-collapse: collapse;
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.wrapper .table_session_available tr:nth-child(even){
+	background-color: #f2f2f2;
+}
+
+.wrapper .table_session_available tr:hover {
+	background-color: #ddd;
+}
+
+.wrapper .table_session_available th{
+	border: 1px solid #ddd;
+	padding: 8px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: left;
+	background-color: #929292;
+	font-weight: bold;
+	font-size: 10pt;
+}
+
+.wrapper .table_session_available td{
+	border: 1px solid #ddd;
+	padding: 8px;
+}
+
+.wrapper .attendance{
+	margin-top: 3em;
+	padding-bottom: 1em;
+	border-bottom: 2px solid #ccc;
+	
+}
+.wrapper #tAddSessions th, td{
+	border-bottom: 1px solid #ccc;
+	padding: 8px;
+}
+
+.wrapper .form_part1{
+	width:35%;
+	float:left;
+}
+.wrapper .form_part2{
+	width:65%;
+	float:right;
+}
+
+#otherHelpTypeRichText{
+	display: none;
+	border: 1px solid #ccc;
+	width:70%;
+}
+.wrapper .filter, .wrapper .filter_selected, .layout{
+	background: #f7f7f7;
+	border: 1px solid;
+	border-radius: 15px;
+}
+
+.wrapper .filter p, .wrapper .filter_selected p{
+	margin-left: 10%;
+}
+
+.filter:hover,.filter_selected:hover, .layout:hover{
+	background: #f7f7f7;
+	border: 1px solid;
+	border-radius: 15px;
+	box-shadow: 5px 10px 18px #888888
+}
