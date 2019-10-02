@@ -4,4 +4,6 @@
   <welcome-file-list>
     <welcome-file>AwsTest.jsp</welcome-file>
   </welcome-file-list>
+  
+  
 </web-app>
