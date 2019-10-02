@@ -1,10 +1,14 @@
 *{
 	margin: 0;
 }
+html {
+	height:100%;
+}
 body {
     background-color: #0099cc url(../img/background.png) no-repeat scroll left top;
     font-family: Verdana,Arial,Helvetica,sans-serif;
     font-size: 0.8em;
+    height:100%;
 }
 
 .title{
@@ -12,7 +16,7 @@ body {
 	margin: 0 auto;
 	
 	padding-top: 10px;
-	
+	min-height:100%;
 	
 }
 .title nav{
@@ -50,42 +54,108 @@ body {
 {
 	padding-top:10px;
 }
-
-.submitSession
-{
-	margin-bottom:60px;
-	height:80%;
+/* Style the tab */
+.title .tab ul {
+  position: sticky;
+  list-style-type: none;
+  margin-bottom: 3%; 
+  margin-top: 3%;
+  padding: 0;
+  overflow: hidden;
+  background-color: #f2f2f2;
+  text-align:center;
 }
+
+.title .tab li {
+  float: left;
+  width: 50%;
+}
+
+.title .tab li a {
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.title .tab li a:hover:not(.active) {
+  background-color: #111;
+  color: white;
+}
+
+.title .tab .active {
+  background-color: #9b9b9b;
+  color: black;
+}
+
+.title .tab {
+	overflow: hidden;
+	background-color: none;
+	box-sizing: border-box;
+	
+	width: 100%;
+}
+
+/* Style the buttons that are used to open the tab content */
+.title .tab button {
+	background-color: inherit;
+	float: left;
+	border: 1px solid #33adff;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+}
+
+.title .tab button:hover {
+	background-color: #33d6ff;
+}
+
+/* Create an active/current tablink class */
+.title .tab button.active {
+	background-color: #00ace6;
+	font-weight:bold;
+}
+
+
 .submitWS
 {
 	margin-bottom:180px;
 	height:100%;
 }
-#btnSubmitWS
-{
-	width: 150px;
-	height: 100px;
-	font-size: 30px;
-	margin-left: 45px;
-	font-weight:bold;
+
+.box {
+	display: flex;
+	margin: 2%;
+	justify-content: center;
 }
 .leftDiv
 {
+	padding:3%;
 	float: left;
-	padding-right: 60px;
+	margin-right: 1%;
+	margin-left: 1%;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
-#btnSessionsub
+.leftDiv:hover {
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.leftDiv .centerDiv {
+	margin-top: 10%;
+    margin-left: 15%;
+    margin-bottom: 10%;
+}
+#btnSessionsub, #btnSubmitWS
 {
-	width: 150px;
-	height: 100px;
-	font-size: 30px;
-	margin-left: 45px;
-	font-weight:bold;
-}
-footer{
-	padding:8px;
+	width: 60%;
+	font-size: 25px;
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-top: 25%;
 	text-align: center;
-	font-size: 0.8em;
-	color: #595a5a;
+	border: 1px solid #ccc;
+    background-color: #ffffff;
 }
-//<p id="skillDetails" style="display:none;">Workshop skill-sets
+#btnSessionsub:hover , #btnSubmitWS:hover{
+	background-color: #33adff;
+}

@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>(Reports)HELPS booking system</title>
 <link rel="stylesheet" href="css/reportSession.css" />
+<link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/jquery.datetimepicker.min.css" />
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jquery.datetimepicker.full.js"></script>
@@ -23,66 +24,73 @@
 	<div class="head"></div>
 	<div class="title">
 
-		<h1 name="section">Session</h1>
-		<br> <br>
+		<h1 name="section">Report Session</h1>
+		<div class="tab">
+			<ul>
+			  <li><a class="active" href="reportSession.jsp">Report Session</a></li>
+			  <li><a href="reportWorkshop.jsp">Report Workshop</a></li>
+			</ul>
+		</div>
 		<form >
-			<div class="leftDiv">
-				<span class="step">- Step 1:</span> <span>Select a
-					period </span> <br> <br>
+			<div class="box">
+				<div class="leftDiv">
+					<span class="step">- Step 1:</span> <span>Select a
+						period </span> <br> <br>
+					<div class="centerDiv">
+						<p>FROM</p>
+						<input  type="text" name="datetimepicker1"id="datetimepicker1" /> 
+						<br>
+						<p>TO</p>
+						<input type="text" name="datetimepicker2" id="datetimepicker2" /> 
+					</div>
 					
-				<p>FROM</p>
-				<input  type="text" name="datetimepicker1"
-				id="datetimepicker1" /> 
-				<br>
-				<p>TO</p>
-				<input type="text"
-				name="datetimepicker2" id="datetimepicker2" /> 
+				</div>
+				
+				<div class="leftDiv">
+					<span class="step">- Step 2:</span> <span>Select a report</span>
+					<br> <br>
+					<p>
+					&nbsp;&nbsp;&nbsp;
+					<input id="bookedSession" type="Radio" name="repType" value="" />&nbsp;Booked
+					Sessions <br /> 
+					&nbsp;&nbsp;&nbsp;
+					<input id="cancelledSession" type="Radio"
+						name="repType" value="" />&nbsp;Cancelled Sessions <br />
+					&nbsp;&nbsp;&nbsp;
+					<input id="sessionWaitingList" type="Radio" name="repType" value="" />&nbsp;Sessions
+					having waiting lists <br /> 
+					&nbsp;&nbsp;&nbsp;
+					<input id="nonAttend" type="Radio"
+						name="repType" value="" />&nbsp;Non-attended sessions <br />
+					&nbsp;&nbsp;&nbsp;
+					<input id="nonBooked" type="Radio" name="repType" value="" />&nbsp;Non-booked
+					sessions <br /> &nbsp;&nbsp;&nbsp;
+					<input id="profile" type="Radio"
+						name="repType" value="" />&nbsp;Student profile data <br />
+					&nbsp;&nbsp;&nbsp;
+					<input id="bookingSummary" type="Radio" name="repType" value="" />&nbsp;Summary
+					of students booking sessions <br /> &nbsp;&nbsp;&nbsp;
+					<input id="studentHistory"
+						type="Radio" name="repType" value="" />&nbsp;Student
+					history:&nbsp;&nbsp;&nbsp;ID:
+					<input id="stuID"type="Text" name="studentID"
+						value="" /> <br /> &nbsp;&nbsp;&nbsp;
+						<input id="advisorComment" type="Radio"
+						name="repType" value="" />&nbsp;Advisors'
+					comment:&nbsp;&nbsp;&nbsp; ID:
+					<input id="advisorID" type="Text" name="advisorID"
+						value="" /> <br /> &nbsp;&nbsp;&nbsp;
+						<input id="stuinWL" type="Radio"
+						name="repType" value="" />&nbsp;Students in the waiting list
+				</div>
+					
+				<div class="leftDiv">
+					<span class="step">- Step 3:</span> <span>Get the report</span> <br /> <br>
+					<input type="Submit" name="btnSessionsub" id="btnSessionsub" value="Submit"
+						id="btnSessionsub" />
+				</div>
 			</div>
 			
-			<div class="leftDiv">
-				<span class="step">- Step 2:</span> <span>Select a report</span>
-				<br> <br>
-				<p>
-				&nbsp;&nbsp;&nbsp;
-				<input id="bookedSession" type="Radio" name="repType" value="" />&nbsp;Booked
-				Sessions <br /> 
-				&nbsp;&nbsp;&nbsp;
-				<input id="cancelledSession" type="Radio"
-					name="repType" value="" />&nbsp;Cancelled Sessions <br />
-				&nbsp;&nbsp;&nbsp;
-				<input id="sessionWaitingList" type="Radio" name="repType" value="" />&nbsp;Sessions
-				having waiting lists <br /> 
-				&nbsp;&nbsp;&nbsp;
-				<input id="nonAttend" type="Radio"
-					name="repType" value="" />&nbsp;Non-attended sessions <br />
-				&nbsp;&nbsp;&nbsp;
-				<input id="nonBooked" type="Radio" name="repType" value="" />&nbsp;Non-booked
-				sessions <br /> &nbsp;&nbsp;&nbsp;
-				<input id="profile" type="Radio"
-					name="repType" value="" />&nbsp;Student profile data <br />
-				&nbsp;&nbsp;&nbsp;
-				<input id="bookingSummary" type="Radio" name="repType" value="" />&nbsp;Summary
-				of students booking sessions <br /> &nbsp;&nbsp;&nbsp;
-				<input id="studentHistory"
-					type="Radio" name="repType" value="" />&nbsp;Student
-				history:&nbsp;&nbsp;&nbsp;ID:
-				<input id="stuID"type="Text" name="studentID"
-					value="" /> <br /> &nbsp;&nbsp;&nbsp;
-					<input id="advisorComment" type="Radio"
-					name="repType" value="" />&nbsp;Advisors'
-				comment:&nbsp;&nbsp;&nbsp; ID:
-				<input id="advisorID" type="Text" name="advisorID"
-					value="" /> <br /> &nbsp;&nbsp;&nbsp;
-					<input id="stuinWL" type="Radio"
-					name="repType" value="" />&nbsp;Students in the waiting list
-			</div>
-				
-			<div class="submitSession" class="leftDiv">
-				<span class="step">- Step 3:</span> <span>Press
-				"Submit" button</span> <br /> <br>
-				<input type="Submit" name="btnSessionsub" id="btnSessionsub" value="Submit"
-					id="btnSessionsub" />
-			</div>
 		</form>
 		<br />
 		<br />

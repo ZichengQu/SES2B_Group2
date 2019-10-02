@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>(Reports)HELPS booking system</title>
 <link rel="stylesheet" href="css/reportSession.css" />
+<link rel="stylesheet" href="css/bootstrap.min.css">
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="js/laydate/laydate.js"></script>
 <script type="text/javascript">
@@ -36,88 +37,90 @@
 	<div class="title">
 
 
-		<h1 name="section">Workshop</h1>
-		<br/> <br/>
-		
-		<div class="leftDiv">
-			<span class="step">- Step 1:</span> <span>Select a
-				period </span> <br> <br>
-				
-			<p>FROM</p>
-			<input  type="text" name="datetimepicker1"
-			id="datetimepicker1" /> 
-			<br>
-			<p>TO</p>
-			<input type="text"
-			name="datetimepicker2" id="datetimepicker2" /> 
+		<h1 name="section">Report Workshop</h1>
+		<div class="tab">
+			<ul>
+			  <li><a href="reportSession.jsp">Report Session</a></li>
+			  <li><a class="active" href="reportWorkshop.jsp">Report Workshop</a></li>
+			</ul>
 		</div>
-		
-		
-		<div class="leftDiv">
-			<span class="step">- Step 2:</span> 
-			<span>Select a report</span> 
-			<br /> <br />
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="Radio" name="repType" value=""
-				id="details" />Workshop skill-sets details
-
-			<p id="skillDetails" style="display: none;">
-				&nbsp;&nbsp;&nbsp;&nbsp;Workshop skill-sets 
-				<select name="skillSets"
-					id="skills">
-					<option id="none" value=""></option>
-					<option value="">Improve your writing</option>
-					<!-- <option value="">Improve your grammar</option> -->
-					<option value="">Improve your speaking</option>
-					<!-- <option value="">Write now| Writing Support Sessions</option>
-					<option value="">U: PASS write</option>
-					<option value="">U:PASS</option>
-					<option value="">Conversations@UTS(register not required)</option>
-					<option value="">Academic Writing Boot Camp Feb 2019</option>
-					<option value="">Summer Special Workshops 2018-19</option> -->
+		<div class="box">
+			<div class="leftDiv">
+				<span class="step">- Step 1:</span> <span>Select a
+					period </span> <br> <br>
+					
+				<div class="centerDiv">
+					<p>FROM</p>
+					<input  type="text" name="datetimepicker1"id="datetimepicker1" /> 
+					<br>
+					<p>TO</p>
+					<input type="text" name="datetimepicker2" id="datetimepicker2" /> 
+				</div>
+			</div>
+			
+			
+			<div class="leftDiv">
+				<span class="step">- Step 2:</span> 
+				<span>Select a report</span> 
+				<br /> <br />
+				<input type="Radio" name="repType" value=""
+					id="details" />Workshop skill-sets details
 	
-				</select>
-			</p>
-
-					<!-- <p class="topics" id="topics" style="display:none" >&nbsp;&nbsp;&nbsp;&nbsp;Workshop Topics
-			
-			 <select >
-			<option  value="none"></option>
-			<option value="session">Starting your session</option>
-			<option value="writing">What is Academic writing</option>
-			</select>
-			</p> -->
-			
-					<!-- <p class="sessionTime" id="sessionTime" style="display:none">&nbsp;&nbsp;&nbsp;&nbsp;Session
-			<select >
-			<option value="none"></option>
-			<option value="date">Date:19/03 Time:14:00-15:00</option>
-			
-			</select>
-			</p> -->
-			
-					<!-- <span class="includeRep" id="includeRep" style="display:none; ">
-			&nbsp;&nbsp;&nbsp;<input type="checkbox" name="includedRep" value="" />Booking
-			&nbsp;&nbsp;&nbsp;<input type="checkbox" name="includedRep" value="" />Waiting
-			&nbsp;&nbsp;&nbsp;<input type="checkbox" name="includedRep" value="" />Include student profiles
-			</span>  -->
-
-
-			<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="skillSummary"
-				type="Radio" name="repType" value="skillSummary" />Workshop skill-sets summary <br />
-			<br />
-		</div>
+				<p id="skillDetails" style="display: none; margin-left: 5%;">
+					Workshop skill-sets 
+					<select name="skillSets"
+						id="skills">
+						<option id="none" value=""></option>
+						<option value="">Improve your writing</option>
+						<!-- <option value="">Improve your grammar</option> -->
+						<option value="">Improve your speaking</option>
+						<!-- <option value="">Write now| Writing Support Sessions</option>
+						<option value="">U: PASS write</option>
+						<option value="">U:PASS</option>
+						<option value="">Conversations@UTS(register not required)</option>
+						<option value="">Academic Writing Boot Camp Feb 2019</option>
+						<option value="">Summer Special Workshops 2018-19</option> -->
 		
-		<div class="submitWS" class="leftDiv">
-			<span class="step">- Step 3:</span> <span>Press
-				"Submit" button</span> <br /> <br>
-			<input type="Submit" name="btnWorksub" value="Submit" id="btnSubmitWS"
-				 /> <br>
+					</select>
+				</p>
+	
+						<!-- <p class="topics" id="topics" style="display:none" >&nbsp;&nbsp;&nbsp;&nbsp;Workshop Topics
+				
+				 <select >
+				<option  value="none"></option>
+				<option value="session">Starting your session</option>
+				<option value="writing">What is Academic writing</option>
+				</select>
+				</p> -->
+				
+						<!-- <p class="sessionTime" id="sessionTime" style="display:none">&nbsp;&nbsp;&nbsp;&nbsp;Session
+				<select >
+				<option value="none"></option>
+				<option value="date">Date:19/03 Time:14:00-15:00</option>
+				
+				</select>
+				</p> -->
+				
+						<!-- <span class="includeRep" id="includeRep" style="display:none; ">
+				&nbsp;&nbsp;&nbsp;<input type="checkbox" name="includedRep" value="" />Booking
+				&nbsp;&nbsp;&nbsp;<input type="checkbox" name="includedRep" value="" />Waiting
+				&nbsp;&nbsp;&nbsp;<input type="checkbox" name="includedRep" value="" />Include student profiles
+				</span>  -->
+	
+	
+				<br><input id="skillSummary"
+					type="Radio" name="repType" value="skillSummary" />Workshop skill-sets summary <br />
+				<br />
+			</div>
+			
+			<div class="leftDiv">
+				<span class="step">- Step 3:</span> <span>Get the report</span> <br /> <br>
+				<input type="Submit" name="btnWorksub" value="Submit" id="btnSubmitWS"
+					 /> <br>
+			</div>
 		</div>
 	</div>
-	<footer>
-		<div class="footer"></div>
-	</footer>
+	<div class="footer"></div>
 
 	<script>
 		laydate.render({

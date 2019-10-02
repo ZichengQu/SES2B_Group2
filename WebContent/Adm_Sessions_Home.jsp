@@ -44,6 +44,7 @@
 	
 	<div class="wrapper">
 		<!-- Tab: Book Session; Admin Session -->
+		<h1>One To One Session</h1>
 		<div class="tab">
 			<ul>
 			  <li><a class="active" href="Adm_Sessions_Home.jsp">Book Sessions</a></li>
