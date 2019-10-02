@@ -18,17 +18,18 @@
 
 .split {
   height: 100%;
-  width: 30%;
+  width: 50%;
   position: fixed;
   z-index: 1;
   top: 20;
   overflow-x: hidden;
   padding-top: 20px;
+  margin-left: 50px;
+  
 }
 
 .left {
-  left: 100;
-  width: 50%;
+  left: 0;
 }
 
 .right {
@@ -38,8 +39,8 @@
 .centered {
   position: absolute;
   top: 50;
-  left: 10;
-  transform: translate(-50%, -1000%);
+  left: 50;
+  transform: translate(-50%, -50%);
   text-align: center;
 }
 
@@ -167,13 +168,13 @@ th {
 
 </style>
 
-<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript">
-		$(function(){
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script>
+		$(document).ready(function(){
 			$('.head').load('admin_head.html');
-			$('.footer').load('admin_footer.html');
+			/* $('.footer').load('admin_footer.html'); */
 		});
-	</script>
+</script>
 	
 <title>Insert title here</title>
 </head>
@@ -188,13 +189,10 @@ th {
     <h2>Available Room</h2>
   	<p></p>
   	
-  	<div style = "position:relative; left:600px">
+  	<div align="right" style="padding-right: 45px" >
   		<button onclick="sortFunction()">Sort</button>
   		
   	</div>
-  
- 
-  
    </div>
    
  
@@ -205,7 +203,6 @@ th {
 </div>
 
 <%
-
 String id = request.getParameter("userID");
 String driName = "com.mysql.jdbc.Driver";
 String connectionURL = "jdbc:mysql://aagmqmvaq3h3zl.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/";
@@ -222,7 +219,6 @@ try {
 Statement statement = null;
 Connection connection = null;
 ResultSet rSet = null;
-
 %>
 
 
@@ -264,16 +260,9 @@ ResultSet rSet = null;
   </table>
   <input type = "submit" name="action" value = "Delete" style = "float: right">
 </div>
-
-
-
 </form>
 
 <p></p>
-
-
-
-
 
 <form action = "roomServlet" method = "post">
 <%
@@ -315,7 +304,6 @@ ResultSet rSet = null;
 </div>
 </form>
 
-
 <form action = "roomServlet" method = "post">
 <%
 	try{
@@ -352,15 +340,11 @@ ResultSet rSet = null;
 </div>  
 
 </form>
-
-
-
    </div>
   
   <div class="split right">
-  	<div class="container">
+  	<div class="container" align="center">
     <h2>Add Room</h2>
-    
     
     <p>Campus</p>
     
@@ -394,13 +378,9 @@ ResultSet rSet = null;
 	<p></p>
 		<input type="submit" name = "action" value="Add" > 
 	</form>
-	
-	
   </div>
 </div>
 
-
-<div class="footer" id="footer"></div>
 
 <script>
 var tableNumber;
@@ -418,7 +398,6 @@ function openTab(evt, campusName, number) {
   document.getElementById(campusName).style.display = "block";
   evt.currentTarget.className += " active";
 }
-
 
 document.getElementById("defaultOpen").click();
 </script>
@@ -498,6 +477,6 @@ function sortFunction()
 	
 %> 
   </div>
- 
+
 </body>
 </html>

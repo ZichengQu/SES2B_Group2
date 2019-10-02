@@ -62,7 +62,4 @@ public class Room {
 	public void setSessions(Set<Session> sessions) {
 		this.sessions = sessions;
 	}
-	
-	
-	
 }

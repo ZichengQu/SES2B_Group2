@@ -84,14 +84,12 @@ public class roomServlet extends HttpServlet {
 			statement = connection.createStatement();
 			String dtb = "SELECT * FROM room where campus='"+jspCampus+"' AND level='"+jspLevel+"' AND roomNumber='"+jspRoom+"'";
 			rSet = statement.executeQuery (dtb);
-			
-			
+		
 			while(rSet.next())
 			{
 				campus = rSet.getString("campus");
 				level = rSet.getString("level");
-				dtbRoom = rSet.getString("roomNumber");
-				
+				dtbRoom = rSet.getString("roomNumber");	
 			}
 			rSet.close();
 			statement.close();
@@ -103,11 +101,9 @@ public class roomServlet extends HttpServlet {
 		
 		Boolean isResponseCorrect = Boolean.FALSE;
 		
-		
-		
 		if(action!= null && action.equalsIgnoreCase("Add")) {
-			
 			if(!jspCampus.equals("default")&& !jspLevel.equals("default") && !jspRoom.equals("default")) {
+				
 				checkAddRoomInput = true;
 				
 				if(jspCampus.equals(campus) && jspLevel.equals(level) && jspRoom.equals(dtbRoom)) {
@@ -118,18 +114,14 @@ public class roomServlet extends HttpServlet {
 			
 			System.out.println(checkAddRoomInput);
 			if(checkAddRoomInput) {
-				
 				if(!hasDuplicateRoom) {
-						
 					isResponseCorrect = false;
-						
 					try {
 						saveRoom room = new saveRoom();
 						room.addRoom(jspCampus, jspLevel, jspRoom);
 						System.out.println("ADDED");
 						response.sendRedirect("roomTab.jsp");
 					}
-						
 					catch (Exception e){
 						e.printStackTrace();
 					}
@@ -143,10 +135,8 @@ public class roomServlet extends HttpServlet {
 				list.add("Please select all room's detail");
 			}
 		}
-		
 		else if(action != null && action.equalsIgnoreCase("Delete"))
 		{
-	
 			if(chkBox != null)
 			{
 				for (int i = 0; i<chkBox.length; i++)
@@ -157,14 +147,12 @@ public class roomServlet extends HttpServlet {
 						System.out.println("DELETED");
 						response.sendRedirect("roomTab.jsp");	
 					}
-					
 					catch (Exception e)
 					{
 						e.printStackTrace();
 					}
 					}
 				}
-				
 			else
 			{
 					list.add("Please select room to delete");
@@ -173,7 +161,6 @@ public class roomServlet extends HttpServlet {
 				
 		}
 		
-	
 		if(!list.isEmpty())
 		{
 			request.setAttribute("errorList", list);
