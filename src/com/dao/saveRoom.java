@@ -14,30 +14,6 @@ import com.bean.Room;
 import com.util.HibernateUtil;
 
 public class saveRoom {
-	
-//	public void updateRoom(int roomId, String room) {
-//        try {
-//  		  Configuration cfg = new Configuration();
-//  		  cfg.configure("hibernate.cfg.xml");
-//  		  SessionFactory factory = cfg.buildSessionFactory(); 
-//  		  Session session =  factory.openSession();
-//  	  
-//  		  Object obj= session.load(Room.class, roomId);
-//  		  Room updatedRoom =(Room)obj;
-//  	  
-//  		  Transaction transaction = session.beginTransaction();
-//          updatedRoom.setRoomLocation(room);
-//          session.update(updatedRoom);
-//          transaction.commit();
-//          System.out.println("\n Updated \n");
-// 
-//        } catch (HibernateException e) {
-//          System.out.println(e.getMessage());
-//          System.out.println("ERROR");
-//        }
-//   }
-	
-	
 	public void addRoom(String campus, String level, String room )
 	{
 		 try {
@@ -50,17 +26,16 @@ public class saveRoom {
 	 		 addedRoom.setCampus(campus);
 	 		 addedRoom.setLevel(level);
 	 		 addedRoom.setRoomNumber(room);
-	         session.save(addedRoom);
-	         transaction.commit();
-	         System.out.println("\n Added \n");
+	        	 session.save(addedRoom);
+	         	 transaction.commit();
+	         	 System.out.println("\n Added \n");
 	         
 		 } catch (HibernateException e)
 		 {
-			 System.out.println(e.getMessage());
-	         System.out.println("ERROR");
+			System.out.println(e.getMessage());
+	         	System.out.println("ERROR");
 		 }
 	}
-	
 	
 	public void deleteRoom (int roomId){
 		 Configuration con = new Configuration();
@@ -73,22 +48,11 @@ public class saveRoom {
  		 Room deletedRoom =(Room)obj;
  	  
  		 Transaction transaction = session.beginTransaction();
-         session.delete(deletedRoom);
-         transaction.commit();
-         System.out.println("\n Deleted \n");
-		
-		
+        	 session.delete(deletedRoom);
+         	 transaction.commit();
+         	 System.out.println("\n Deleted \n");
 	}
 	
-	
-//	
-//	public static void main (String[] args) {
-//		updateRoom(119, "NewNewNew");
-//		System.out.println("helloo");
-//		
-//	}
-
-
 	public static Room getCurrentRoom(int i) {
 	
 		Session session = HibernateUtil.getCurrentSession();
@@ -106,17 +70,7 @@ public class saveRoom {
 		catch (Exception e){
 			System.out.println("Error");
 			throw e;
-		}
-		
+		}	
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
 
