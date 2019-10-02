@@ -26,10 +26,7 @@
 	<classpathentry kind="lib" path="/SES2A/WebContent/WEB-INF/lib/jstl-1.2.jar"/>
 	<classpathentry kind="lib" path="/SES2A/WebContent/WEB-INF/lib/jstl.jar"/>
 	<classpathentry kind="lib" path="/SES2A/WebContent/WEB-INF/lib/standard-1.1.2.jar"/>
-	<classpathentry kind="lib" path="/Users/gianriyanto/Downloads/jar/jstl.jar"/>
-	<classpathentry kind="lib" path="/Users/gianriyanto/Downloads/jar/standard.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jstl.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/standard.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.47.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jaxb-impl-2.3.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.activation-1.2.0.jar"/>
