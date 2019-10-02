@@ -193,9 +193,6 @@ th {
   		<button onclick="sortFunction()">Sort</button>
   		
   	</div>
-  
- 
-  
    </div>
    
  
@@ -206,7 +203,6 @@ th {
 </div>
 
 <%
-
 String id = request.getParameter("userID");
 String driName = "com.mysql.jdbc.Driver";
 String connectionURL = "jdbc:mysql://aagmqmvaq3h3zl.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/";
@@ -223,7 +219,6 @@ try {
 Statement statement = null;
 Connection connection = null;
 ResultSet rSet = null;
-
 %>
 
 
@@ -265,16 +260,9 @@ ResultSet rSet = null;
   </table>
   <input type = "submit" name="action" value = "Delete" style = "float: right">
 </div>
-
-
-
 </form>
 
 <p></p>
-
-
-
-
 
 <form action = "roomServlet" method = "post">
 <%
@@ -316,7 +304,6 @@ ResultSet rSet = null;
 </div>
 </form>
 
-
 <form action = "roomServlet" method = "post">
 <%
 	try{
@@ -353,15 +340,11 @@ ResultSet rSet = null;
 </div>  
 
 </form>
-
-
-
    </div>
   
   <div class="split right">
   	<div class="container" align="center">
     <h2>Add Room</h2>
-    
     
     <p>Campus</p>
     
@@ -395,12 +378,8 @@ ResultSet rSet = null;
 	<p></p>
 		<input type="submit" name = "action" value="Add" > 
 	</form>
-	
-	
   </div>
 </div>
-
-
 
 
 <script>
@@ -419,7 +398,6 @@ function openTab(evt, campusName, number) {
   document.getElementById(campusName).style.display = "block";
   evt.currentTarget.className += " active";
 }
-
 
 document.getElementById("defaultOpen").click();
 </script>
@@ -499,8 +477,6 @@ function sortFunction()
 	
 %> 
   </div>
- 
- 
- 
+
 </body>
 </html>
