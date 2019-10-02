@@ -144,9 +144,9 @@ request.setAttribute("advisorId", advisorId);
 					<input type="submit" name="btnBookSpecificSession" value="Book this sessions" id="btnBookSpecificSession"><br>
 					<input type="checkbox" name="sendToStudent" value="true">Send email to student<br>
 					<input type="checkbox" name="sendToLecture" value="true">Send email to lecturer (by default, no email is sent to lecturer)<br>
-					<input type="checkbox" name="additionalBook" value="checkRule">Check rule<br>
+					<input type="checkbox" name="additionalBook" value="checkRule" checked>Check rule<br>
 				</div>
-				<div id="checkRuleDetails" style="display:none;" class="checkRuleDetails">
+				<div id="checkRuleDetails" style="" class="checkRuleDetails">
 					<p>Rule:</p>
 					<p>- A session must be booked / cancelled / put into the waiting list at least 24 hour before appointment.</p>
 					<p>- Student can only be put into the waiting list for the max 3 sessions for the week</p>
