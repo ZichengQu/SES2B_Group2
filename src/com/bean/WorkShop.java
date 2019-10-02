@@ -23,8 +23,6 @@ public class WorkShop {
 	private Set<Attendance> attendances = new HashSet<Attendance>();//1:n
 	private Set<Report> reports = new HashSet<Report>();//n:n
 	private Set<Student> students = new HashSet<Student>();//n:n
-	private WaitList waitList;
-	private StudentList studentList;
 	public WorkShop() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -32,7 +30,7 @@ public class WorkShop {
 	public WorkShop(Integer workShopId, String name, Date startDate, Date endDate, String days, String maximumPlace,
 			String placeAvailable, String noOfSessions, String targetGroup, String description, Admin admin, Room room,
 			SkillSet skillSet, Set<ConfirmationEmail> confirmationEmails, Set<Attendance> attendances,
-			Set<Report> reports, Set<Student> students, WaitList waitList, StudentList studentList) {
+			Set<Report> reports, Set<Student> students) {
 		super();
 		this.workShopId = workShopId;
 		this.name = name;
@@ -51,8 +49,6 @@ public class WorkShop {
 		this.attendances = attendances;
 		this.reports = reports;
 		this.students = students;
-		this.waitList = waitList;
-		this.studentList = studentList;
 	}
 	public Integer getWorkShopId() {
 		return workShopId;
@@ -156,19 +152,6 @@ public class WorkShop {
 	public void setStudents(Set<Student> students) {
 		this.students = students;
 	}
-	public WaitList getWaitList() {
-		return waitList;
-	}
-	public void setWaitList(WaitList waitList) {
-		this.waitList = waitList;
-	}
-	public StudentList getStudentList() {
-		return studentList;
-	}
-	public void setStudentList(StudentList studentList) {
-		this.studentList = studentList;
-	}
-	
 	
 	
 	

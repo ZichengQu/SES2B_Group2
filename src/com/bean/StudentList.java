@@ -2,19 +2,19 @@ package com.bean;
 
 public class StudentList {
 	private Integer studentListId;
-	private Integer workShopId;
-	private Integer studentId;
+	private WorkShop workShop;
+	private Student student;
 	private String isPresent;
 	private String isEmail;
 	public StudentList() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public StudentList(Integer studentListId, Integer workShopId, Integer studentId, String isPresent, String isEmail) {
+	public StudentList(Integer studentListId, WorkShop workShop, Student student, String isPresent, String isEmail) {
 		super();
 		this.studentListId = studentListId;
-		this.workShopId = workShopId;
-		this.studentId = studentId;
+		this.workShop = workShop;
+		this.student = student;
 		this.isPresent = isPresent;
 		this.isEmail = isEmail;
 	}
@@ -24,17 +24,17 @@ public class StudentList {
 	public void setStudentListId(Integer studentListId) {
 		this.studentListId = studentListId;
 	}
-	public Integer getWorkShopId() {
-		return workShopId;
+	public WorkShop getWorkShop() {
+		return workShop;
 	}
-	public void setWorkShopId(Integer workShopId) {
-		this.workShopId = workShopId;
+	public void setWorkShop(WorkShop workShop) {
+		this.workShop = workShop;
 	}
-	public Integer getStudentId() {
-		return studentId;
+	public Student getStudent() {
+		return student;
 	}
-	public void setStudentId(Integer studentId) {
-		this.studentId = studentId;
+	public void setStudent(Student student) {
+		this.student = student;
 	}
 	public String getIsPresent() {
 		return isPresent;
@@ -48,4 +48,12 @@ public class StudentList {
 	public void setIsEmail(String isEmail) {
 		this.isEmail = isEmail;
 	}
+	public boolean isPresent() {
+		if(getIsPresent().compareTo("yes")==0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 }
