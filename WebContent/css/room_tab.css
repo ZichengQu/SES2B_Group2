@@ -19,15 +19,17 @@ body {
 .split {
   float: left;
   height: 100%;
-  width: 45%;
+  
   padding-top: 20px;
   margin-left: 50px;
 }
 
 .left {
+  width: 65%;
 }
 
 .right {
+  width: 25%;
 }
 
 .centered {

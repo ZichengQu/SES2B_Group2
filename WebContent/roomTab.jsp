@@ -37,7 +37,7 @@
 <body>
 	<div class="head"></div>
 	<div class="wrapper">
-		<div class="split">
+		<div class="split left">
 			<h1 style="padding-bottom:5%">Available Room</h1>
 <!-- 			<div class="container"> -->
 <!-- 				<p></p> -->
@@ -182,7 +182,7 @@
 			
 		</div>
 		
-		<div class="split">
+		<div class="split right">
 			<div class="addRoom" align="center">
 				<h1 style="padding-bottom:5%">Add Room</h1>
 				
