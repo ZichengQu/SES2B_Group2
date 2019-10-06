@@ -391,15 +391,15 @@ public class WorkShopServlet extends BaseServlet {
 			String title = "inform";
 			String content = student.getStudent().getStudentId() + "attendent" + student.getWorkShop().getName();
 			
-//			if(isPresent.compareTo("yes")==0) {
-//				try {
-////					SendMail.Email(receiver, title, content);
-//				} catch (AddressException e) {
-//					e.printStackTrace();
-//				} catch (MessagingException e) {
-//					e.printStackTrace();
-//				}
-//			}
+			if(isPresent.compareTo("yes")==0) {
+				try {
+					SendMail.Email(receiver, title, content);
+				} catch (AddressException e) {
+					e.printStackTrace();
+				} catch (MessagingException e) {
+					e.printStackTrace();
+				}
+			}
 			
 			session.update(student);
 			ts.commit();
