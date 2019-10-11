@@ -5,9 +5,9 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://aagmqmvaq3h3zl.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help?useSSL=false</property>
-		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password">rootroot</property>
+		<property name="hibernate.connection.url">jdbc:mysql://utshelpdb.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help?useSSL=false</property>
+		<property name="hibernate.connection.username">admin</property>
+		<property name="hibernate.connection.password">thisadmin</property>
 		
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.format_sql">true</property>

@@ -22,7 +22,7 @@ import="java.util.*"
 	<div class="head"></div>
 	<h1 style="text-align: center;">Added One To One Session!</h1>
 	<%
-	String host = "jdbc:mysql://aagmqmvaq3h3zl.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help?useSSL=false";
+	String host = "jdbc:mysql://utshelpdb.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help?useSSL=false";
 	PreparedStatement stat = null;
 	
 	String astr = request.getParameter("datePicker");
@@ -46,7 +46,7 @@ import="java.util.*"
 	
 	Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
 	if(a!=null && b!=null && c!=null && d!=null && e!=null && f!=null){
-		Connection conn=DriverManager.getConnection(host, "root", "rootroot");
+		Connection conn=DriverManager.getConnection(host, "admin", "thisadmin");
 		String insert = "INSERT INTO session(date, startTime, endTime, roomId, advisorId, type) values(?,?,?,?,?,?)";
 		stat = conn.prepareStatement(insert);
 		stat.setDate(1,a);

@@ -22,7 +22,7 @@ import="java.util.*"
 	<div class="head"></div>
 	<h1 style="text-align: center;">Booked One To One Session!</h1>
 	<%
-	String host = "jdbc:mysql://aagmqmvaq3h3zl.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help?useSSL=false";
+	String host = "jdbc:mysql://utshelpdb.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help?useSSL=false";
 	PreparedStatement stat = null;
 	String sessionId = request.getParameter("get_sessionId");
 	String a = request.getParameter("studentId");
@@ -45,7 +45,7 @@ import="java.util.*"
 	} 
 	Class.forName("com.mysql.jdbc.Driver").newInstance();
 	if(a!=null && b!=null && c!=null){
-		Connection conn=DriverManager.getConnection(host, "root", "rootroot");
+		Connection conn=DriverManager.getConnection(host, "admin", "thisadmin");
 		String updateBookingDetails = "UPDATE session SET studentId='" + a + "', subjectName='" + b + "', assignType='" + c + "', isAssignment=" + assignmentBool + ", rule='" + helpType + "', isSendToStudent=" + sendToStudentBool + ", isSendToLecture=" + sendToLectureBool + ", booked='1' WHERE sessionId='" + sessionId + "'";
 		//out.println(updateBookingDetails);
 		Statement updateStm = conn.createStatement();
