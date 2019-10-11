@@ -132,7 +132,7 @@ request.setAttribute("advisorId", advisorId);
 					<input type="radio" name="rdoGroupAssignment" value="No" id="rdoGroupAssignment_No"/>No
 				</p>
 				<p>I need help with ... </p>
-				<input type="checkbox" name="helpType" value="Answer question">Answering the assignment question (please provide the question to your advisor)<br>
+				<input type="checkbox" name="helpType" value="Answer question">Answering the assignment question<br>
 				<input type="checkbox" name="helpType" value="Marking criteria">Addressing the marking criteria (please provide the criteria to your advisor)<br>
 				<input type="checkbox" name="helpType" value="Structure">Structure<br>
 				<input type="checkbox" name="helpType" value="Paragraph Development">Paragraph development<br>
@@ -146,7 +146,7 @@ request.setAttribute("advisorId", advisorId);
 					<input type="checkbox" name="sendToLecture" value="true">Send email to lecturer (by default, no email is sent to lecturer)<br>
 					<input type="checkbox" name="additionalBook" value="checkRule" checked>Check rule<br>
 				</div>
-				<div id="checkRuleDetails" style="" class="checkRuleDetails">
+				<div id="checkRuleDetails" style="margin-right: 10px;" class="checkRuleDetails">
 					<p>Rule:</p>
 					<p>- A session must be booked / cancelled / put into the waiting list at least 24 hour before appointment.</p>
 					<p>- Student can only be put into the waiting list for the max 3 sessions for the week</p>
