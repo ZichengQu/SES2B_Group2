@@ -69,19 +69,6 @@ out.println("showAll? " + showAll + " | filtered? " + filtered);  */
 		});
 		$(document).ready(function() {
 		    $('#tSessionAvailable').DataTable();
-		    
-		    var $selectAll = $('#selectAll'); 
-		    var $table = $('.display');
-		    var $tdCheckbox = $table.find('tbody input:checkbox');
-		    var $tdCheckboxChecked = []; 
-		    $selectAll.on('click', function () {
-		        $tdCheckbox.prop('checked', this.checked);
-		    });
-		    $tdCheckbox.on('change', function(){
-		        $tdCheckboxChecked = $table.find('tbody input:checkbox:checked');
-		        $selectAll.prop('checked', ($tdCheckboxChecked.length == $tdCheckbox.length));
-		    });
-		    /* $("#filter_selected").height($("#filter").height()); */
 		} );
 		function delAvlbSess(){
 			var message = "Date + Room\n";
@@ -148,7 +135,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered);  */
 				<table class="display" id="tSessionAvailable">
 					<thead>
 						<tr class="header" align="left">
-							<th style="width:2%;"><input type="checkbox" id="selectAll"></th>
+							<th style="width:2%;"></th>
 							<th style="width:2%;">No. </th>
 							<th style="display:none" >SessionId</th>
 							<th style="width:12%;">Date</th>
