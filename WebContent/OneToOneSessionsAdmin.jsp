@@ -89,14 +89,16 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 	        
 			if(sessionId.length == 0){
 				alert("Please select sessions to delete.");
-				
 			} else{
 				for(i=0; i<sessionId.length; i++){
 					if (confirm(alertText + date[i] + room[i])) {
 						session[i] = sessionId[i];
+						// document.getElementById("tSessionAvailable").deleteRow(rowIndex[i]);
+						document.getElementById("dltSessId").value = "" + session[i];
+						document.getElementById("dltSubmitBt").style.display = "block";
+						txt = "Please click RefreshPage to see your changes!";
 					} else {
 						sessionId = [];
-						txt = "Canceled! ";
 					}
 				}
 			}
@@ -113,7 +115,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 		<h1>Admin One To One Session</h1>
 		<div class="tab">
 			<ul>
-			  <li><a href="Adm_Sessions_Home.jsp">Book Sessions</a></li>
+			  <li><a href="OneToOneSessions.jsp">Book Sessions</a></li>
 			  <li><a class="active" href="OneToOneSessionsAdmin.jsp">Admin Sessions</a></li>
 			</ul>
 		</div>
@@ -263,6 +265,10 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 				<div align="center" style="margin-bottom: 1%">
 					<button onclick="markAttendance()" id="markAttendance">Mark Attendance</button>
 					<button onclick="delAvlbSess()" id="deleteAvlbSess">Delete Session(s)</button>
+					<form action="DeleteSessions.jsp" method="POST">
+						<input id="dltSessId" type="hidden" value="" name="get_dltSessId"/>
+						<input id="dltSubmitBt" type="submit" value="RefreshPage" style="display: none"/>
+					</form>
 					<p id="result"></p>
 				</div>
 			</div>

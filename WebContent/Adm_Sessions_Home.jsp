@@ -47,7 +47,7 @@
 		<h1>One To One Session</h1>
 		<div class="tab">
 			<ul>
-			  <li><a class="active" href="Adm_Sessions_Home.jsp">Book Sessions</a></li>
+			  <li><a class="active" href="OneToOneSessions.jsp">Book Sessions</a></li>
 			  <li><a href="OneToOneSessionsAdmin.jsp">Admin Sessions</a></li>
 			</ul>
 		</div>

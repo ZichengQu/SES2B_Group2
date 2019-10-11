@@ -76,31 +76,37 @@ out.println("showAll? " + showAll + " | filtered? " + filtered);  */
 			var date = [];
 			var room = [];
 			var session = [];
+			var rowIndex = [];
 			$('.display input[type=checkbox]:checked').each(function (){
 				var row = $(this).closest('tr')[0];
 				date.push(row.cells[3].innerHTML);
 				room.push(row.cells[6].innerHTML);
 				sessionId.push(row.cells[2].innerHTML);
+				rowIndex.push(row.cells[1].innerHTML);
 			})
 			var txt = "";
 			var alertText = "Are you sure you want to delete?\n\nSelected Details:\nDate + Room\n";
 			var update = "";
 	        
+			
 			if(sessionId.length == 0){
 				alert("Please select sessions to delete.");
-				
 			} else{
 				for(i=0; i<sessionId.length; i++){
 					if (confirm(alertText + date[i] + room[i])) {
 						session[i] = sessionId[i];
+						// document.getElementById("tSessionAvailable").deleteRow(rowIndex[i]);
+						document.getElementById("dltSessId").value = "" + session[i];
+						document.getElementById("dltSubmitBt").style.display = "block";
+						txt = "Please click RefreshPage to see your changes!";
 					} else {
 						sessionId = [];
-						txt = "Canceled! ";
 					}
 				}
 			}
 			document.getElementById("result").innerHTML = txt;
 		};
+		
 	</script>
 
 	
@@ -113,7 +119,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered);  */
 		<h1>One To One Session</h1>
 		<div class="tab">
 			<ul>
-			  <li><a class="active" href="Adm_Sessions_Home.jsp">Book Sessions</a></li>
+			  <li><a class="active" href="OneToOneSessions.jsp">Book Sessions</a></li>
 			  <li><a href="OneToOneSessionsAdmin.jsp">Admin Sessions</a></li>
 			</ul>
 		</div>
@@ -259,8 +265,10 @@ out.println("showAll? " + showAll + " | filtered? " + filtered);  */
 				<div align="center" style="margin-bottom: 1%">
 					<button onclick="markAttendance()" id="markAttendance">Mark Attendance</button>
 					<button onclick="delAvlbSess()" id="deleteAvlbSess">Delete Session(s)</button>
-					
-					
+					<form action="DeleteSessions.jsp" method="POST">
+						<input id="dltSessId" type="hidden" value="" name="get_dltSessId"/>
+						<input id="dltSubmitBt" type="submit" value="RefreshPage" style="display: none"/>
+					</form>
 					<p id="result"></p>
 				</div>
 			</div>

@@ -21,6 +21,7 @@ import="java.util.*"
 <body>
 	<div class="head"></div>
 	<h1 style="text-align: center;">Added One To One Session!</h1>
+	<a href="OneToOneSessions.jsp">Back to One To One Session Page</a>
 	<%
 	String host = "jdbc:mysql://utshelpdb.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help?useSSL=false";
 	PreparedStatement stat = null;
@@ -57,6 +58,7 @@ import="java.util.*"
 		stat.setString(6,f);
 		int i = stat.executeUpdate();
 		if(i>0){
+			response.sendRedirect("OneToOneSessions.jsp");
 		}else{
 			out.println("please fill all the fields!");
 		}
