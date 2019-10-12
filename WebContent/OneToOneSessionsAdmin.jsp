@@ -154,8 +154,9 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 						</select>
 					</p>
 					<div class="submitFilter" style="padding-bottom:1%; padding-top:5%">
-						<input type="submit" name="btnSubmitFilter" value="Submit" id="btnSubmitFilter" style="float:left; margin-left: 30%"/>
-						<input type="reset" value="Reset" style="float:right; margin-right: 30%">
+						<input type="submit" name="btnSubmitFilter" value="Show This Year" id="btnShowAllFilter" style="float:left; margin-left: 10%"/>
+						<input type="submit" name="btnSubmitFilter" value="Submit" id="btnSubmitFilter" style="float:left; margin-left: 10%"/>
+						<input type="reset" value="Reset" style="float:left; margin-left: 10%">
 					</div>
 					<p><br></p>
 				
