@@ -108,14 +108,13 @@ out.println("showAll? " + showAll + " | filtered? " + filtered);  */
 			}
 			document.getElementById("result").innerHTML = txt;
 		};
-		
 	</script>
 
 	
 </head>
 <body>
 	<div class="head"></div>
-	
+	<div class="loading" id="loading"  style="display:none;"></div>
 	<div class="wrapper">
 		<!-- Tab: Book Session; Admin Session -->
 		<h1>One To One Session</h1>
@@ -314,7 +313,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered);  */
 			
 			<div class="layout">
 				<div class="addOneToOneSessions" style="width:100%; float:left">
-					<form action="Add1To1Confirmation.jsp" method="POST">
+					<form id="addOneToOne" action="Add1To1Confirmation.jsp" method="POST">
 						<p class="header_name" id="sessions_available_header" style="float:left; width:100%">Add a New Session</p>
 						<p style="margin-left: 1%; margin-right:1%">To add sessions, please enter their details below and click "Add". If you do not wish to add a session that you selected date & time, please click "Clear" next to that session before adding.</p>
 						<p style="margin-left: 1%; margin-right:1%">Please note: all the fields are compulsory, otherwise that session will not be added.</p>
@@ -363,7 +362,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered);  */
 							
 						</table>
 						<div align="center">
-							<input type="submit" name="btnAddSessions" value="Add" id="btnAddSessions" ></button>
+							<input type="submit" name="btnAddSessions" value="Add" id="btnAddSessions"></button>
 							<p>To use the template, please select one week.</p>
 						</div>
 					</form>

@@ -106,20 +106,20 @@ body {
 }
 
 .form_left{
-	width:25%;
+	width:30%;
 	float:left;
 }
 .form_right{
-	width:65%;
+	width:50%;
 	float:right;
 }
 .form_left, .form_right, .layout{
-	background: #f7f7f7;
-	border: 1px solid;
 	border-radius: 15px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 .form_left:hover, .form_right:hover, .layout:hover{
-	box-shadow: 5px 10px 18px #888888
+	border-radius: 15px;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 .form_left p, .form_left h3{
 	margin-left: 10%;
@@ -129,16 +129,35 @@ body {
 .form_right p, .form_right input{
 	margin-left: 5%;
 }
-.form_part1{
-	width:40%;
-	float:left;
-}
-.form_part2{
-	width:60%;
-	float:right;
-}
 .layout p, .layout input, .layout textarea, .layout button{
 	margin-left: 2%;
+}
+
+.wrapper .instructions_box, .wrapper .data_box {
+	display: flex;
+}
+.wrapper .box {
+	float: left;
+}
+.wrapper .box.card.s1 {
+	width:100%;
+	margin-bottom: 1%;
+}
+.wrapper .box.card.s2 {
+	width:100%;
+	margin-top: 1%;
+}
+.wrapper .box.card.s0 {
+	width:110%;
+}
+.wrapper .box.card {
+	margin-right: 3%;
+	border-radius: 15px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	padding: 2%;
+}
+.wrapper .box.card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 #otherHelpTypeRichText{

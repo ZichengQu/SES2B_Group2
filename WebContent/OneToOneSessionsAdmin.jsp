@@ -111,7 +111,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 </head>
 <body>
 	<div class="head"></div>
-	
+	<div class="loading" id="loading"  style="display:none;"></div>
 	<div class="wrapper">
 
 		<!-- Tab: Book Session; Admin Session -->
