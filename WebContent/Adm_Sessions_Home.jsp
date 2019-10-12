@@ -7,6 +7,7 @@
 <%@page import="com.bean.Admin"%>
 <%@page import="com.bean.Session"%>
 <%@page import="com.bean.Room"%>
+<%@page import="com.dao.MessageDatabase"%>
 
 <sql:setDataSource var="myDS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://utshelpdb.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help?useSSL=false" user="admin" password="thisadmin"/>
 
@@ -35,7 +36,10 @@
 		$(function(){
 			$('.head').load('admin_head.html');
 			$('.footer').load('admin_footer.html');
+			var mess = "<%=MessageDatabase.getCurrentMessage(12).getMessageDetailed()%>";
+			$("#message_edit").html(mess);
 		});
+
 	</script>
 
 	
@@ -46,6 +50,7 @@
 	<div class="wrapper">
 		<!-- Tab: Book Session; Admin Session -->
 		<h1>One To One Session</h1>
+		<div id="message_edit"></div>
 		<div class="tab">
 			<ul>
 			  <li><a class="active" href="OneToOneSessions.jsp">Book Sessions</a></li>
