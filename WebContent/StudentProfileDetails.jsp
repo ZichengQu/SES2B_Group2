@@ -30,21 +30,21 @@
 			
 			<p>Home phone: ${sessionScope.student.phone}</p>
 			<p>Mobile: ${sessionScope.student.mobile}</p>
-			<p>Best contact no*: <input type="Text" name="alternativecontact" value="${sessionScope.studentProfile.bestContactNum}" maxlength="15" /></p>
+			<p>Best contact no: <input type="Text" name="alternativecontact" value="${sessionScope.studentProfile.bestContactNum}" maxlength="15" /></p>
 			
 			<p>DOB: ${sessionScope.student.dob}</p>
 			<p>Gender:&nbsp;
-			    &nbsp;<input type="Radio" name="rdoGender" value="M" <c:if test="${sessionScope.studentProfile.gender eq 'M'}">checked</c:if> disabled>M (male)
-			    &nbsp;&nbsp;<input type="Radio" name="rdoGender" value="F" <c:if test="${sessionScope.studentProfile.gender eq 'F'}">checked</c:if> disabled>F (female)
+			    &nbsp;<input type="Radio" name="rdoGender" value="M" <c:if test="${sessionScope.studentProfile.gender eq 'Male'}">checked</c:if> disabled>M (male)
+			    &nbsp;&nbsp;<input type="Radio" name="rdoGender" value="F" <c:if test="${sessionScope.studentProfile.gender eq 'Female'}">checked</c:if> disabled>F (female)
 			    &nbsp;&nbsp;<input type="Radio" name="rdoGender" value="X" <c:if test="${sessionScope.studentProfile.gender eq 'X'}">checked</c:if> disabled>X (indeterminate/unspecified/intersex)
 			</p>
 			<p>Degree*: 
-				<input type="Radio" name="rdoDegree" value="UG" id="rdoDegree_UGdetails" <c:if test="${sessionScope.studentProfile.degree=='UG'}">checked</c:if> disabled>Undergraduate
-				<input type="Radio" name="rdoDegree" value="PG" id="rdoDegree_PGdetails" <c:if test="${sessionScope.studentProfile.degree=='PG'}">checked</c:if> disabled>Postgraduate
+				<input type="Radio" name="rdoDegree" value="UG" id="rdoDegree_UGdetails" <c:if test="${sessionScope.studentProfile.degree=='Undergraduate'}">checked</c:if> disabled>Undergraduate
+				<input type="Radio" name="rdoDegree" value="PG" id="rdoDegree_PGdetails" <c:if test="${sessionScope.studentProfile.degree=='Postgraduate'}">checked</c:if> disabled>Postgraduate
 			</p>
 			
 			<c:choose>
-				<c:when test="${sessionScope.studentProfile.degree=='UG'}">
+				<c:when test="${sessionScope.studentProfile.degree=='Undergraduate'}">
 					<p>Year*: ${sessionScope.studentProfile.year}</p>
 				</c:when>
 				<c:otherwise>
@@ -63,6 +63,7 @@
 			<p>First Language*: ${sessionScope.studentProfile.firstLanguage}</p>
 			<p>Country of Origin*: ${sessionScope.studentProfile.countryOfOrigin}</p>
 		</form>
+		<button style="margin-top: 2%; font-size: 15pt; padding: 1%;"><a href="OneToOneSessions.jsp" style="color: black; text-decoration: none;">Back to One To One Session Pages</a></button>
 	</div>
 	
 	

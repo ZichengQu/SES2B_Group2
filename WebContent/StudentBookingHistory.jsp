@@ -103,7 +103,7 @@ request.setAttribute("studentEmail", studentEmail);
 						  	<td><fmt:formatDate type="date" value="${thisSession.date }" /></td>
 						  	<%-- <td>${thisSession.endTime } - ${thisSession.startTime }</td> --%>
 						  	<td><fmt:formatDate pattern="HH:mm" value="${thisSession.startTime }" /></td>
-						  	<td>${thisSession.room.roomLocation }</td>
+						  	<td>${thisSession.room.campus}.${thisSession.room.level}.${thisSession.room.roomNumber}</td>
 						  	<td>${thisSession.advisorName }</td>
 						  	<td>${thisSession.type }</td>
 					 	</tr>
