@@ -205,27 +205,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered);  */
 									<td>${item.type}</td>
 									<c:choose>
 											<c:when test="${item.booked =='1'}">
-												<td><form action="StudentBookingDetails.jsp" method="POST">
-													<input type="hidden" name="get_sessionId" value = "${item.sessionId}">
-													<input type="hidden" name="get_date" value = "${item.date}">
-													<input type="hidden" name="get_startTime" value = "${item.startTime}">
-													<input type="hidden" name="get_endTime" value = "${item.endTime}">
-													<input type="hidden" name="get_room" value = "${item.campus}.${item.level}.${item.roomNumber}">
-													<input type="hidden" name="get_type" value = "${item.type}">
-													<input type="hidden" name="get_advisorId" value = "${item.advisorId}">
-													<input type="hidden" name="get_advisorName" value = "${item.advisorName}">
-													<input type="hidden" name="get_studentId" value = "${item.studentId}">
-													<input type="hidden" name="get_studentFirstName" value = "${item.firstName}">
-													<input type="hidden" name="get_studentLastName" value = "${item.lastName}">
-													<input type="hidden" name="get_studentEmail" value = "${item.email}">
-													<input type="hidden" name="get_subjectName" value = "${item.subjectName}">
-													<input type="hidden" name="get_assignType" value = "${item.assignType}">
-													<input type="hidden" name="get_isAssignment" value = "${item.isAssignment}">
-													<input type="hidden" name="get_helpType" value = "${item.rule}">
-													<input type="hidden" name="get_isSendToStudent" value = "${item.isSendToStudent}">
-													<input type="hidden" name="get_isSendToLecture" value = "${item.isSendToLecture}">
-													<input type="submit" value="Booked" id="bookedName"/>
-													</form></td>
+												<td>Booked</td>
 											</c:when>
 											<c:otherwise>
 												<td><form action="BookSpecificSession.jsp" method="POST">
