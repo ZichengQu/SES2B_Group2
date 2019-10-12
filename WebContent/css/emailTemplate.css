@@ -64,3 +64,43 @@ body {
 	padding: 15px;
 }
 
+.wrapper .header3 {
+	display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+.wrapper .instructions_box, .wrapper .data_box {
+	display: flex;
+	margin: 2%;
+}
+.wrapper .box {
+	float: left;
+}
+.wrapper .box.card h4, .wrapper .box.card p {
+	text-align: center;
+	padding: 1%;
+}
+.wrapper .box.card.s1 {
+	width:100%;
+	margin-bottom: 1%;
+}
+.wrapper .box.card.s2 {
+	width:100%;
+	margin-top: 1%;
+}
+.wrapper .box.card.s0 {
+	width:110%;
+}
+.wrapper .box.card {
+	margin-right: 1%;
+	margin-left: 1%;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.wrapper .box.card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}

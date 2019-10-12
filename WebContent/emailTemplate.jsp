@@ -170,20 +170,20 @@
 					<tr>
 						<th>Subject</th>
 						<th>
-							<textarea id="current_subject" class="publishArea" id="" rows="" cols="20" readonly="readonly" name="subject"></textarea>
+							<textarea id="current_subject" class="publishArea" id="" rows="" cols="50%" readonly="readonly" name="subject"></textarea>
 						</th>
 						<th>
-							<textarea id="new_subject" rows="" cols="20" readonly="readonly" name="subject"></textarea>
+							<textarea id="new_subject" rows="" cols="50%" readonly="readonly" name="subject"></textarea>
 						</th>
 					</tr>
 					<tr>
 						<th>Body</th>
 						<th>
-							<textarea class="publishArea" id="current_body" rows="" cols="" style="height: 100px;" readonly="readonly" name="template"></textarea>
+							<textarea class="publishArea" id="current_body" rows="" cols="50%" style="height: 100px;" readonly="readonly" name="template"></textarea>
 						</th>
 						
 						<th>
-							<textarea id="new_body" rows="" cols="" style="height: 100px;" name="template"></textarea>
+							<textarea id="new_body" rows="" cols="50%" style="height: 100px;" name="template"></textarea>
 						</th>
 					</tr>
 					<tr>
@@ -203,42 +203,57 @@
 				</table>
 			</div>
 			<div class="instruction">
-				<div>Instructions:</div>
-				<div class="bullet">
-					<div>• Update button: changes content of the email for preview/testing purposes. Will not affect
-					the current live email(s).</p>
-					• Send Test Email button: sends the user an email with the updated content (with random
-					values from the database) for testing purposes. The email is sent to the UTS account of the
-					administrator who is currently logged into the system.</p>
-					• Publish button: publishes the updated content to the live system and replaces the live
-					email(s) with the new version.</p>
+				<div class="header3">Instructions:</div>
+				<div class="instructions_box">
+					<div class="box card">
+						<h4>Update button:</h4>
+						<p>Changes content of the email for preview/testing purposes. Will not affect the current live email(s).</p>
+					</div>
+					<div class="box card">
+						<h4>Send Test Email button:</h4>
+						<p>Sends the user an email with the updated content (with random values from the database) for testing purposes. The email is sent to the UTS account of the administrator who is currently logged into the system.</p>
+					</div>
+					<div class="box card">
+						<h4>Publish button:</h4>
+						<p>Publishes the updated content to the live system and replaces the live email(s) with the new version.</p>
 					</div>
 				</div>
-				<div>Available data fields: to use these fields, enter [% fieldname %] within the email content where you
-				want it to appear</p></div>
-				<div>Common data fields</div>
-				<div class="bullet">
-					• [% student_givenname %]: inserts student's given name</p>
-					• [% student_surname %]: inserts student's surname</p>
-					• [% datetime %]: inserts appointment's date and time</p>
-					• [% date %]: inserts appointment's date</p>
-					• [% start_time %]: inserts appointment's start time</p>
-					• [% end_time %]: inserts appointment's end time</p>
-					• [% campus %]: inserts campus/ room location</p>
-				</div>
-				<div>For 1:1 session</div>
-				<div class="bullet">
-					• [% lecturer_givenname %]: inserts lecturer's given name</p>
-					• [% lecturer_surname %]: inserts lecturer's surname</p>
-					• [% lecturer_email %]: inserts lecturer's email address</p>
-				</div>
-				<div>For workshop</div>
-				<div class="bullet">
-					• [% skillset %]: inserts workshop skill-set</p>
-					• [% topic %]: inserts workshop topic</p>
-					• [% description %]: inserts workshop description</p>
-					• [% targetingGroup %]: inserts workshop's targeting group</p>
-					• [% recurring_sessions %]: inserts workshop's recurring-session list (date - location).</p>
+				<div class="header3">Available data fields: </div>
+				<p>to use these fields, enter [% fieldname %] within the email content where you want it to appear</p>
+				<div class="data_box">
+					<div class="box card s0">
+						<h4>Common data fields</h4>
+						<div class="bullet">
+							• [% student_givenname %]: inserts student's given name</p>
+							• [% student_surname %]: inserts student's surname</p>
+							• [% datetime %]: inserts appointment's date and time</p>
+							• [% date %]: inserts appointment's date</p>
+							• [% start_time %]: inserts appointment's start time</p>
+							• [% end_time %]: inserts appointment's end time</p>
+							• [% campus %]: inserts campus/ room location</p>
+						</div>
+					</div>
+					<div class="box">
+						<div class="box card s1">
+							<h4>For 1:1 session</h4>
+							<div class="bullet">
+								• [% lecturer_givenname %]: inserts lecturer's given name</p>
+								• [% lecturer_surname %]: inserts lecturer's surname</p>
+								• [% lecturer_email %]: inserts lecturer's email address</p>
+							</div>
+						</div>
+						<div class="box card s2">
+							<h4>For workshop</h4>
+							<div class="bullet">
+								• [% skillset %]: inserts workshop skill-set</p>
+								• [% topic %]: inserts workshop topic</p>
+								• [% description %]: inserts workshop description</p>
+								• [% targetingGroup %]: inserts workshop's targeting group</p>
+								• [% recurring_sessions %]: inserts workshop's recurring-session list (date - location).</p>
+							</div>
+						</div>
+					</div>
+					
 				</div>
 			</div>
 	</div>

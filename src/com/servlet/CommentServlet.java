@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.bean.Comment;
 import com.bean.Student;
 import com.dao.CommentDatabase;
-//import com.dao.sessionDao;
 
 
 /**
