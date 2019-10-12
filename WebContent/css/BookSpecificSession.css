@@ -129,6 +129,14 @@ body {
 .form_right p, .form_right input{
 	margin-left: 5%;
 }
+.form_part1{
+	width:40%;
+	float:left;
+}
+.form_part2{
+	width:60%;
+	float:right;
+}
 .layout p, .layout input, .layout textarea, .layout button{
 	margin-left: 2%;
 }
