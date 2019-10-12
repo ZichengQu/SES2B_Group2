@@ -75,10 +75,10 @@
 			  <%
 			  String id = request.getParameter("id");
 			  String driver = "com.mysql.jdbc.Driver"; 
-			  String connectionURL = "jdbc:mysql://localhost:3306/"; 
+			  String connectionURL = "jdbc:mysql://utshelpdb.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/"; 
 			  String dtbName = "uts_help"; 
-			  String dtbId =  "root"; 
-			  String dtbPass = "rootroot";
+			  String dtbId =  "admin"; 
+			  String dtbPass = "thisadmin";
 			  
 			  try{ 
 				  Class.forName(driver); 
