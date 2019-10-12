@@ -176,3 +176,28 @@ body {
     padding: 10% 40%;
     font-size: 12pt;
 }
+/* loading spinner */
+.loading {
+    position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+    background: url(/SES2B/img/Loading.gif) center no-repeat transparent;
+}
+.Back {
+	align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    margin-top: 2%; 
+    font-size: 15pt; 
+    padding: 1%;
+    color: buttontext;
+	border: 1px solid #ccc;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+.Back:hover {
+	background-color: #33adff;
+}

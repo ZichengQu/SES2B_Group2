@@ -73,11 +73,15 @@ request.setAttribute("studentEmail", studentEmail);
 		}
 		
 	});
+	function Back(){
+		document.getElementById('loading').style.display = "block";
+		window.location.href="OneToOneSessions.jsp";
+	}
 	</script>
 </head>
 <body>
 	<div class="head"></div>
-	
+	<div class="loading" id="loading"  style="display:none;"></div>
 	<div class="wrapper">
 		<form action="MyInformationServlet" method="post" id="profile">
 			<p><strong>Student History: </strong>${sessionScope.student.firstName} ${sessionScope.student.lastName} (Email: ${sessionScope.student.email})</p>
@@ -174,7 +178,7 @@ request.setAttribute("studentEmail", studentEmail);
 			</div>
 		</div>
 	</div>
-	
+	<input id="Back" class="Back" onclick="Back()" type="button" value="Back to One To One Session Pages"><br>
 	<div class="footer" style="margin-top: 3em"></div>
 
 </body>

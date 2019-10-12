@@ -93,6 +93,7 @@ request.setAttribute("helpType", helpType);
 	  		
 	  		$("#OneToOneProfile").click(function(){
 	  			var student_id = ${requestScope.studentId};
+	  			document.getElementById('loading').style.display = "block";
 	  			$.ajax({
 					url:"OneToOneProfileServlet",
 					type:"post",
@@ -106,6 +107,7 @@ request.setAttribute("helpType", helpType);
 	  		
 	  		$("#StudentBookingHistory").click(function(){
 	  			var student_id = ${requestScope.studentId};
+	  			document.getElementById('loading').style.display = "block";
 	  			$.ajax({
 					url:"StudentBookingHistoryS",
 					type:"post",
@@ -145,6 +147,7 @@ request.setAttribute("helpType", helpType);
 </head>
 <body>
 	<div class="head"></div>
+	<div class="loading" id="loading"  style="display:none;"></div>
 	<div class="wrapper">
 		<p class="header_name" id="student_booking_header">Student booking Details</p>
 	

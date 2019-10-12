@@ -15,10 +15,16 @@
 			$('.head').load('admin_head.html');
 			$('.footer').load('admin_footer.html');
 		});
+		function Back(){
+			document.getElementById('loading').style.display = "block";
+			window.location.href="OneToOneSessions.jsp";
+		}
+		
 	</script>
 </head>
 <body>
 	<div class="head"></div>
+	<div class="loading" id="loading"  style="display:none;"></div>
 	<div class="wrapper">
 		<p class="header_name">Student Profile</p>
 		<form action="MyInformationServlet" method="post" id="profile">
@@ -63,7 +69,7 @@
 			<p>First Language*: ${sessionScope.studentProfile.firstLanguage}</p>
 			<p>Country of Origin*: ${sessionScope.studentProfile.countryOfOrigin}</p>
 		</form>
-		<button style="margin-top: 2%; font-size: 15pt; padding: 1%;"><a href="OneToOneSessions.jsp" style="color: black; text-decoration: none;">Back to One To One Session Pages</a></button>
+		<input id="Back" class="Back" onclick="Back()" type="button" value="Back to One To One Session Pages"><br>
 	</div>
 	
 	
