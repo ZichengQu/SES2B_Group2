@@ -22,6 +22,11 @@ request.setAttribute("studentEmail", studentEmail);
 	<title>HELPS Booking System</title>
 	<link rel="stylesheet" href="css/BookSpecificSession.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+	
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<script type="text/javascript">
 	$(function(){
@@ -77,6 +82,11 @@ request.setAttribute("studentEmail", studentEmail);
 		document.getElementById('loading').style.display = "block";
 		window.location.href="OneToOneSessions.jsp";
 	}
+	$(document).ready(function() {
+	    $('#tSessionAvailable1').DataTable();
+	    $('#tSessionAvailable2').DataTable();
+	    $('#tSessionAvailable3').DataTable();
+	} );
 	</script>
 </head>
 <body>
@@ -84,101 +94,119 @@ request.setAttribute("studentEmail", studentEmail);
 	<div class="loading" id="loading"  style="display:none;"></div>
 	<div class="wrapper">
 		<form action="MyInformationServlet" method="post" id="profile">
-			<p><strong>Student History: </strong>${sessionScope.student.firstName} ${sessionScope.student.lastName} (Email: ${sessionScope.student.email})</p>
+			<h2><strong>Student History: </strong>${sessionScope.student.firstName} ${sessionScope.student.lastName} (Email: ${sessionScope.student.email})</h2>
 		</form>
-		<div>
-			<h2>Sessions</h2>
-			<div id="session1" style="display: none">
-				<p>There are no sessions to display.</p>
-			</div>
-			<div id="session2">
-				<!-- <h4>Past</h4> -->
-				<table class="table_session_available">
-					<tr align="left">
-						<th>Date</th>
-						<!-- <th>Days</th> -->
-						<th>Time</th>
-						<th>Room</th>
-						<th>Advisor</th>
-						<th>Type</th>
-					</tr>
-					<c:forEach var="thisSession" items="${sessions }">
-					  	<tr align="left">
-						  	<td><fmt:formatDate type="date" value="${thisSession.date }" /></td>
-						  	<%-- <td>${thisSession.endTime } - ${thisSession.startTime }</td> --%>
-						  	<td><fmt:formatDate pattern="HH:mm" value="${thisSession.startTime }" /></td>
-						  	<td>${thisSession.room.campus}.${thisSession.room.level}.${thisSession.room.roomNumber}</td>
-						  	<td>${thisSession.advisorName }</td>
-						  	<td>${thisSession.type }</td>
-					 	</tr>
-				  </c:forEach>		
-				</table>
+		<div class="instructions_box">
+			<div class="box card s0">
+				<h2 style="margin:auto">Sessions</h2>
+				<div id="session1" style="display: none">
+					<p>There are no sessions to display.</p>
+				</div>
+				<div id="session2">
+					<!-- <h4>Past</h4> -->
+					<table class="display" id="tSessionAvailable1">
+						<thead>
+							<tr align="left">
+								<th>Date</th>
+								<!-- <th>Days</th> -->
+								<th>Time</th>
+								<th>Room</th>
+								<th>Advisor</th>
+								<th>Type</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="thisSession" items="${sessions }">
+							  	<tr align="left">
+								  	<td><fmt:formatDate type="date" value="${thisSession.date }" /></td>
+								  	<%-- <td>${thisSession.endTime } - ${thisSession.startTime }</td> --%>
+								  	<td><fmt:formatDate pattern="HH:mm" value="${thisSession.startTime }" /></td>
+								  	<td>${thisSession.room.campus}.${thisSession.room.level}.${thisSession.room.roomNumber}</td>
+								  	<td>${thisSession.advisorName }</td>
+								  	<td>${thisSession.type }</td>
+							 	</tr>
+						  </c:forEach>	
+						</tbody>		
+					</table>
+				</div>
 			</div>
 		</div>
-		<br/><br/>
-		<div>
-			<h2>Workshop sessions</h2>
-			<div id="session3" style="display: none">
-				<p>There are no workshop sessions to display.</p>
+		<div class="instructions_box">
+			<div class="box card s0">
+				<h2 style="margin:auto">Workshop sessions</h2>
+				<div id="session3" style="display: none">
+					<h4>Upcoming</h4>
+					<p>There are no workshop sessions to display.</p>
+				</div>
+				<div id="session4">
+					<h4>Upcoming</h4>
+					<table class="display" id="tSessionAvailable2">
+						<thead>
+							<tr align="left">
+								<th style="width:30%;">Topic</th>
+								<th style="width:15%;">Start date</th>
+								<th style="width:15%;">End date</th>
+								<th style="width:5%;">Days</th>
+								<th style="width:5%;">Time</th>
+								<th style="width:15%;">Room</th>
+								<th style="width:5%;">No. Of Session</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="workShop" items="${upcoming }">
+							  	<tr align="left">
+								  	<td>${workShop.name }</td>
+								  	<td><fmt:formatDate pattern="dd-MM-yyyy" value="${workShop.startDate }" /></td>
+								  	<td><fmt:formatDate pattern="dd-MM-yyyy" value="${workShop.endDate }" /></td>
+								  	<td>${workShop.days }</td>
+								  	<td>${workShop.placeAvailable }</td>
+								  	<td>${thisSession.room.campus}.${thisSession.room.level}.${thisSession.room.roomNumber}</td>
+								  	<td>${workShop.noOfSessions }</td>
+							 	</tr>
+						 	</c:forEach>
+						</tbody>
+					</table>
+				</div>
+				<hr>
+				<div id="session5" style="display: none">
+					<h4>Past</h4>
+					<p>There are no workshop sessions to display.</p>
+				</div>
+				<div id="session6">
+					<h4>Past</h4>
+					<table class="display" id="tSessionAvailable3">
+						<thead>
+							<tr align="left">
+								<th style="width:30%;">Topic</th>
+								<th style="width:15%;">Start date</th>
+								<th style="width:15%;">End date</th>
+								<th style="width:5%;">Days</th>
+								<th style="width:5%;">Time</th>
+								<th style="width:15%;">Room</th>
+								<th style="width:5%;">No. Of Session</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="workShop" items="${past }">
+							  	<tr align="left">
+								  	<td>${workShop.name }</td>
+								  	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${workShop.startDate }" /></td>
+								  	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${workShop.endDate }" /></td>
+								  	<td>${workShop.days }</td>
+								  	<td>${workShop.placeAvailable }</td>
+								  	<td>${thisSession.room.campus}.${thisSession.room.level}.${thisSession.room.roomNumber}</td>
+								  	<td>${workShop.noOfSessions }</td>
+							 	</tr>
+						  	</c:forEach>	
+						</tbody>	
+					</table>
+				</div>
 			</div>
-			<div id="session4">
-				<h4>Upcoming</h4>
-				<table class="table_session_available">
-					<tr align="left">
-						<th style="width:30%;">Topic</th>
-						<th style="width:15%;">Start date</th>
-						<th style="width:15%;">End date</th>
-						<th style="width:5%;">Days</th>
-						<th style="width:5%;">Time</th>
-						<th style="width:15%;">Room</th>
-						<th style="width:5%;">No. Of Session</th>
-					</tr>
-					<c:forEach var="workShop" items="${upcoming }">
-					  	<tr align="left">
-						  	<td>${workShop.name }</td>
-						  	<td><fmt:formatDate pattern="dd-MM-yyyy" value="${workShop.startDate }" /></td>
-						  	<td><fmt:formatDate pattern="dd-MM-yyyy" value="${workShop.endDate }" /></td>
-						  	<td>${workShop.days }</td>
-						  	<td>${workShop.placeAvailable }</td>
-						  	<td>${workShop.room.roomLocation }</td>
-						  	<td>${workShop.noOfSessions }</td>
-					 	</tr>
-				 	</c:forEach>
-				</table>
-			</div>
+		</div>
 			
-			<div id="session5" style="display: none">
-				<h4>Past</h4>
-				<p>There are no workshop sessions to display.</p>
-			</div>
-			<div id="session6">
-				<h4>Past</h4>
-				<table class="table_session_available">
-					<tr align="left">
-						<th style="width:30%;">Topic</th>
-						<th style="width:15%;">Start date</th>
-						<th style="width:15%;">End date</th>
-						<th style="width:5%;">Days</th>
-						<th style="width:5%;">Time</th>
-						<th style="width:15%;">Room</th>
-						<th style="width:5%;">No. Of Session</th>
-					</tr>
-					<c:forEach var="workShop" items="${past }">
-					  	<tr align="left">
-						  	<td>${workShop.name }</td>
-						  	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${workShop.startDate }" /></td>
-						  	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${workShop.endDate }" /></td>
-						  	<td>${workShop.days }</td>
-						  	<td>${workShop.placeAvailable }</td>
-						  	<td>${workShop.room.roomLocation }</td>
-						  	<td>${workShop.noOfSessions }</td>
-					 	</tr>
-				  </c:forEach>		
-				</table>
-			</div>
-		</div>
+		<input id="Back" class="Back" onclick="Back()" type="button" value="Back to One To One Session Pages"><br>
 	</div>
-	<input id="Back" class="Back" onclick="Back()" type="button" value="Back to One To One Session Pages"><br>
+	
 	<div class="footer" style="margin-top: 3em"></div>
 
 </body>

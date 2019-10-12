@@ -148,7 +148,8 @@ body {
 	margin-top: 1%;
 }
 .wrapper .box.card.s0 {
-	width:110%;
+	width:100%;
+	margin-bottom: 2%;
 }
 .wrapper .box.card {
 	margin-right: 3%;
