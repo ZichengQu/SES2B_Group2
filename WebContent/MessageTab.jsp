@@ -37,6 +37,7 @@
 				<option value="5">Instruction of student Profile in student interface</option>
 				<option value="6">Instruction of student Profile in student interface - bottom</option>
 				<option value="8">Instruction of workshops in student interface</option>
+				<option value="12">Message in Adm_Sessions_Home for demo purpose</option>
 			</select>
 			
 			<p></p>

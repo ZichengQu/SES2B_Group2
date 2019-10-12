@@ -121,7 +121,7 @@
 					case '9': window.open(loc9, "width=300,height=200"); break;
 					case '10': window.open(loc10, "width=300,height=200"); break;
 					case '11': window.open(loc11, "width=300,height=200"); break;
-					case '12': window.open(loc12, "width=300,height=200"); break;
+					case '12': window.open("Adm_Sessions_Home_Preview.jsp", "width=300,height=200"); break;
 					default: break;
 				}	    
 			});
@@ -198,6 +198,7 @@
 					<option value="5">Instruction of student Profile in student interface</option>
 					<option value="6">Instruction of student Profile in student interface - bottom</option>
 					<option value="8">Instruction of workshops in student interface</option>
+					<option value="12">Message in Adm_Sessions_Home for demo purpose</option>
 				</select>
 				<button id="previewButton" type="button">Preview</button>
 				<button id="publishButton" type="button">Publish</button>
