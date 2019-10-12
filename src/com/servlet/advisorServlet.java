@@ -24,23 +24,19 @@ public class advisorServlet extends HttpServlet {
 		
 		
 		PrintWriter out = response.getWriter();
-	    String connectionURL = "jdbc:mysql://localhost:3306/";
-	    Connection connection = null;
+	    String connectionURL = "jdbc:mysql://utshelpdb.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help?useSSL=false";
 	    PreparedStatement preparedStatement = null;
 	    ResultSet rs = null;
 
 		String action = request.getParameter("action");
 		String[] checkbx = request.getParameterValues("chk");
-
-		
 		
 		// Servlet action to get unique advisorId with the corresponding data to Update when action with value "Add" is called
 		// Loop through add text boxes
 		if (action.equalsIgnoreCase("Add")) {
 			try {
-				Class.forName("com.mysql.jdbc.Driver"); connection = DriverManager.getConnection(connectionURL + "uts_help", "root", "rootroot");
-
-	            
+				Class.forName("com.mysql.jdbc.Driver"); 
+				Connection connection=DriverManager.getConnection(connectionURL, "admin", "thisadmin");
 
 	            List list = new LinkedList();
 	            List<String> liststaff = new ArrayList<>();
