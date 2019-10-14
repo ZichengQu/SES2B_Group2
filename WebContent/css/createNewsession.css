@@ -26,12 +26,10 @@ p.header_name{
 	display: block;
 	margin-block-start: 5px;
 	margin-block-end: 5px;
-	padding: 7px 15px 5px;
+	padding: 7px 5px 5px;
 	font-weight:bold;
 	font-size: 18pt;
 	line-height: 100%;
-	background-color: #33d6ff;
-	color:white;
 }
 
 input[type=submit]{
@@ -73,28 +71,34 @@ button:hover {
 .tab button {
 	background-color: inherit;
 	float: left;
-	border: 1px solid #33adff;
+	border: 1px solid black;
 	outline: none;
 	cursor: pointer;
-	padding: 14px 16px;
+	/* padding: 14px 16px; */
 	transition: 0.3s;
+	width: 90px;
+	height: 35px;
+	font-size: 16px;
 }
 
 .tab button:hover {
-	background-color: #33d6ff;
+	background-color: #0f4beb;
+	color: white;
+	font-size: 16px;
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-	background-color: #00ace6;
-	font-weight:bold;
+	/* background-color: #00ace6;
+	font-weight:bold; */
+	font-size: 16px;
 }
 
 .tabcontent {
 	display: none;
 	padding: 6px 12px;
-	border: 1px solid #ccc;
-	border-top: none;
+	/* border: 1px solid #ccc; */
+	/* border-top: none; */
 }
 
 .table_session_available{
@@ -124,7 +128,7 @@ button:hover {
 }
 
 .table_session_available td{
-	border: 1px solid #ddd;
+	border: 1px solid #ddd; 
 	padding: 8px;
 }
 
@@ -135,6 +139,6 @@ button:hover {
 	
 }
 #tAddSessions th, td{
-	border-bottom: 1px solid #ccc;
+	/* border-bottom: 1px solid #ccc; */
 	padding: 8px;
 }
