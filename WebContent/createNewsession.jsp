@@ -187,9 +187,6 @@
 	
 	
 	<p class="header_name" id="filter_sessions_header">New Session detail</p>
-	<div class="tab">
-	<button class="tablinks" onclick="openSession(event, 'Single')" id="defaultOpen">Single</button>
-	</div>
 	<div>
 		<div class="add_sessions">
 		<p></p>
@@ -218,7 +215,7 @@
 						<td><input type="text" class="endDatePicker" name="endDatePicker" style="width:100%" value="<fmt:formatDate value="${item.endDate}" pattern="dd/MM/yyyy" />" /></td>
 						<td><input type="text" class="startTimePicker name="startTimePicker" style="width:100%" value="<fmt:formatDate value="${item.startDate}" pattern="HH:mm" />" /></td>
 						<td><input type="text" class="endTimePicker" name="endTimePicker" style="width:100%" value="<fmt:formatDate value="${item.endDate}" pattern="HH:mm" />" /></td>
-						<td><input type="text"  style="width:100%" name="roomDropbtn"  value="${item.room.campus} " /></td>
+						<td><input type="text"  style="width:100%" name="roomDropbtn"  value="${item.room.campus}.${item.room.level}.${item.room.roomNumber }" /></td>
 						<td><input type="text"  style="width:100%" value="${item.maximumPlace }" /></td>
 						<td><input type="text"  style="width:100%" value="${item.placeAvailable }" /></td>
 						<td>${fn:length(students)}</td>
@@ -235,11 +232,7 @@
 	</div>
 	<p class="header_name" id="filter_sessions_header">Creat New Session(s)</p>
 	
-	<div class="tab">
-		<button class="tablinks" onclick="openSession(event, 'Single')" id="defaultOpen">Single</button>
-	</div>
 	
-	<div id="Single" class="tabcontent">
 		<div class="add_sessions">
 			<p>To add sessions, please enter their details below and click "Add". If you do not wish to add a session that you selected date & time, please click "Clear" next to that session before adding.</p>
 			<p>Please note: all the fields are compulsory, otherwise that session will not be added.</p>
@@ -265,7 +258,7 @@
 					<td>
 						<select name="roomDropbtn" style="width:100%">
 					     <c:forEach var="item" items="${listRooms.rows}" >
-					      <option value="${item.roomId}"><c:out value="${item.campus}" /></option>
+					      <option value="${item.roomId}"><c:out value="${item.campus}.${item.level}.${item.roomNumber }" /></option>
 					     </c:forEach>
 					    </select>
 					</td>
@@ -279,7 +272,6 @@
 				<p>To use the template, please select one week.</p>
 			</div>
 		</div>
-	</div>
 	</div>
 	<div class="footer"></div>
 	<!-- Switch to different tab content -->
