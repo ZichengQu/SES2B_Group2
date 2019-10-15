@@ -145,7 +145,7 @@ body {
     margin-left: 15%;
     margin-bottom: 10%;
 }
-#btnSessionsub, #btnSubmitWS
+#btnSessionsub, #btnWorksub
 {
 	width: 60%;
 	font-size: 25px;
@@ -156,6 +156,6 @@ body {
 	border: 1px solid #ccc;
     background-color: #ffffff;
 }
-#btnSessionsub:hover , #btnSubmitWS:hover{
+#btnSessionsub:hover , #btnWorksub:hover{
 	background-color: #33adff;
 }
