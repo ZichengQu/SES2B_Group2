@@ -54,7 +54,7 @@ public class EmailServlet extends HttpServlet {
 	private void emailSend(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		PrintWriter writer = response.getWriter();
 		try {
-			String toEmail = "12947762@student.uts.edu.au"; //"12879678"+"@student.uts.edu.au"
+			String toEmail = "12879678@student.uts.edu.au"; //"12879678 12947762"+"@student.uts.edu.au"
 			String emailSubject = request.getParameter("emailSubject");
 			
 			String emailTemplate = request.getParameter("emailTemplate");
