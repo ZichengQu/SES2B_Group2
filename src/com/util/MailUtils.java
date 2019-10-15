@@ -61,7 +61,7 @@ public class MailUtils {
 
     public static MimeMessage createMimeMessage(Session session, String sendMail, String receiveMail, String emailMsg, String emailSub) throws Exception {
         MimeMessage message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(sendMail, "SES2A UTSHelps", "UTF-8"));
+        message.setFrom(new InternetAddress(sendMail, "SES2B UTSHelps", "UTF-8"));
         Address[] ccAdresses = new InternetAddress[1];
         ccAdresses[0] = new InternetAddress(receiveMail, "Student", "UTF-8");
         message.addRecipients(MimeMessage.RecipientType.TO, ccAdresses);
