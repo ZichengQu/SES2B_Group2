@@ -7,7 +7,7 @@
 <%@page import="com.bean.Room"%>
 <%@page import="com.bean.WorkShop"%>
 
-<sql:setDataSource var="myDS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/uts_help?useSSL=false" user="root" password="rootroot"/>
+<sql:setDataSource var="myDS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://utshelpdb.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help?useSSL=false" user="admin" password="thisadmin"/>
      
 <sql:query var="listRooms" dataSource="${myDS}"> SELECT * FROM room;</sql:query>
 <sql:query var="listAdmins" dataSource="${myDS}"> SELECT * FROM admin;</sql:query>
@@ -151,18 +151,16 @@
 					     		<%
 					     			if(temp == index){
 					     		%>
-					     			<option value="${item.roomId}" selected="selected"><c:out value="${item.campus}" /></option>
+					     			<option value="${item.roomId}" selected="selected"><c:out value="${item.campus}.${item.level}.${item.roomNumber }" /></option>
 					     		<% 		
-					     			System.out.println(temp + "选中了");
 					     			}
 					     		%>
 					     		
 					     		<%
 					     			if(temp != index){
 					     		%>
-					     			<option value="${item.roomId}"><c:out value="${item.campus}" /></option>
+					     			<option value="${item.roomId}"><c:out value="${item.campus}.${item.level}.${item.roomNumber }" /></option>
 					     		<% 		
-					     			System.out.println(temp + "未选中");
 					     			}
 					     		%>
 							 	<%temp++; %>
