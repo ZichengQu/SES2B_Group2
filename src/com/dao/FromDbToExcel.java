@@ -25,9 +25,9 @@ import com.mysql.jdbc.Statement;
 import com.util.HibernateUtil;
 
 public class FromDbToExcel extends JPanel{
-	public final static String url="jdbc:mysql://localhost:3306/uts_help";
-	public final static String user="root";
-	public final static String password="rootroot";
+	public final static String url="jdbc:mysql://utshelpdb.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help";
+	public final static String user="admin";
+	public final static String password="thisadmin";
 	
 	
 	
