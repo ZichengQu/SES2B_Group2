@@ -115,7 +115,7 @@
 			
 			<div class="leftDiv">
 				<span class="step">- Step 3:</span> <span>Get the report</span> <br /> <br>
-				<input type="Submit" name="btnWorksub" value="Submit" id="btnSubmitWS"
+				<input type="Submit" name="btnWorksub" value="Submit" id="btnWorksub"
 					 /> <br>
 			</div>
 		</div>
@@ -176,42 +176,42 @@
 							//alert(val);
 							if ("Improve your writing" == val) {
 								sel = "Improve your writing";
-								sql = "select * from workshop where skillSetId=1 and (startDate >= '" + startDate + "' and endDate <= '" + endDate + "')";
+								sql = "select * from workShop where skillSetId=1 and (startDate >= '" + startDate + "' and endDate <= '" + endDate + "')";
 							} else if ("Improve your grammar" == val) {
 								sel = "Improve your grammar";
-								sql = "select * from workshop where name='Improve your grammar' between "
+								sql = "select * from workShop where name='Improve your grammar' between "
 										+ startDate + " and " + endDate;
 							} else if ("Improve your speaking" == val) {
 								sel = "Improve your speaking";
-								sql = "select * from workshop where skillSetId=2 and (startDate >= '" + startDate + "' and endDate <= '" + endDate + "')";
+								sql = "select * from workShop where skillSetId=2 and (startDate >= '" + startDate + "' and endDate <= '" + endDate + "')";
 							} else if ("Write now| Writing Support Sessions" == val) {
 								sel = "Write now| Writing Support Sessions";
-								sql = "select * from workshop where name='Write now| Writing Support Sessions' between "
+								sql = "select * from workShop where name='Write now| Writing Support Sessions' between "
 										+ startDate + " and " + endDate;
 							} else if ("U: PASS write" == val) {
 								sel = "U Pass Write";
-								sql = "select * from workshop where name='U: PASS write' between "
+								sql = "select * from workShop where name='U: PASS write' between "
 										+ startDate + " and " + endDate;
 							} else if ("U:PASS" == val) {
 								sel = "U PASS";
-								sql = "select * from workshop where name='U:PASS' between "
+								sql = "select * from workShop where name='U:PASS' between "
 										+ startDate + " and " + endDate;
 							} else if ("Conversations@UTS(register not required)" == val) {
 								sel = "Conversations@UTS(register not required)";
-								sql = "select * from workshop where name='Conversations@UTS(register not required)' between "
+								sql = "select * from workShop where name='Conversations@UTS(register not required)' between "
 										+ startDate + " and " + endDate;
 							} else if ("Academic Writing Boot Camp Feb 2019" == val) {
 								sel = "Academic Writing Boot Camp Feb 2019";
-								sql = "select * from workshop where name='Academic Writing Boot Camp Feb 2019' between "
+								sql = "select * from workShop where name='Academic Writing Boot Camp Feb 2019' between "
 										+ startDate + " and " + endDate;
 							} else if ("Summer Special Workshops 2018-19" == val) {
 								sel = "Summer Special Workshops 2018-19";
-								sql = "select * from workshop where name='Summer Special Workshops 2018-19' between "
+								sql = "select * from workShop where name='Summer Special Workshops 2018-19' between "
 										+ startDate + " and " + endDate;
 							} else if (document.getElementById("skillSummary").checked) {
 								sel = "skillSummary";
-								sql = "select workShopId, name, description from workshop where startDate between "
-										+ startDate + " and " + endDate;
+								sql = "select workShopId, name, startDate, endDate, maximumPlace, placeAvailable from workShop where startDate between '"
+										+ startDate + "' and '" + endDate + "'";
 							}
 							//alert("wwwww");
 
