@@ -71,7 +71,7 @@ public class EmailServlet extends HttpServlet {
 			
 			emailTemplate = emailTemplate.replace("[% datetime %]", sendTime);
 			emailTemplate = emailTemplate.replace("[% student_givenname %]", "Michelle");
-			emailTemplate = emailTemplate.replace("[% student_surname %]", "Michelle");
+			emailTemplate = emailTemplate.replace("[% student_surname %]", "Chen");
 			emailTemplate = emailTemplate.replace("[% date %]", currentdate);
 			emailTemplate = emailTemplate.replace("[% start_time %]", "10:00 AM");
 			emailTemplate = emailTemplate.replace("[% end_time %]", "11:00 AM");
@@ -84,8 +84,7 @@ public class EmailServlet extends HttpServlet {
 			emailTemplate = emailTemplate.replace("[% description %]", "Workshop covers: writing in academic style, characteristics of academic writing, types of academic writing and lectures expectation.");
 			emailTemplate = emailTemplate.replace("[% targetingGroup %]", "All UTS students");
 			emailTemplate = emailTemplate.replace("[% recurring_sessions %]", "Tue 30 Jul 10:30 - 12:00 CB05C.01.020\nThu 8 Aug 12:00 - 13:30 CB05C.02.038 (repeat)");
-			emailTemplate = emailTemplate.replace("-", "\n-");
-			emailTemplate = emailTemplate.replace("*To", "\n*To");
+			emailTemplate = emailTemplate.replace("\n", "<br>");
 			
 			MailUtils.sendMail(toEmail, emailTemplate, emailSubject);
 			writer.print("true");
