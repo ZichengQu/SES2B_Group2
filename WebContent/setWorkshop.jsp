@@ -78,7 +78,6 @@
 </body>
 <script type="text/javascript">
 	function  archive(){
-		alert(1);
 		$.ajax({
 			url:"workshop",
 			data:{"action":'archive'},
