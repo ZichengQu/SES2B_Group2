@@ -53,7 +53,7 @@ import="java.util.*"
 		int updateRs = updateStm.executeUpdate(updateBookingDetails);
 		if(updateRs>0){
 			//out.println("data stored!" );  
-			response.sendRedirect("OneToOneSessions.jsp");
+			response.sendRedirect("OneToOneSessionsAdmin.jsp");
 		}else{
 			out.println(updateBookingDetails);
 			out.println("please fill all the fields!");

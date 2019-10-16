@@ -65,7 +65,7 @@ public class WorkShopServlet extends BaseServlet {
 			String hql="from WorkShop";
 			List<WorkShop> workShops = session.createQuery(hql).list();
 			Date date = new Date();
-			SimpleDateFormat dateFormat= new SimpleDateFormat("yyyyMMdd hh:mm");
+			SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd hh:mm");
 			DateFormat fmt = new SimpleDateFormat("yyyyMMdd hh:mm"); 
 			Date tempTime = fmt.parse(dateFormat.format(date));
 			System.out.println("tempTime"+tempTime);
@@ -163,7 +163,7 @@ public class WorkShopServlet extends BaseServlet {
 		try {
 			String ss = request.getParameter("ss");
 			System.out.println(ss);
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 //			for(String s:arr){
 			String s = ss;
 				String[] fields = s.split(",");
