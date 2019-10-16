@@ -18,24 +18,18 @@
 	<meta charset="UTF-8">
 	<title>HELPS Booking System</title>
 	<link rel="stylesheet" href="css/createNewsession.css" />
-	<link rel="stylesheet" href="css/emailTemplate.css" />
-    <link rel="stylesheet" href="css/adminMenu.css">
 	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" src="js/laydate/laydate.js"></script>
+	
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>	
+	
     <script type="text/javascript">
 		$(function(){
 			$('.head').load('admin_head.html');
 			$('.footer').load('admin_footer.html');
 		});
-		
 	</script>
-	<!-- Include jQuery, Monment.js and Date Range Picker's file -->
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
-	
 	
 	<style type="text/css">
 	.wrapper {
@@ -47,120 +41,92 @@
 	}
 	</style>
 	
-	 <script type="text/javascript">
-
-	$(function() {
-		$('input[name="startDatePicker"]').daterangepicker({
-			autoUpdateInput: false,
-			locale: {
-				cancelLabel: 'Clear'
-			}
-		});
-		$('input[name="startDatePicker"]').on('apply.daterangepicker', function(ev, picker) {
-			//$(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
-			document.getElementById("startData").value = picker.startDate.format('DD/MM/YYYY'); 
-		});
-		$('input[name="startDatePicker"]').on('cancel.daterangepicker', function(ev, picker) {
-			$(this).val('');
-		});
-	});
-</script> 
-<script type="text/javascript">
- 	$(function() {
-		$('input[name="endDatePicker"]').daterangepicker({
-			autoUpdateInput: false,
-			locale: {
-				cancelLabel: 'Clear'
-			}
-		});
-		$('input[name="endDatePicker"]').on('apply.daterangepicker', function(ev, picker) {
-			//$(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
-			document.getElementById("endData").value = picker.startDate.format('DD/MM/YYYY'); 
-		});
-		$('input[name="endDatePicker"]').on('cancel.daterangepicker', function(ev, picker) {
-			$(this).val('');
-		});
-	}); 
-	
-	var skillSetId='${param.skillSetId}';
-	$(function(){
-		$("#btnAddSessions").click(function(){
-			var ss="";
-			
-			$(".add_session_content").each(function(index,item){
+	<script type="text/javascript">
+	 	
+		
+		var skillSetId='${param.skillSetId}';
+		$(function(){
+			$("#btnAddSessions").click(function(){
+				var ss="";
 				
-				var topic = $(item).find(".topic").val();
+				$(".add_session_content").each(function(index,item){
+					
+					var topic = $(item).find(".topic").val();
+					
+					var startDatePicker = $(item).find(".startDatePicker").val();
+					var endDatePicker = $(item).find(".endDatePicker").val();
+					var startTimePicker = $(item).find(".startTimePicker").val();
+					var endTimePicker = $(item).find(".endTimePicker").val();
+					
+					var roomDropbtn = $(item).find("[name=roomDropbtn]").val();
+					var Max = $(item).find("[name=Max]").val();
+					var CO = $(item).find("[name=CO]").val();
+					
+					console.log(topic+" "+startDatePicker+" "+endDatePicker+" "+startTimePicker+" "+endTimePicker+" "
+							+roomDropbtn+" "+Max+" "+CO+" "+skillSetId);
+					
+					var startDate=startDatePicker+" "+startTimePicker;
+					var endDate = endDatePicker+" "+endTimePicker;
+					
+					ss=topic+","+startDate+","+endDate+","+Max+","+CO+","+roomDropbtn+","+skillSetId;
+					
+					
+				});
 				
-				var startDatePicker = $(item).find(".startDatePicker").val();
-				var endDatePicker = $(item).find(".endDatePicker").val();
-				var startTimePicker = $(item).find(".startTimePicker").val();
-				var endTimePicker = $(item).find(".endTimePicker").val();
-				
-				var roomDropbtn = $(item).find("[name=roomDropbtn]").val();
-				var Max = $(item).find("[name=Max]").val();
-				var CO = $(item).find("[name=CO]").val();
-				
-				console.log(topic+" "+startDatePicker+" "+endDatePicker+" "+startTimePicker+" "+endTimePicker+" "
-						+roomDropbtn+" "+Max+" "+CO+" "+skillSetId);
-				
-				var startDate=startDatePicker+" "+startTimePicker;
-				var endDate = endDatePicker+" "+endTimePicker;
-				
-				ss=topic+","+startDate+","+endDate+","+Max+","+CO+","+roomDropbtn+","+skillSetId;
-				
+				 $.ajax({
+					url:"workshop",
+					data:{"ss":ss,"action":'addworkshop'},
+					type:"post",
+					async: false,
+					success:function(result){
+						if(result=='success'){
+							alert('Added successfully');
+							window.location.href="workshop?action=showWorkShop&skillSetId="+skillSetId;
+						}
+					},
+					error: function() {
+			            alert('Error occured');
+			        }
+				}); 
 				
 			});
 			
-			 $.ajax({
-				url:"workshop",
-				data:{"ss":ss,"action":'addworkshop'},
-				type:"post",
-				async: false,
-				success:function(result){
-					if(result=='success'){
-						window.location.href="workshop?action=showWorkShop&skillSetId="+skillSetId;
-					}
+			
+			$("#all").click(function(){
+				
+				var ischeck = $(this).prop("checked");
+				if(ischeck){
+					$("[name=ck]").prop('checked',true);
+				}else{
+					$("[name=ck]").prop('checked',false);
 				}
-			}); 
+				
+			})
 			
-		});
-		
-		
-		$("#all").click(function(){
 			
-			var ischeck = $(this).prop("checked");
-			if(ischeck){
-				$("[name=ck]").prop('checked',true);
-			}else{
-				$("[name=ck]").prop('checked',false);
-			}
+			$("#delete").click(function(){
+				var cks = '';
+				$("[name=ck]:checked").each(function(index,item){
+					cks += $(item).val()+",";
+				});
+				
+				 $.ajax({
+					url:"workshop",
+					data:{"cks":cks,"action":'deleteworkshop'},
+					type:"post",
+					async: false ,
+					success:function(result){
+						if(result=='success'){
+							window.location.href="workshop?action=showWorkShop&skillSetId="+skillSetId;
+						}
+					}
+				});
+				
+			})
 			
 		})
-		
-		
-		$("#delete").click(function(){
-			var cks = '';
-			$("[name=ck]:checked").each(function(index,item){
-				cks += $(item).val()+",";
-			});
-			
-			 $.ajax({
-				url:"workshop",
-				data:{"cks":cks,"action":'deleteworkshop'},
-				type:"post",
-				async: false ,
-				success:function(result){
-					if(result=='success'){
-						window.location.href="workshop?action=showWorkShop&skillSetId="+skillSetId;
-					}
-				}
-			});
-			
-		})
-		
-	})
-</script>
-<script type="text/javascript">
+	</script>
+	<script type="text/javascript">
 		$(document).ready(function(){
 			$('select').change(function(){
 				var value=$("select").find("option:selected").val();
@@ -170,8 +136,15 @@
 				}else{
 					$(changeTemplate).addClass('hide');
 				}
-			})
-		})
+			});
+			$('#sessionDetails').DataTable();
+		    $('#createNewSession').DataTable( {
+		        "paging":   false,
+		        "ordering": false,
+		        "info":     false,
+		        "searching": false
+		    } );
+		});
 	</script>
 </head>
 <body>
@@ -184,92 +157,95 @@
 	</div> -->
 	
 	<div class="wrapper">
-	
-	
-	<p class="header_name" id="filter_sessions_header">New Session detail</p>
-	<div>
-		<div class="add_sessions">
-		<p></p>
-			<table class="table_add_sessions" id="tAddSessions" style="padding-bottom:10px">
-				<tr class="header" align="left" style="width:90%">
-				    <th style="width:5%;">
-				    	<input id="all" type="checkbox">
-				    </th>
-					<th style="width:10%;">Topic</th>
-					<th style="width:10%;">Start Date</th>
-					<th style="width:10%;">End Date</th>
-					<th style="width:10%;">Start Time</th>
-					<th style="width:10%;">End Time</th>
-					<th style="width:15%;">Room</th>
-					<th style="width:5%;">Max</th>
-					<th style="width:5%;">C/O</th>
-					<th style="width:5%;">No.of students</th>
-					<th style="width:5%;"></th>
-				</tr>
-				
-				<c:forEach items="${workShops}" var="item">
-				<tr>
-						<td><input name="ck" type="checkbox" value="${item.workShopId }"></td>
-						<td><input type="text" class="topic" name="topic" style="width:100%" value="${item.name }" /></td>
-						<td><input type="text" class="startDatePicker" name="startDatePicker" style="width:100%" value="<fmt:formatDate value="${item.startDate}" pattern="dd/MM/yyyy" />" /></td>
-						<td><input type="text" class="endDatePicker" name="endDatePicker" style="width:100%" value="<fmt:formatDate value="${item.endDate}" pattern="dd/MM/yyyy" />" /></td>
-						<td><input type="text" class="startTimePicker name="startTimePicker" style="width:100%" value="<fmt:formatDate value="${item.startDate}" pattern="HH:mm" />" /></td>
-						<td><input type="text" class="endTimePicker" name="endTimePicker" style="width:100%" value="<fmt:formatDate value="${item.endDate}" pattern="HH:mm" />" /></td>
-						<td><input type="text"  style="width:100%" name="roomDropbtn"  value="${item.room.campus}.${item.room.level}.${item.room.roomNumber }" /></td>
-						<td><input type="text"  style="width:100%" value="${item.maximumPlace }" /></td>
-						<td><input type="text"  style="width:100%" value="${item.placeAvailable }" /></td>
-						<td>${fn:length(item.students)}</td>
-						<td><a href="workshop?action=detail&workShopId=${item.workShopId}">detail</a>
-				</tr>
-				</c:forEach>
-				
-			</table>
-			<div align="center">
-				<input type="submit"  value="delete" id="delete"/>
-				
+		<br><br>
+		<div class="instructions_box">
+			<div class="box card s0">
+				<p class="header_name" id="filter_sessions_header">Session details</p>
+				<table class="display" id="sessionDetails">
+					<thead>
+						<tr style="font-size:10pt" align="left">
+						    <th style="width:5%; background:none">
+						    	<input id="all" type="checkbox">
+						    </th>
+							<th style="width:10%;">Topic</th>
+							<th style="width:13%;">Start Date</th>
+							<th style="width:13%;">End Date</th>
+							<th style="width:10%;">Start Time</th>
+							<th style="width:10%;">End Time</th>
+							<th style="width:15%;">Room</th>
+							<th style="width:2%;">Max</th>
+							<th style="width:2%;">C/O</th>
+							<th style="width:2%;">No.of students</th>
+							<th style="width:5%; background:none"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${workShops}" var="item">
+							<tr style="font-size:12pt">
+								<td><input name="ck" type="checkbox" value="${item.workShopId }"></td>
+								<td>${item.name }</td>
+								<td><fmt:formatDate value="${item.startDate}" type="date" /></td>
+								<td><fmt:formatDate value="${item.endDate}" type="date" /></td>
+								<td><fmt:formatDate value="${item.startDate}" pattern="HH:mm" /></td>
+								<td><fmt:formatDate value="${item.endDate}" pattern="HH:mm" /></td>
+								<td>${item.room.campus}.${item.room.level}.${item.room.roomNumber }</td>
+								<td>${item.maximumPlace }</td>
+								<td>${item.placeAvailable }</td>
+								<td>${fn:length(students)}</td>
+								<td><a href="workshop?action=detail&workShopId=${item.workShopId}">detail</a>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				<div align="center">
+					<input type="submit"  value="delete" id="delete"/>
+				</div>
 			</div>
 		</div>
-	</div>
-	<p class="header_name" id="filter_sessions_header">Creat New Session(s)</p>
-	
-	
-		<div class="add_sessions">
-			<p>To add sessions, please enter their details below and click "Add". If you do not wish to add a session that you selected date & time, please click "Clear" next to that session before adding.</p>
-			<p>Please note: all the fields are compulsory, otherwise that session will not be added.</p>
-			<table class="table_add_sessions" id="tAddSessions" style="padding-bottom:10px">
-				<tr class="header" align="left" style="width:90%">
-					<th style="width:10%;">Topic</th>
-					<th style="width:10%;">Start Date</th>
-					<th style="width:10%;">End Date</th>
-					<th style="width:10%;">Start Time</th>
-					<th style="width:10%;">End Time</th>
-					<th style="width:15%;">Room</th>
-					<th style="width:5%;">Max</th>
-					<th style="width:5%;">C/O</th>
-					<th style="width:5%;"></th>
-				</tr>
-				
-				<tr class="add_session_content">
-					<td><input type="text" class="topic" name="topic" style="width:100%" value="" /></td>
-					<td><input type="text" id="startData" class="startDatePicker" name="startDatePicker" style="width:100%" value="" /></td>
-					<td><input type="text" id="endData" class="endDatePicker" name="endDatePicker" style="width:100%" value="" /></td>
-					<td><input type="text" class="startTimePicker" name="startTimePicker" style="width:100%" value="" /></td>
-					<td><input type="text" class="endTimePicker" name="endTimePicker" style="width:100%" value="" /></td>
-					<td>
-						<select name="roomDropbtn" style="width:100%">
-					     <c:forEach var="item" items="${listRooms.rows}" >
-					      <option value="${item.roomId}"><c:out value="${item.campus}.${item.level}.${item.roomNumber }" /></option>
-					     </c:forEach>
-					    </select>
-					</td>
-					<td><input type="text" name="Max" style="width:100%" value="35" /></td>
-					<td><input type="text" name="CO" style="width:100%" value="24" /></td>
-					<td><input type="submit" name="btnClearAddSessions" value="Clear" id="btnClearAddSessions"/></td>					
-				</tr>
-			</table>
-			<div align="center">
-				<input type="submit" name="btnAddSessions" value="Add" id="btnAddSessions"/>
-				<p>To use the template, please select one week.</p>
+		<div class="instructions_box">
+			<div class="box card s0">
+				<p class="header_name" id="filter_sessions_header">Create New Session(s)</p>
+				<p>To add sessions, please enter their details below and click "Add". If you do not wish to add a session that you selected date & time, please click "Clear" next to that session before adding.</p>
+				<p>Please note: all the fields are compulsory, otherwise that session will not be added.</p>
+				<table class="display" id="createNewSession">
+					<thead>
+						<tr style="font-size:10pt;" align="left">
+							<th style="width:10%;">Topic</th>
+							<th style="width:10%;">Start Date</th>
+							<th style="width:10%;">End Date</th>
+							<th style="width:10%;">Start Time</th>
+							<th style="width:10%;">End Time</th>
+							<th style="width:15%;">Room</th>
+							<th style="width:5%;">Max</th>
+							<th style="width:5%;">C/O</th>
+							<th style="width:5%;"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="add_session_content">
+							<td><input type="text" class="topic" name="topic" style="width:100%" value="" /></td>
+							<td><input type="date" id="startData" class="startDatePicker" name="startDatePicker" style="width:100%" value="" /></td>
+							<td><input type="date" id="endData" class="endDatePicker" name="endDatePicker" style="width:100%" value="" /></td>
+							<td><input type="time" class="startTimePicker" name="startTimePicker" style="width:100%" value="" /></td>
+							<td><input type="time" class="endTimePicker" name="endTimePicker" style="width:100%" value="" /></td>
+							<td>
+								<select name="roomDropbtn" style="width:100%">
+									<option value=""></option>
+								     <c:forEach var="item" items="${listRooms.rows}" >
+								      	<option value="${item.roomId}"><c:out value="${item.campus}.${item.level}.${item.roomNumber }" /></option>
+								     </c:forEach>
+							    </select>
+							</td>
+							<td><input type="text" name="Max" style="width:100%" value="35" /></td>
+							<td><input type="text" name="CO" style="width:100%" value="24" /></td>
+							<td><input type="submit" name="btnClearAddSessions" value="Clear" id="btnClearAddSessions"/></td>					
+						</tr>
+					</tbody>
+				</table>
+				<div align="center">
+					<input type="submit" name="btnAddSessions" value="Add" id="btnAddSessions"/>
+					<p>To use the template, please select one week.</p>
+				</div>
 			</div>
 		</div>
 	</div>
