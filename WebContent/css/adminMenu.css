@@ -93,6 +93,7 @@ header nav ul li a:hover, header nav ul li a.active{
 }
 
 footer{
+	float: left;
 	height: auto;
 	background-color: black;
 	color: white;
@@ -102,4 +103,5 @@ footer{
 	padding-top: 10px;
 	padding-bottom: 10px;
 	bottom:0px;
+	width: 100%;
 }

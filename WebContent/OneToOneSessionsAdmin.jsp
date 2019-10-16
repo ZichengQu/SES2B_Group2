@@ -8,7 +8,7 @@
 <%@page import="com.bean.Session"%>
 <%@page import="com.bean.Room"%>
 
-<sql:setDataSource var="myDS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://aagmqmvaq3h3zl.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help?useSSL=false" user="root" password="rootroot"/>
+<sql:setDataSource var="myDS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://utshelpdb.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help?useSSL=false" user="admin" password="thisadmin"/>
 
 <%
 String date = request.getParameter("datefilter");
@@ -27,11 +27,15 @@ request.setAttribute("filtered", filtered);
 /* out.println("date: " + date + " | type: " + type + " | room " + room + " | advisor: " + advisor + "\n");
 out.println("showAll? " + showAll + " | filtered? " + filtered); */
 %>
+
+<sql:query var="listRooms" dataSource="${myDS}"> SELECT * FROM room;</sql:query>
+<sql:query var="listAdvisors" dataSource="${myDS}"> SELECT * FROM advisor;</sql:query>
+
 <sql:query var="queryAllSessions" dataSource="${myDS}">
 	SELECT * FROM session INNER JOIN room ON session.roomId=room.roomId LEFT JOIN student ON session.studentId=student.studentID;
 </sql:query>
 <sql:query var="queryFilterSessions" dataSource="${myDS}">
-	SELECT * FROM session INNER JOIN room ON session.roomId=room.roomId LEFT JOIN student ON session.studentId=student.studentID WHERE type=? OR session.roomId=? OR adminId=?;
+	SELECT * FROM session INNER JOIN room ON session.roomId=room.roomId LEFT JOIN student ON session.studentId=student.studentID WHERE type=? OR session.roomId=? OR advisorId=?;
 	<sql:param value="${type}" />
 	<sql:param value="${room}" />
 	<sql:param value="${advisor}" />
@@ -65,23 +69,10 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 		$(function(){
 			$('.head').load('admin_head.html');
 			$('.footer').load('admin_footer.html');
-			$('.filter').load('FilterComponent.jsp');
 			$('.addOneToOneSessions').load('AddOneToOneSessions.jsp');
 		});
 		$(document).ready(function() {
 		    $('#tAdminSessionAvailable').DataTable();
-		    
-		    var $selectAll = $('#selectAll'); 
-		    var $table = $('.display');
-		    var $tdCheckbox = $table.find('tbody input:checkbox');
-		    var $tdCheckboxChecked = []; 
-		    $selectAll.on('click', function () {
-		        $tdCheckbox.prop('checked', this.checked);
-		    });
-		    $tdCheckbox.on('change', function(){
-		        $tdCheckboxChecked = $table.find('tbody input:checkbox:checked');
-		        $selectAll.prop('checked', ($tdCheckboxChecked.length == $tdCheckbox.length));
-		    });
 		} );
 		function delAvlbSess(){
 			var message = "Date + Room\n";
@@ -101,15 +92,16 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 	        
 			if(sessionId.length == 0){
 				alert("Please select sessions to delete.");
-				
 			} else{
 				for(i=0; i<sessionId.length; i++){
 					if (confirm(alertText + date[i] + room[i])) {
 						session[i] = sessionId[i];
-						txt = "Deleted!";
+						// document.getElementById("tSessionAvailable").deleteRow(rowIndex[i]);
+						document.getElementById("dltSessId").value = "" + session[i];
+						document.getElementById("dltSubmitBt").style.display = "block";
+						txt = "Please click RefreshPage to see your changes!";
 					} else {
 						sessionId = [];
-						txt = "Canceled! ";
 					}
 				}
 			}
@@ -119,19 +111,57 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 </head>
 <body>
 	<div class="head"></div>
-	
+	<div class="loading" id="loading"  style="display:none;"></div>
 	<div class="wrapper">
 
 		<!-- Tab: Book Session; Admin Session -->
+		<h1>Admin One To One Session</h1>
 		<div class="tab">
 			<ul>
-			  <li><a href="Adm_Sessions_Home.jsp">Book Sessions</a></li>
+			  <li><a href="OneToOneSessions.jsp">Book Sessions</a></li>
 			  <li><a class="active" href="OneToOneSessionsAdmin.jsp">Admin Sessions</a></li>
 			</ul>
 		</div>
 
 		<div id="AdminSessionsContent" class="tabcontent">
-			<div class="filter" id="filter" style="width:30%; float:left; margin-left: 10%; height:300px"></div>
+			<div class="filter" id="filter" style="width:30%; float:left; margin-left: 10%; height:300px">
+				<p class="header_name" id="filter_sessions_header" style="width:90%; padding-top: 3%;" >Filter Sessions</p>
+				<form class="filter_sessions" action="OneToOneSessions.jsp" method="POST">
+					<p id="date_filter">1. Date:&nbsp;&nbsp;
+						<input type="date" name="startDate" style="width:50%"> to <input type="date" name="endDate" style="width:50%">
+					</p>
+					<p id="type_filter">2. Type:&nbsp;&nbsp;
+						<select name="typeDropbtn">
+							<option value=""></option>
+							<option value="UG/PG course work students">UG/PG course work students</option>
+							<option value="UP/PG Others">UP/PG Others</option>
+						</select>
+					</p>
+					<p id="room_filter">3. Room:&nbsp;&nbsp;
+						<select name="roomDropbtn">
+							<option value=""></option>
+							<c:forEach var="item" items="${listRooms.rows}" >
+								<option value="${item.roomId}"><c:out value="${item.campus}.${item.level}.${item.roomNumber}" /></option>
+							</c:forEach>
+						</select>
+					</p>
+					<p id="advisor_filter">4. Advisor:&nbsp;&nbsp;
+						<select name="advisorDropbtn">
+							<option value=""></option>
+							<c:forEach var="item" items="${listAdvisors.rows}" >
+								<option value="${item.advisorId}"><c:out value="${item.firstName} ${item.lastName}"/></option>
+							</c:forEach>
+						</select>
+					</p>
+					<div class="submitFilter" style="padding-bottom:1%; padding-top:5%">
+						<input type="submit" name="btnSubmitFilter" value="Show This Year" id="btnShowAllFilter" style="float:left; margin-left: 10%"/>
+						<input type="submit" name="btnSubmitFilter" value="Submit" id="btnSubmitFilter" style="float:left; margin-left: 10%"/>
+						<input type="reset" value="Reset" style="float:left; margin-left: 10%">
+					</div>
+					<p><br></p>
+				
+				</form>
+			</div>
 			<form method="GET" style="width:30%; float:right; margin-right: 10%; height:300px" class="filter_selected" id="filter_selected">
 				<p class="header_name" style="width:95%; padding-top:10%">Your Selection:</p>
 				<p>Date: <%=request.getParameter("startDate")%> - <%=request.getParameter("endDate")%></p>
@@ -145,7 +175,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 				<table class="display" id="tAdminSessionAvailable">
 					<thead>
 						<tr class="header" align="left">
-							<th style="width:2%;"><input type="checkbox" id="selectAll"><br></th>
+							<th style="width:2%;"></th>
 							<th style="width:2%;">No. </th>
 							<th style="display:none" >SessionId</th>
 							<th style="width:9%;">Date</th>
@@ -275,11 +305,69 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 				<div align="center" style="margin-bottom: 1%">
 					<button onclick="markAttendance()" id="markAttendance">Mark Attendance</button>
 					<button onclick="delAvlbSess()" id="deleteAvlbSess">Delete Session(s)</button>
+					<form action="DeleteSessions.jsp" method="POST">
+						<input id="dltSessId" type="hidden" value="" name="get_dltSessId"/>
+						<input id="dltSubmitBt" type="submit" value="RefreshPage" style="display: none"/>
+					</form>
 					<p id="result"></p>
 				</div>
 			</div>
 			<div class="layout">
-				<div class="addOneToOneSessions" style="width:100%; float:left"></div>
+				<div class="addOneToOneSessions" style="width:100%; float:left">
+					<form action="Add1To1Confirmation.jsp" method="POST">
+						<p class="header_name" id="sessions_available_header" style="float:left; width:100%">Add a New Session</p>
+						<p style="margin-left: 1%; margin-right:1%">To add sessions, please enter their details below and click "Add". If you do not wish to add a session that you selected date & time, please click "Clear" next to that session before adding.</p>
+						<p style="margin-left: 1%; margin-right:1%">Please note: all the fields are compulsory, otherwise that session will not be added.</p>
+						<table class="table table-hover" id="tAddSessions" style="padding-bottom:10px; margin-left: 1%; margin-right:1%; width:98%">
+							<tr class="header" align="left" style="width:90%">
+								<th style="width:10%;">Date</th>
+								<th style="width:10%;">Start Time</th>
+								<th style="width:10%;">End Time</th>
+								<th style="width:15%;">Room</th>
+								<th style="width:15%;">Advisor Name</th>
+								<th style="width:15%;">Type</th>
+								<th style="width:5%;"></th>
+							</tr>
+							
+							<tr class="add_session_content">
+								<td><input type="date" name="datePicker" style="width:100%" value="" /></td>
+								<td><input type="time" name="startTimePicker" style="width:100%" value="" /></td>
+								<td><input type="time" name="endTimePicker" style="width:100%" value="" /></td>
+								<td>
+									<select name="roomDropbtn" style="width:100%">
+										<option value=""></option>
+										<c:forEach var="item" items="${listRooms.rows}" >
+											<option value="${item.roomId}"><c:out value="${item.campus}.${item.level}.${item.roomNumber}" /></option>
+										</c:forEach>
+									</select>
+									
+								</td>
+								<td>
+									<select name="ANADropbtn" style="width:100%">
+										<option value=""></option>
+										<c:forEach var="item" items="${listAdvisors.rows}" >
+											<option value="${item.advisorId}"><c:out value="${item.firstName} ${item.lastName}"/></option>
+										</c:forEach>
+										
+									</select>
+								</td>
+								<td>
+									<select name="typeDropbtn" style="width:100%">
+										<option value=""></option>
+										<option value="UG/PG course work students">UG/PG course work students</option>
+										<option value="UP/PG Others">UP/PG Others</option>
+									</select>
+								</td>
+								<td><input type="reset" name="btnClearAddSessions" value="Clear" id="btnClearAddSessions"/></td>					
+							</tr>
+							
+						</table>
+						<div align="center">
+							<input type="submit" name="btnAddSessions" value="Add" id="btnAddSessions" ></button>
+							<p>To use the template, please select one week.</p>
+						</div>
+					</form>
+				</div>
 			</div>
 			<div align="left" id="legendDesc" style="width:100%; float:left; margin-top:5%">
 				<p style="font-weight:bold">Legend</p>

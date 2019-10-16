@@ -28,45 +28,47 @@
 			//this disable ACF of CKEDITOR
 			CKEDITOR.config.allowedContent = true;
 			
-			var mess1 = "<%=MessageDatabase.getCurrentMessage(1).getMessageTempDetailed()%>";
-			var mess2 = "<%=MessageDatabase.getCurrentMessage(2).getMessageTempDetailed()%>";
-			var mess3 = "<%=MessageDatabase.getCurrentMessage(3).getMessageTempDetailed()%>";
 			var mess4 = "<%=MessageDatabase.getCurrentMessage(4).getMessageTempDetailed()%>";
 			var mess5 = "<%=MessageDatabase.getCurrentMessage(5).getMessageTempDetailed()%>";
 			var mess6 = "<%=MessageDatabase.getCurrentMessage(6).getMessageTempDetailed()%>";
-			var mess7 = "<%=MessageDatabase.getCurrentMessage(7).getMessageTempDetailed()%>";
 			var mess8 = "<%=MessageDatabase.getCurrentMessage(8).getMessageTempDetailed()%>";
-			var mess9 = "<%=MessageDatabase.getCurrentMessage(9).getMessageTempDetailed()%>";
-			var mess10 = "<%=MessageDatabase.getCurrentMessage(10).getMessageTempDetailed()%>";
-			var mess11 = "<%=MessageDatabase.getCurrentMessage(11).getMessageTempDetailed()%>";
 			var mess12 = "<%=MessageDatabase.getCurrentMessage(12).getMessageTempDetailed()%>";
-			var loc1 = "<%=MessageDatabase.getCurrentMessage(1).getMessageLocation()%>";
- 			var loc2 = "<%=MessageDatabase.getCurrentMessage(2).getMessageLocation()%>";
-			var loc3 = "<%=MessageDatabase.getCurrentMessage(3).getMessageLocation()%>";
 			var loc4 = "<%=MessageDatabase.getCurrentMessage(4).getMessageLocation()%>";
 			var loc5 = "<%=MessageDatabase.getCurrentMessage(5).getMessageLocation()%>";
 			var loc6 = "<%=MessageDatabase.getCurrentMessage(6).getMessageLocation()%>";
-			var loc7 = "<%=MessageDatabase.getCurrentMessage(7).getMessageLocation()%>";
 			var loc8 = "<%=MessageDatabase.getCurrentMessage(8).getMessageLocation()%>";
+			var loc12 = "<%=MessageDatabase.getCurrentMessage(12).getMessageLocation()%>";
+			<%-- var mess1 = "<%=MessageDatabase.getCurrentMessage(1).getMessageTempDetailed()%>";
+			var mess2 = "<%=MessageDatabase.getCurrentMessage(2).getMessageTempDetailed()%>";
+			var mess3 = "<%=MessageDatabase.getCurrentMessage(3).getMessageTempDetailed()%>";
+			var mess7 = "<%=MessageDatabase.getCurrentMessage(7).getMessageTempDetailed()%>";
+			var mess9 = "<%=MessageDatabase.getCurrentMessage(9).getMessageTempDetailed()%>";
+			var mess10 = "<%=MessageDatabase.getCurrentMessage(10).getMessageTempDetailed()%>";
+			var mess11 = "<%=MessageDatabase.getCurrentMessage(11).getMessageTempDetailed()%>";
+			var loc1 = "<%=MessageDatabase.getCurrentMessage(1).getMessageLocation()%>";
+ 			var loc2 = "<%=MessageDatabase.getCurrentMessage(2).getMessageLocation()%>";
+			var loc3 = "<%=MessageDatabase.getCurrentMessage(3).getMessageLocation()%>";
+			var loc7 = "<%=MessageDatabase.getCurrentMessage(7).getMessageLocation()%>";
 			var loc9 = "<%=MessageDatabase.getCurrentMessage(9).getMessageLocation()%>";
 			var loc10 = "<%=MessageDatabase.getCurrentMessage(10).getMessageLocation()%>";
-			var loc11 = "<%=MessageDatabase.getCurrentMessage(11).getMessageLocation()%>";
-			var loc12 = "<%=MessageDatabase.getCurrentMessage(12).getMessageLocation()%>";
+			var loc11 = "<%=MessageDatabase.getCurrentMessage(11).getMessageLocation()%>"; --%>
+			
 
 			//TODO: if there is any way to directly use choiceValue for getCurrentMessage, it would be much less of hard-coding
 			switch(choiceValue){
-			    case '1': txtEditor.setData(mess1); break;
-				case '2': txtEditor.setData(mess2); break;
-				case '3': txtEditor.setData(mess3); break;
 				case '4': txtEditor.setData(mess4); break;
 				case '5': txtEditor.setData(mess5); break;
 				case '6': txtEditor.setData(mess6); break;
-				case '7': txtEditor.setData(mess7); break;
 				case '8': txtEditor.setData(mess8); break;
+				case '12': txtEditor.setData(mess12); break;
+				/* case '1': txtEditor.setData(mess1); break;
+				case '2': txtEditor.setData(mess2); break;
+				case '3': txtEditor.setData(mess3); break;
+				case '7': txtEditor.setData(mess7); break;
 				case '9': txtEditor.setData(mess9); break;
 				case '10': txtEditor.setData(mess10); break;
-				case '11': txtEditor.setData(mess11); break;
-				case '12': txtEditor.setData(mess12); break;
+				case '11': txtEditor.setData(mess11); break; */
+				
 				default: break;
 			}
 				
@@ -86,18 +88,18 @@
 					$("#saveButton").hide();
 					$("#updateMessage").hide();
 					switch(choiceValue){
-					    case '1': txtEditor.setData(mess1); break;
-						case '2': txtEditor.setData(mess2); break;
-						case '3': txtEditor.setData(mess3); break;
 						case '4': txtEditor.setData(mess4); break;
 						case '5': txtEditor.setData(mess5); break;
 						case '6': txtEditor.setData(mess6); break;
-						case '7': txtEditor.setData(mess7); break;
 						case '8': txtEditor.setData(mess8); break;
+						case '12': txtEditor.setData(mess12); break;
+						/* case '1': txtEditor.setData(mess1); break;
+						case '2': txtEditor.setData(mess2); break;
+						case '3': txtEditor.setData(mess3); break;
+						case '7': txtEditor.setData(mess7); break;
 						case '9': txtEditor.setData(mess9); break;
 						case '10': txtEditor.setData(mess10); break;
-						case '11': txtEditor.setData(mess11); break;
-						case '12': txtEditor.setData(mess12); break;
+						case '11': txtEditor.setData(mess11); break; */
 						default: break;
 					}	
 				}
@@ -110,18 +112,18 @@
 			$("#previewButton").on('click', function(){
 				//open preview window
 				switch(choiceValue){
-					case '1': window.open(loc1, "width=300,height=200"); break;
-					case '2': window.open(loc2, "width=300,height=200"); break;
-					case '3': window.open(loc3, "width=300,height=200"); break;
 					case '4': window.open(loc4, "width=300,height=200"); break;
 					case '5': window.open(loc5, "width=300,height=200"); break;
 					case '6': window.open(loc6, "width=300,height=200"); break;
-					case '7': window.open(loc7, "width=300,height=200"); break;
 					case '8': window.open(loc8, "width=300,height=200"); break;
+					case '12': window.open("Adm_Sessions_Home_Preview.jsp", "width=300,height=200"); break;
+					/* case '1': window.open(loc1, "width=300,height=200"); break;
+					case '2': window.open(loc2, "width=300,height=200"); break;
+					case '3': window.open(loc3, "width=300,height=200"); break;
+					case '7': window.open(loc7, "width=300,height=200"); break;
 					case '9': window.open(loc9, "width=300,height=200"); break;
 					case '10': window.open(loc10, "width=300,height=200"); break;
-					case '11': window.open(loc11, "width=300,height=200"); break;
-					case '12': window.open(loc12, "width=300,height=200"); break;
+					case '11': window.open(loc11, "width=300,height=200"); break; */
 					default: break;
 				}	    
 			});
@@ -198,6 +200,7 @@
 					<option value="5">Instruction of student Profile in student interface</option>
 					<option value="6">Instruction of student Profile in student interface - bottom</option>
 					<option value="8">Instruction of workshops in student interface</option>
+					<option value="12">Message in Adm_Sessions_Home for demo purpose</option>
 				</select>
 				<button id="previewButton" type="button">Preview</button>
 				<button id="publishButton" type="button">Publish</button>

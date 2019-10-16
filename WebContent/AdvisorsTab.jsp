@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ page import = "com.bean.Advisor" %>
-<%@ page import = "java.sql.*"%>
+<%@page import="java.sql.*" %>
 <%@ page import = "java.util.*"%>
 
 <!DOCTYPE html>
@@ -69,16 +69,19 @@
 		<form action="advisorServlet" method="post">
 			<table class="table_session_available" id = "availableAD" style="border-bottom: 1px solid black">
 			<tr>  
-			<th> <input type="checkbox" onClick="toggle(this)"/> <b>Staff Number</b></th> <th><b>First Name</b></th> <th><b>Last Name</b></th> <th><b>Email</b></th>
+				<th> <input type="checkbox" onClick="toggle(this)"/> <b>Staff Number</b></th> 
+				<th><b>First Name</b></th> 
+				<th><b>Last Name</b></th> 
+				<th><b>Email</b></th>
 			</tr>
 			
 			  <%
 			  String id = request.getParameter("id");
 			  String driver = "com.mysql.jdbc.Driver"; 
-			  String connectionURL = "jdbc:mysql://localhost:3306/"; 
+			  String connectionURL = "jdbc:mysql://utshelpdb.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/"; 
 			  String dtbName = "uts_help"; 
-			  String dtbId =  "root"; 
-			  String dtbPass = "rootroot";
+			  String dtbId =  "admin"; 
+			  String dtbPass = "thisadmin";
 			  
 			  try{ 
 				  Class.forName(driver); 
@@ -94,7 +97,7 @@
 			  <tr> 
 			  <% 
 			  try{ 
-				connection = DriverManager.getConnection(connectionURL + dtbName, dtbId, dtbPass); 
+				connection = DriverManager.getConnection(connectionURL+dtbName, dtbId, dtbPass); 
 			  	statement = connection.createStatement(); 
 			  	String  dtb = "SELECT * FROM advisor"; 
 			  	resultSet = statement.executeQuery(dtb); 
@@ -102,13 +105,12 @@
 				  if (resultSet.getString("isActive").equalsIgnoreCase("Active")){
 			 %>
 			
-					  <tr> 
-					  <td><input type = "checkbox" name = "chk" value = <%=resultSet.getString("advisorId")%> /> 
-					  	  <input contenteditable = "true" name = "staffno_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("staffNumber")%> readonly/></td> 
-					  <td><input contenteditable = "true" name = "fname_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("firstName")%> /></td> 
-					  <td><input contenteditable = "true" name = "lname_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("lastName")%> /></td>
-					  <td><input contenteditable = "true" name = "staffemail_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("email") %> /></td>
-					  </tr> 
+				<td><input type = "checkbox" name = "chk" value = <%=resultSet.getString("advisorId")%> /> 
+					  <input contenteditable = "true" name = "staffno_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("staffNumber")%> readonly/></td> 
+				<td><input contenteditable = "true" name = "fname_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("firstName")%> /></td> 
+				<td><input contenteditable = "true" name = "lname_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("lastName")%> /></td>
+				<td><input contenteditable = "true" name = "staffemail_<%=resultSet.getString("advisorId")%>" value = <%=resultSet.getString("email") %> /></td>
+			  </tr> 
 			
 			
 			<%
@@ -245,7 +247,7 @@
 		  <tr> 
 		  <% 
 		  try{ 
-			connection = DriverManager.getConnection(connectionURL + dtbName, dtbId, dtbPass); 
+			connection = DriverManager.getConnection(connectionURL+dtbName, dtbId, dtbPass); 
 		  	statement = connection.createStatement(); 
 		  	String  dtb = "SELECT * FROM advisor"; 
 		  	resultSet = statement.executeQuery(dtb); 

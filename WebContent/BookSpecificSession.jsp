@@ -8,7 +8,7 @@
 <%@page import="com.bean.Session"%>
 <%@page import="com.bean.Room"%>
 
-<sql:setDataSource var="myDS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://aagmqmvaq3h3zl.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help?useSSL=false" user="root" password="rootroot"/>
+<sql:setDataSource var="myDS" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://utshelpdb.cvdpbjinsegf.us-east-2.rds.amazonaws.com:3306/uts_help?useSSL=false" user="admin" password="thisadmin"/>
 
 
 <%
@@ -81,7 +81,7 @@ request.setAttribute("advisorId", advisorId);
 			$('.footer').load('admin_footer.html');
 		});
    		$(document).ready(function() {
-   			var heightRight = $(".form_right").height() + $(".checkRuleDetails").height()
+   			var heightRight = $(".form_right").height()
 	        var height = Math.max($(".form_left").height(), heightRight);
 	        $(".form_left").height(height);
 	        $(".form_right").height(height);
@@ -97,64 +97,67 @@ request.setAttribute("advisorId", advisorId);
 		<p class="header_name" id="specific_book_header" style="text-align:center; margin:2% 0">Book Session</p>
 		<form method="POST" action="BookSpecSessConfirm.jsp" id="specific_book_form">
 			<input type="hidden" name="get_sessionId" value = "${sessionId}">
-			<div class="form_left">
-				<p><br><br></p>
-				<p>Date: <strong><fmt:formatDate type="date" value="${date}" /></strong></p>
-				<p>Time: <strong><fmt:formatDate pattern="HH:mm" value="${startTime}"/> - <fmt:formatDate pattern="HH:mm" value="${endTime}"/></strong></p>
-				<p>Advisor: <strong><c:out value="${advisorName}"/></strong></p>
-				<p>Campus: <strong><c:out value="${room}"/></strong></p>
-				<p>Type: <strong><c:out value="${type}"/></strong></p>
-				<!-- <div align="center" style="margin-top:20%">
-					<button onclick="goBack()">Go Back</button>
-				</div> -->
-			</div>
-			
-			<div class="form_right">
-				<p><br></p>
-				<p>Student ID*: <input type="Text" name="studentId" value="" maxlength="10"/></p>
-				<p>Subject Name* <input type="Text" name="subjectName" value="" width="70%"/></p>
-				<p>Assignment Type* 
-					<select name="assignmentTypeDropbtn" style="width:10%">
-							<option value=""></option>
-							<option value="Abstract and Executive Summary">Abstract and Executive Summary</option>
-							<option value="Annotated Bibliography">Annotated Bibliography</option>
-							<option value="Case Study">Case Study</option>
-							<option value="Critical Review">Critical Review</option>
-							<option value="Essay">Essay</option>
-							<option value="Literature Review">Literature Review</option>
-							<option value="Reflective Journal">Reflective Journal</option>
-							<option value="Report">Report</option>
-							<option value="Research Proposal">Research Proposal</option>
-					</select>
-				</p>
-				<p>Is this a group assignment?
-					<input type="radio" name="rdoGroupAssignment" value="Yes" id="rdoGroupAssignment_Yes"/>Yes
-					<input type="radio" name="rdoGroupAssignment" value="No" id="rdoGroupAssignment_No"/>No
-				</p>
-				<p>I need help with ... </p>
-				<input type="checkbox" name="helpType" value="Answer question">Answering the assignment question (please provide the question to your advisor)<br>
-				<input type="checkbox" name="helpType" value="Marking criteria">Addressing the marking criteria (please provide the criteria to your advisor)<br>
-				<input type="checkbox" name="helpType" value="Structure">Structure<br>
-				<input type="checkbox" name="helpType" value="Paragraph Development">Paragraph development<br>
-				<input type="checkbox" name="helpType" value="Referencing">Referencing<br>
-				<input type="checkbox" name="helpType" value="Grammar">Grammar<br>
-				<input type="checkbox" name="helpType" value="Others">Other, please specify below<br>
-				<textarea rows="4" cols="50" id="otherHelpTypeRichText" style="margin-left: 5%;"></textarea>
-				<div align="center" style="margin-top:3em">
-					<input type="submit" name="btnBookSpecificSession" value="Book this sessions" id="btnBookSpecificSession"><br>
-					<input type="checkbox" name="sendToStudent" value="true">Send email to student<br>
-					<input type="checkbox" name="sendToLecture" value="true">Send email to lecturer (by default, no email is sent to lecturer)<br>
-					<input type="checkbox" name="additionalBook" value="checkRule">Check rule<br>
+			<div class="instructions_box">
+				<div class="box card">
+					<p>Date: <strong><fmt:formatDate type="date" value="${date}" /></strong></p>
+					<p>Time: <strong><fmt:formatDate pattern="HH:mm" value="${startTime}"/> - <fmt:formatDate pattern="HH:mm" value="${endTime}"/></strong></p>
+					<p>Advisor: <strong><c:out value="${advisorName}"/></strong></p>
+					<p>Campus: <strong><c:out value="${room}"/></strong></p>
+					<p>Type: <strong><c:out value="${type}"/></strong></p>
+					<!-- <div align="center" style="margin-top:20%">
+						<button onclick="goBack()">Go Back</button>
+					</div> -->
+					<p><br></p>
+					<div id="checkRuleDetails" class="checkRuleDetails">
+						<h3>Rule:</h3>
+						<p>- A session must be booked / cancelled / put into the waiting list at least 24 hour before appointment.</p>
+						<p>- Student can only be put into the waiting list for the max 3 sessions for the week</p>
+						<p>- Student cannot make appointments for 1 year after 2nd no-show</p>
+						<p>- Student can book for up to 1 session per week</p>
+						<p>- Student can book for up to 3 sessions in advance</p>
+					</div>
 				</div>
-				<div id="checkRuleDetails" style="display:none;" class="checkRuleDetails">
-					<p>Rule:</p>
-					<p>- A session must be booked / cancelled / put into the waiting list at least 24 hour before appointment.</p>
-					<p>- Student can only be put into the waiting list for the max 3 sessions for the week</p>
-					<p>- Student cannot make appointments for 1 year after 2nd no-show</p>
-					<p>- Student can book for up to 1 session per week</p>
-					<p>- Student can book for up to 3 sessions in advance</p>
+				
+				<div class="box card">
+					<p>Student ID*: <input type="Text" name="studentId" value="" maxlength="10"/></p>
+					<p>Subject Name* <input type="Text" name="subjectName" value="" width="70%"/></p>
+					<p>Assignment Type* 
+						<select name="assignmentTypeDropbtn">
+								<option value=""></option>
+								<option value="Abstract and Executive Summary">Abstract and Executive Summary</option>
+								<option value="Annotated Bibliography">Annotated Bibliography</option>
+								<option value="Case Study">Case Study</option>
+								<option value="Critical Review">Critical Review</option>
+								<option value="Essay">Essay</option>
+								<option value="Literature Review">Literature Review</option>
+								<option value="Reflective Journal">Reflective Journal</option>
+								<option value="Report">Report</option>
+								<option value="Research Proposal">Research Proposal</option>
+						</select>
+					</p>
+					<p>Is this a group assignment?
+						<input type="radio" name="rdoGroupAssignment" value="Yes" id="rdoGroupAssignment_Yes"/>Yes
+						<input type="radio" name="rdoGroupAssignment" value="No" id="rdoGroupAssignment_No"/>No
+					</p>
+					<p>I need help with ... </p>
+					<input type="checkbox" name="helpType" value="Answer question">Answering the assignment question<br>
+					<input type="checkbox" name="helpType" value="Marking criteria">Addressing the marking criteria (please provide the criteria to your advisor)<br>
+					<input type="checkbox" name="helpType" value="Structure">Structure<br>
+					<input type="checkbox" name="helpType" value="Paragraph Development">Paragraph development<br>
+					<input type="checkbox" name="helpType" value="Referencing">Referencing<br>
+					<input type="checkbox" name="helpType" value="Grammar">Grammar<br>
+					<input type="checkbox" name="helpType" value="Others">Other, please specify below<br>
+					<textarea rows="4" cols="50" id="otherHelpTypeRichText" style="margin-left: 5%;"></textarea>
+					<div align="center" style="margin-top:3em">
+						<input type="submit" name="btnBookSpecificSession" value="Book this sessions" id="btnBookSpecificSession"><br>
+						<input type="checkbox" name="sendToStudent" value="true">Send email to student<br>
+						<input type="checkbox" name="sendToLecture" value="true">Send email to lecturer (by default, no email is sent to lecturer)<br>
+						<input type="checkbox" name="additionalBook" value="checkRule" checked>Check rule<br>
+					</div>
+					
 				</div>
 			</div>
+				
 			
 		</form>
 	</div>

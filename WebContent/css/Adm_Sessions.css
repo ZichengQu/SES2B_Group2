@@ -247,24 +247,14 @@ select:focus {
 	padding: 8px;
 }
 
-.wrapper .form_part1{
-	width:35%;
-	float:left;
-}
-.wrapper .form_part2{
-	width:65%;
-	float:right;
-}
-
 #otherHelpTypeRichText{
 	display: none;
 	border: 1px solid #ccc;
 	width:70%;
 }
 .wrapper .filter, .wrapper .filter_selected, .layout{
-	background: #f7f7f7;
-	border: 1px solid;
 	border-radius: 15px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .wrapper .filter p, .wrapper .filter_selected p{
@@ -272,8 +262,17 @@ select:focus {
 }
 
 .filter:hover,.filter_selected:hover, .layout:hover{
-	background: #f7f7f7;
-	border: 1px solid;
 	border-radius: 15px;
-	box-shadow: 5px 10px 18px #888888
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* loading spinner */
+.loading {
+    position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+    background: url(/SES2B/img/Loading.gif) center no-repeat transparent;
 }
