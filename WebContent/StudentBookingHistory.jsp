@@ -160,7 +160,7 @@ request.setAttribute("studentEmail", studentEmail);
 								  	<td><fmt:formatDate pattern="dd-MM-yyyy" value="${workShop.endDate }" /></td>
 								  	<td>${workShop.days }</td>
 								  	<td>${workShop.placeAvailable }</td>
-								  	<td>${thisSession.room.campus}.${thisSession.room.level}.${thisSession.room.roomNumber}</td>
+								  	<td>${workShop.room.campus}.${workShop.room.level}.${workShop.room.roomNumber}</td>
 								  	<td>${workShop.noOfSessions }</td>
 							 	</tr>
 						 	</c:forEach>
@@ -194,7 +194,7 @@ request.setAttribute("studentEmail", studentEmail);
 								  	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${workShop.endDate }" /></td>
 								  	<td>${workShop.days }</td>
 								  	<td>${workShop.placeAvailable }</td>
-								  	<td>${thisSession.room.campus}.${thisSession.room.level}.${thisSession.room.roomNumber}</td>
+								  	<td>${workShop.room.campus}.${workShop.room.level}.${workShop.room.roomNumber}</td>
 								  	<td>${workShop.noOfSessions }</td>
 							 	</tr>
 						  	</c:forEach>	
