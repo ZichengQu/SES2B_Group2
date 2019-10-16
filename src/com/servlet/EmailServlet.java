@@ -121,6 +121,7 @@ public class EmailServlet extends HttpServlet {
 		publishTime = sdf.format(date);
 		//System.out.println(publishTime);
 		
+//		eDao.updateEmail(Integer.parseInt(emailId), emailTemplate);
 //		boolean flag = eDao.updateEmail(Integer.parseInt(emailId), emailTemplate);
 //		if(flag) {
 //			writer.print("true");
