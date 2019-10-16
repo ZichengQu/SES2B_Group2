@@ -105,7 +105,7 @@
 	</div> -->
 	
 	<div class="wrapper">
-	<p class="header_name" id="filter_sessions_header">work shop detail</p>
+	<p class="header_name" id="filter_sessions_header">Work Shop Detail</p>
 	<div>
 		<form action="workshop" method="post">
 			<table style="padding-bottom:10px;width: 70%; border: 1px solid #c1c1c15c; margin-bottom:20px;" >
@@ -182,7 +182,7 @@
 	
 	
 	<div class="left">
-	<p class="header_name" id="filter_sessions_header">student list</p>
+	<p class="header_name" id="filter_sessions_header">Student List</p>
 		<table>
 			<tbody>
 				<tr>
@@ -192,7 +192,7 @@
 				</tr>
 				<c:forEach items="${studentList}" var="stu">
 					<tr>
-						<th><input type="checkbox" class="select" ${stu.isPresent=='yes'?'checked':''} onclick="chk()" value="${stu.studentListId}"></th>
+						<th><input type="checkbox" name="checkcheck" class="select" ${stu.isPresent=='yes'?'checked':''} onclick="chk()" value="${stu.studentListId}"></th>
 						<th style="width: 1%;">${stu.student.studentId }</th>
 						<th>${stu.isPresent=='yes'?'yes':'---'}</th>
 					</tr>
@@ -203,9 +203,9 @@
 	
 	
 	<div class="right">
-	<p class="header_name" id="filter_sessions_header">waiting list</p>
+	<p class="header_name" id="filter_sessions_header">Waiting List</p>
 		<c:if test="${fn:length(waiting)<=0}">
-		<P>There is no student in zhe waiting list</P>
+		<P>There is no student in the waiting list</P>
 		</c:if>
 		<table>
 		<c:forEach items="${waiting}" var="ww">
@@ -241,51 +241,37 @@
 	var studentLists = document.getElementsByClassName("select");
 	function chk() {
 		for(var i=0; i<studentLists.length; i++){
-			console.log(i);
-			var tempCheckBox = studentLists[i];
-		    if (tempCheckBox.checked) {
-		    	var studentListId = document.getElementsByClassName("select")[i].value;
-		    	
-				 $.ajax({
-					url:"workshop",
-					data:{"studentListId":studentListId, "isPresent":'yes', "action":'editAttendance'},
-					type:"post",
-					async: false,
-					success:function(result){
-						console.log("jinru success");
-						if(result=='success'){
-							window.location.href="workshop?action=detail&workShopId="+workShopId;
-						}
-					},
-					error:function(result){
-						console.log("jinru error");
-						if(result=='success'){
-							window.location.href="workshop?action=detail&workShopId="+workShopId;
-						}
-					}
-				});
-		    }else{
-		    	var studentListId = document.getElementsByClassName("select")[i].value;
-		    	
-				 $.ajax({
-					url:"workshop",
-					data:{"studentListId":studentListId, "isPresent":'no', "action":'editAttendance'},
-					type:"post",
-					async: false,
-					success:function(result){
-						console.log("jinru success");
-						if(result=='success'){
-							window.location.href="workshop?action=detail&workShopId="+workShopId;
-						}
-					},
-					error:function(result){
-						console.log("jinru error");
-						if(result=='success'){
-							window.location.href="workshop?action=detail&workShopId="+workShopId;
-						}
-					}
-				});
-		    }
+			var checks = document.getElementsByName("checkcheck");
+			for(var i=0;i<checks.length;i++){
+				var tempCheckBox = checks[i];
+				 if (tempCheckBox.checked) {
+				    	var studentListId = studentLists[i].value;
+						 $.ajax({
+							url:"workshop",
+							data:{"studentListId":studentListId, "isPresent":'yes', "action":'editAttendance'},
+							type:"post",
+							async: true,
+							success:function(result){
+								if(result=='success'){
+									window.location.href="workshop?action=detail&workShopId="+workShopId;
+								}
+							}
+						});
+				    }else{
+				    	var studentListId = document.getElementsByClassName("select")[i].value;
+				    	
+						 $.ajax({
+							url:"workshop",
+							data:{"studentListId":studentListId, "isPresent":'no', "action":'editAttendance'},
+							type:"post",
+							async: true,
+							success:function(result){
+								window.location.href="workshop?action=detail&workShopId="+workShopId;
+							}
+						});
+				    }
+			}
+		   
 	    }
 	}
 	</script>
