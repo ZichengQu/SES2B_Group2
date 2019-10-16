@@ -32,7 +32,7 @@ out.println("showAll? " + showAll + " | filtered? " + filtered); */
 <sql:query var="listAdvisors" dataSource="${myDS}"> SELECT * FROM advisor WHERE isActive="Active";</sql:query>
 
 <sql:query var="queryAllSessions" dataSource="${myDS}">
-	SELECT * FROM session INNER JOIN room ON session.roomId=room.roomId LEFT JOIN student ON session.studentId=student.studentID LEFT JOIN advisor ON session.advisorId=advisor.advisorId WHERE isActive="Active" ORDER BY sessionId DESC;
+	SELECT * FROM session INNER JOIN room ON session.roomId=room.roomId LEFT JOIN student ON session.studentId=student.studentID ORDER BY sessionId DESC;
 </sql:query>
 <sql:query var="queryFilterSessions" dataSource="${myDS}">
 	SELECT * FROM session INNER JOIN room ON session.roomId=room.roomId LEFT JOIN student ON session.studentId=student.studentID WHERE type=? OR session.roomId=? OR advisorId=? ORDER BY sessionId DESC;
