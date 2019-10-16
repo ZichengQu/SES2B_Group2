@@ -45,7 +45,7 @@ public class AdminLogin extends HttpServlet {
 		if(admin!=null) {
 			request.getSession().setAttribute("admin", admin);
 			request.getSession().setAttribute("msg", null);
-			response.sendRedirect("OneToOneSessions.jsp");//Load the index page if login successfully. Other member should modify it to redirect to the real path.
+			response.sendRedirect("Adm_Sessions_Home.jsp");//Load the index page if login successfully. Other member should modify it to redirect to the real path.
 		}else {
 			request.getSession().setAttribute("msg", "Please check your account and password");
 			response.sendRedirect("adm_login.jsp");

@@ -49,7 +49,7 @@
 	
 	<div class="wrapper">
 		<!-- Tab: Book Session; Admin Session -->
-		<h1>One To One Session</h1>
+		<h1>Admin Homepage</h1>
 		<div id="message_edit"></div>
 		<div class="tab">
 			<ul>
