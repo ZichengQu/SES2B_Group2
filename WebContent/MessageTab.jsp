@@ -12,11 +12,28 @@
 			$('.footer').load('admin_footer.html');
 		});
 	</script>
+	
+	<style type="text/css">
+		html {
+			height:100%;
+		}
+		body {
+			height:100%;
+		}
+		.wrapper {
+			width: 90%;
+			margin: 0 auto;
+			padding-left: 10px;
+			padding-right: 10px;
+			min-height: 100%;
+		}
+	</style>
+	
 	</head>
 	
 	<body>
 		<div class="head"></div>
-		<div style="padding-left:40px">
+		<div style="padding-left:40px" class="wrapper">
 			<h2>Edit Message:</h2>
 			<select id="messageTabSelectList" onchange="onChangedSelectList()">
 			<!-- <option value="0"></option>
