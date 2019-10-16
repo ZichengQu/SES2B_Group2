@@ -192,13 +192,16 @@
 				</tr>
 				<c:forEach items="${studentList}" var="stu">
 					<tr>
-						<th><input type="checkbox" name="checkcheck" class="select" ${stu.isPresent=='yes'?'checked':''} onclick="chk()" value="${stu.studentListId}"></th>
+						<th><input type="checkbox" name="checkcheck" class="select" ${stu.isPresent=='yes'?'checked':''} value="${stu.studentListId}"></th>
 						<th style="width: 1%;">${stu.student.studentId }</th>
 						<th>${stu.isPresent=='yes'?'yes':'---'}</th>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		<div>
+			<input type="button"  value="SendMail"  id="sendMail" onclick="chk()"/>
+		</div>
 	</div>
 	
 	
