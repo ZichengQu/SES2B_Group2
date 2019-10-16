@@ -155,7 +155,7 @@ request.setAttribute("helpType", helpType);
 	<div class="head"></div>
 	<div class="loading" id="loading"  style="display:none;"></div>
 	<div class="wrapper">
-		<p class="header_name" id="student_booking_header">Student booking Details</p>
+		<p class="header_name" id="student_booking_header">Student Booking Details</p>
 	
 		<div class="instructions_box">
 			<div class="box card">

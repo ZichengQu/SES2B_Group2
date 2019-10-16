@@ -82,8 +82,13 @@
 	});
 	$(document).ready(function() {
 		$('#availableAD').DataTable();
-		$('#addAD').DataTable();
 		$('#inactiveAD').DataTable();
+		$('#addAD').DataTable({
+			"paging":   false,
+	        "ordering": false,
+	        "info":     false,
+	        "searching": false
+	    } );
 	} );
 </script> 
 <!----------------------------------------------------------------------------------- START OF BODY ----------------------------------------------------------------------------------->
