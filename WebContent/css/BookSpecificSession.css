@@ -62,20 +62,7 @@ body {
 	background-color: #33adff;
 }
 
-.form_left input[type=submit], .form_left button{
-	align-items: flex-start;
-    text-align: center;
-    cursor: default;
-    font-size: 12pt;
-    color: buttontext;
-    border: 1px solid #ccc;
-    background-color: #ffffff;
-    box-sizing: border-box;
-    width:18%;
-    padding: 1% 0;
-    margin-bottom:2%;
-}
-.form_left input[type=button]{
+.box.card input[type=button]{
 	align-items: flex-start;
     text-align: center;
     cursor: default;
@@ -88,7 +75,7 @@ body {
     padding: 2% 0;
     margin:2% 10%;
 }
-.form_right button, .form_right input[type=submit]{
+.box.card button, .box.card input[type=submit]{
 	align-items: flex-start;
     text-align: center;
     font-size: 12pt;
@@ -97,38 +84,12 @@ body {
     border: 1px solid #ccc;
     background-color: #ffffff;
     box-sizing: border-box;
-    width:28%;
-    padding: 2% 0;
-    margin-bottom:4%;
+    padding: 1%;
 }
-.form_left button:hover, .form_right button:hover, .form_left input[type=button]:hover{
+.box.card button:hover, .box.card input[type=button]:hover, .box.card input[type=submit]:hover{
 	background-color: #33adff;
 }
 
-.form_left{
-	width:30%;
-	float:left;
-}
-.form_right{
-	width:50%;
-	float:right;
-}
-.form_left, .form_right, .layout{
-	border-radius: 15px;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-}
-.form_left:hover, .form_right:hover, .layout:hover{
-	border-radius: 15px;
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-.form_left p, .form_left h3{
-	margin-left: 10%;
-	padding-top:1%;
-	padding-bottom:1%;
-}
-.form_right p, .form_right input{
-	margin-left: 5%;
-}
 .layout p, .layout input, .layout textarea, .layout button{
 	margin-left: 2%;
 }
@@ -167,41 +128,16 @@ body {
 	width:70%;
 }
 
-
-.wrapper .table_session_available{
-	padding: 1px 12px;
-	border-collapse: collapse;
-	box-sizing: border-box;
-	width: 80%;
+.wrapper .form_part1{
+	width:50%;
+	float:left;
 }
-
-.wrapper .table_session_available tr:nth-child(even){
-	background-color: #f2f2f2;
-}
-
-.wrapper .table_session_available tr:hover {
-	background-color: #ddd;
-}
-
-.wrapper .table_session_available th{
-	border: 1px solid #ddd;
-	padding: 8px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	text-align: left;
-	background-color: #929292;
-	font-weight: bold;
-	font-size: 10pt;
-}
-
-.wrapper .table_session_available td{
-	border: 1px solid #ddd;
-	padding: 8px;
+.wrapper .form_part2{
+	width:50%;
+	float:right;
 }
 
 #btnSaveComment {
-    margin: 50% 0%;
-    padding: 10% 40%;
     font-size: 12pt;
 }
 /* loading spinner */
