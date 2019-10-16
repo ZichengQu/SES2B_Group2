@@ -103,7 +103,7 @@
 						}
 						%>
 					</table>
-					<input type = "submit" name="action" value = "Delete" style = "float: right">
+					<input class="buttonArea" type = "submit" name="action" value = "Delete" style = "float: right">
 				</div>
 			</form>
 			<p></p>
@@ -139,7 +139,7 @@
 							}
 						%> 
 					</table> 
-					<input type = "submit" name="action" value = "Delete" style = "float: right">
+					<input class="buttonArea" type = "submit" name="action" value = "Delete" style = "float: right">
 				</div>
 			</form>
 		
@@ -175,7 +175,7 @@
 						}
 						%>
 					</table>
-					<input type = "submit" name="action" value = "Delete" style = "float: right">
+					<input class="buttonArea" type = "submit" name="action" value = "Delete" style = "float: right">
 				</div>	
 			
 			</form>
@@ -186,17 +186,17 @@
 			<div class="addRoom" align="center">
 				<h1 style="padding-bottom:5%">Add Room</h1>
 				
-				<p>Campus</p>
+				
 				
 				<form action = "roomServlet" method = "post">
-				
+					<p style="margin: 10% 0 0;">Campus</p>
 					<select name = "selectedCampus">
 						<option value = "default">Choose your Campus</option>
 						<option value = "Lib">Lib</option>
 						<option value = "CB01">CB01</option>
 					</select>
 				
-					<p>Level</p>
+					<p style="margin: 10% 0 0;">Level</p>
 					<select name = "selectedLevel">
 						<option value = "default">Choose your level</option>
 						<option value = "01">01</option>
@@ -205,7 +205,7 @@
 						<option value = "03">03</option>
 					</select>
 				
-					<p>Room</p>
+					<p style="margin: 10% 0 0;">Room</p>
 					<select name = "selectedRoom">
 						<option value = "default">Choose your room</option>
 						<option value = "00">00</option>
@@ -216,7 +216,7 @@
 					</select>	
 				
 					<p></p>
-					<input type="submit" name = "action" value="Add" > 
+					<input class="buttonArea" type="submit" name = "action" value="Add" > 
 				</form>
 			</div>
 		</div>

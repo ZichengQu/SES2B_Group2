@@ -159,3 +159,19 @@ th {
   width: 50%;
   border-left: none;
 }
+
+.buttonArea {
+	align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    margin-top: 2%; 
+    font-size: 15pt; 
+    padding: 1%;
+    color: buttontext;
+	border: 1px solid #ccc;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+.buttonArea:hover {
+	background-color: #33adff;
+}
