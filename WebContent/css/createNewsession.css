@@ -1,11 +1,5 @@
 @charset "UTF-8";
 
-
-input[type=text]{
-	width: 10%;
-	border: 1px solid #ccc;
-	box-sizing: border-box;
-}
 select {
 	width: 10%;
 }
@@ -32,7 +26,7 @@ p.header_name{
 	line-height: 100%;
 }
 
-#delete, #btnAddSessions {
+#delete, #btnAddSessions, #update, #sendMail {
 	align-items: flex-start;
     text-align: center;
     cursor: default;
@@ -44,7 +38,7 @@ p.header_name{
     background-color: #ffffff;
     box-sizing: border-box;
 }
-#delete:hover, #btnAddSessions:hover {
+#delete:hover, #btnAddSessions:hover, #update:hover, #sendMail:hover {
 	background-color: #33adff;
 }
 
@@ -61,6 +55,10 @@ p.header_name{
 }
 #btnClearAddSessions:hover{
 	background-color: #33adff;
+}
+
+#placeAvailable, #maximumPlace {
+	width: 20%;
 }
 
 .wrapper table input {

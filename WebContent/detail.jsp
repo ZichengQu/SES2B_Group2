@@ -18,9 +18,11 @@
 	<meta charset="UTF-8">
 	<title>HELPS Booking System</title>
 	<link rel="stylesheet" href="css/createNewsession.css" />
-	<link rel="stylesheet" href="css/emailTemplate.css" />
-    <link rel="stylesheet" href="css/adminMenu.css">
 	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>	
 	
     <script type="text/javascript">
 		$(function(){
@@ -29,12 +31,7 @@
 		});
 		
 	</script>
-	<!-- Include jQuery, Monment.js and Date Range Picker's file -->
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
+	
 	<style type="text/css">
 	.wrapper {
 	    width: 90%;
@@ -46,14 +43,6 @@
 	    border-right: 2px #95e0fd solid; */
 	}
 	
-	.left{
-		width:50%;
-		float: left;
-	}
-	.right{
-		width:50%;
-		float: left;
-	}
 	</style>
 	
 	
@@ -93,6 +82,24 @@
 		})
 		
 	})
+	
+	$(document).ready(function(){
+		$('#studentListTable').DataTable({
+			"paging":   false,
+	    	"info":     false
+	    } );
+	    $('#waitingListTable').DataTable({
+	    	"paging":   false,
+	    	"info":     false
+	    } );
+		$('#workshopDetails').DataTable( {
+	        "paging":   false,
+	        "ordering": false,
+	        "info":     false,
+	        "searching": false
+	    } );
+	    
+	});
 </script>
 </head>
 <body>
@@ -105,119 +112,138 @@
 	</div> -->
 	
 	<div class="wrapper">
-	<p class="header_name" id="filter_sessions_header">Work Shop Detail</p>
-	<div>
-		<form action="workshop" method="post">
-			<table style="padding-bottom:10px;width: 70%; border: 1px solid #c1c1c15c; margin-bottom:20px;" >
-				<tr>
-					<td>Topic</td>
-					<td>
-					<input type="hidden" name="action" value="update"  >
-					<input type="hidden" style="width:60%" name="workShopId"  id="workshopid" value="${workShop.workShopId}">
-					<%--<input type="text" style="width:60%" name="name"  value=" --%>${workShop.name}
-					</td>
-				</tr>
-				<tr>
-					<td>Target Group</td>
-					<td><%--<input type="text" name="targetGroup" value=" --%>${workShop.targetGroup}</td>
-				</tr>
-				<tr>
-					<td>Description</td>
-					<td><textarea rows="6" cols="80" name="description">${workShop.description }</textarea></td>
-				</tr>
-				<tr>
-					<td>Cut-off</td>
-					<td><input type="text" name="placeAvailable" value="${workShop.placeAvailable}"></td>
-				</tr>
-				<tr>
-					<td>MaxiNum</td>
-					<td><input type="text" name="maximumPlace" value="${workShop.maximumPlace}"></td>
-				</tr>
-				<tr>
-					<td>When</td>
-					<td>${workShop.startDate}</td>
-				</tr>
-				<tr>
-					<td>Room</td>
-					<td>
-						<select name="roomDropbtn" style="width:100%" class="sel" >
-						<%
-							int temp = 1; 
-							WorkShop workShop = (WorkShop)request.getSession().getAttribute("workShop");
-							System.out.println(workShop);
-							int index = workShop.getRoom().getRoomId();
-						%>
-					     <c:forEach var="item" items="${listRooms.rows}" >
-					     		<%
-					     			if(temp == index){
-					     		%>
-					     			<option value="${item.roomId}" selected="selected"><c:out value="${item.campus}.${item.level}.${item.roomNumber }" /></option>
-					     		<% 		
-					     			}
-					     		%>
-					     		
-					     		<%
-					     			if(temp != index){
-					     		%>
-					     			<option value="${item.roomId}"><c:out value="${item.campus}.${item.level}.${item.roomNumber }" /></option>
-					     		<% 		
-					     			}
-					     		%>
-							 	<%temp++; %>
-					     </c:forEach>
-					    </select> 
-					    <input type="hidden" name=>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-					<input type="submit"  value="update"  id="update" onclick="change()"/>
-					</td>
-				</tr>
-			</table>
-		</form>
-	</div>
-	
-	
-	
-	
-	<div class="left">
-	<p class="header_name" id="filter_sessions_header">Student List</p>
-		<table>
-			<tbody>
-				<tr>
-					<th>select</th>
-					<th>StudentId</th>
-					<th>Attendance</th>
-				</tr>
-				<c:forEach items="${studentList}" var="stu">
-					<tr>
-						<th><input type="checkbox" name="checkcheck" class="select" ${stu.isPresent=='yes'?'checked':''} value="${stu.studentListId}"></th>
-						<th style="width: 1%;">${stu.student.studentId }</th>
-						<th>${stu.isPresent=='yes'?'yes':'---'}</th>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<div>
-			<input type="button"  value="SendMail"  id="sendMail" onclick="chk()"/>
+		<div class="instructions_box">
+			<div class="box card s0" style="margin-top:2%">
+				<p class="header_name" id="filter_sessions_header">Workshop Details</p>
+				<br>
+				<form action="workshop" method="post">
+					<table class="display" id="workshopDetails">
+						<thead></thead>
+						<tbody align="left">
+							<tr>
+								<th style="width:15%">Topic</th>
+								<td>
+									<input type="hidden" name="action" value="update"  >
+									<input type="hidden" style="width:60%" name="workShopId"  id="workshopid" value="${workShop.workShopId}">
+									<%--<input type="text" style="width:60%" name="name"  value=" --%>${workShop.name}
+								</td>
+							</tr>
+							<%-- <tr>
+								<td>Target Group</td>
+								<td><input type="text" name="targetGroup" value="${workShop.targetGroup}</td>
+							</tr> --%>
+							<tr>
+								<th>Description</th>
+								<td><textarea rows="6" cols="80" name="description">${workShop.description }</textarea></td>
+							</tr>
+							<tr>
+								<th>Cut-off</th>
+								<td><input type="text" name="placeAvailable" value="${workShop.placeAvailable}" id="placeAvailable"></td>
+							</tr>
+							<tr>
+								<th>MaxiNum</th>
+								<td><input type="text" name="maximumPlace" value="${workShop.maximumPlace}" id="maximumPlace"></td>
+							</tr>
+							<tr>
+								<th>When</th>
+								<td>${workShop.startDate}</td>
+							</tr>
+							<tr>
+								<th>Room</th>
+								<td>
+									<select name="roomDropbtn" style="width:auto; font-size:14pt" >
+										<option value=""></option>
+										<%
+											int temp = 1; 
+											WorkShop workShop = (WorkShop)request.getSession().getAttribute("workShop");
+											System.out.println(workShop);
+											int index = workShop.getRoom().getRoomId();
+										%>
+									     <c:forEach var="item" items="${listRooms.rows}" >
+									     		<%
+									     			if(temp == index){
+									     		%>
+									     			<option value="${item.roomId}" selected="selected"><c:out value="${item.campus}.${item.level}.${item.roomNumber }" /></option>
+									     		<% 		
+									     			}
+									     		%>
+									     		
+									     		<%
+									     			if(temp != index){
+									     		%>
+									     			<option value="${item.roomId}"><c:out value="${item.campus}.${item.level}.${item.roomNumber }" /></option>
+									     		<% 		
+									     			}
+									     		%>
+											 	<%temp++; %>
+									     </c:forEach>
+								    </select> 
+								    <input type="hidden" name=>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<input type="submit"  value="Update"  id="update" onclick="change()"/>
+				</form>
+			</div>
+				
 		</div>
-	</div>
-	
-	
-	<div class="right">
-	<p class="header_name" id="filter_sessions_header">Waiting List</p>
-		<c:if test="${fn:length(waiting)<=0}">
-		<P>There is no student in the waiting list</P>
-		</c:if>
-		<table>
-		<c:forEach items="${waiting}" var="ww">
-			<tr>
-				<td>${ww.student.studentId }</td>
-			</tr>
-		</c:forEach>
-		</table>
-	</div>
+		
+		
+		
+		
+		<div class="instructions_box">
+			<div class="box card s0">
+				<p class="header_name" id="filter_sessions_header">Student List</p>
+				<br>
+				<table class="display" id="studentListTable">
+					<thead>
+						<tr align="left">
+							<th style="width: 5%;"></th>
+							<th style="width: 10%;">Student ID</th>
+							<th style="width: 20%;">Student Name</th>
+							<th style="width: 5%;">Attendance</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${studentList}" var="stu">
+							<tr align="left">
+								<td><input type="checkbox" name="checkcheck" class="select" ${stu.isPresent=='yes'?'checked':''} value="${stu.studentListId}"/></td>
+								<td>${stu.student.studentId }</td>
+								<td>${stu.student.firstName } ${stu.student.lastName }</td>
+								<td>${stu.isPresent=='yes'?'yes':'---'}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				<div>
+					<input type="button"  value="Mark Attendance and Send Email to Student"  id="sendMail" onclick="chk()" style="margin-top:5%"/>
+				</div>
+			</div>
+			<div class="box card s0">
+				<p class="header_name" id="filter_sessions_header">Waiting List</p>
+				<br>
+				<c:if test="${fn:length(waiting)<=0}">
+					<P>There is no student in the waiting list</P>
+				</c:if>
+				<table class="display" id="waitingListTable">
+					<thead>
+						<tr align="left">
+							<th style="width: 40%;">Student ID</th>
+							<th style="width: 60%;">Student Name</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${waiting}" var="ww">
+							<tr align="left">
+								<td>${ww.student.studentId }</td>
+								<td>${ww.student.firstName } ${ww.student.lastName }</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</div>	
 	</div>
 	
 	<div class="footer"></div>

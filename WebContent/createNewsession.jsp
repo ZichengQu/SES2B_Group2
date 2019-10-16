@@ -167,12 +167,12 @@
 						    <th style="width:5%; background:none">
 						    	<input id="all" type="checkbox">
 						    </th>
-							<th style="width:10%;">Topic</th>
-							<th style="width:13%;">Start Date</th>
-							<th style="width:13%;">End Date</th>
+							<th style="width:20%;">Topic</th>
+							<th style="width:10%;">Start Date</th>
+							<th style="width:10%;">End Date</th>
 							<th style="width:10%;">Start Time</th>
 							<th style="width:10%;">End Time</th>
-							<th style="width:15%;">Room</th>
+							<th style="width:10%;">Room</th>
 							<th style="width:2%;">Max</th>
 							<th style="width:2%;">C/O</th>
 							<th style="width:2%;">No.of students</th>
@@ -210,12 +210,12 @@
 				<table class="display" id="createNewSession">
 					<thead>
 						<tr style="font-size:10pt;" align="left">
-							<th style="width:10%;">Topic</th>
+							<th style="width:20%;">Topic</th>
 							<th style="width:10%;">Start Date</th>
 							<th style="width:10%;">End Date</th>
-							<th style="width:10%;">Start Time</th>
-							<th style="width:10%;">End Time</th>
-							<th style="width:15%;">Room</th>
+							<th style="width:8%;">Start Time</th>
+							<th style="width:8%;">End Time</th>
+							<th style="width:10%;">Room</th>
 							<th style="width:5%;">Max</th>
 							<th style="width:5%;">C/O</th>
 							<th style="width:5%;"></th>
@@ -229,7 +229,7 @@
 							<td><input type="time" class="startTimePicker" name="startTimePicker" style="width:100%" value="" /></td>
 							<td><input type="time" class="endTimePicker" name="endTimePicker" style="width:100%" value="" /></td>
 							<td>
-								<select name="roomDropbtn" style="width:100%">
+								<select name="roomDropbtn" style="width:80%; font-size:12pt">
 									<option value=""></option>
 								     <c:forEach var="item" items="${listRooms.rows}" >
 								      	<option value="${item.roomId}"><c:out value="${item.campus}.${item.level}.${item.roomNumber }" /></option>
