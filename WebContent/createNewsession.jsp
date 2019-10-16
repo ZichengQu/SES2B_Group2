@@ -167,12 +167,12 @@
 						    <th style="width:5%; background:none">
 						    	<input id="all" type="checkbox">
 						    </th>
-							<th style="width:10%;">Topic</th>
-							<th style="width:13%;">Start Date</th>
-							<th style="width:13%;">End Date</th>
+							<th style="width:20%;">Topic</th>
+							<th style="width:10%;">Start Date</th>
+							<th style="width:10%;">End Date</th>
 							<th style="width:10%;">Start Time</th>
 							<th style="width:10%;">End Time</th>
-							<th style="width:15%;">Room</th>
+							<th style="width:10%;">Room</th>
 							<th style="width:2%;">Max</th>
 							<th style="width:2%;">C/O</th>
 							<th style="width:2%;">No.of students</th>
@@ -192,13 +192,13 @@
 								<td>${item.maximumPlace }</td>
 								<td>${item.placeAvailable }</td>
 								<td>${fn:length(students)}</td>
-								<td><a href="workshop?action=detail&workShopId=${item.workShopId}">detail</a>
+								<td><a href="workshop?action=detail&workShopId=${item.workShopId}">Detail</a>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 				<div align="center">
-					<input type="submit"  value="delete" id="delete"/>
+					<input type="submit"  value="Delete" id="delete"/>
 				</div>
 			</div>
 		</div>
@@ -206,23 +206,23 @@
 			<div class="box card s0">
 				<p class="header_name" id="filter_sessions_header">Create New Session(s)</p>
 				<p>To add sessions, please enter their details below and click "Add". If you do not wish to add a session that you selected date & time, please click "Clear" next to that session before adding.</p>
-				<p>Please note: all the fields are compulsory, otherwise that session will not be added.</p>
+				<p><b>Please note:</b> all the fields are compulsory, otherwise that session will not be added.</p>
 				<table class="display" id="createNewSession">
 					<thead>
 						<tr style="font-size:10pt;" align="left">
-							<th style="width:10%;">Topic</th>
+							<th style="width:20%;">Topic</th>
 							<th style="width:10%;">Start Date</th>
 							<th style="width:10%;">End Date</th>
 							<th style="width:10%;">Start Time</th>
 							<th style="width:10%;">End Time</th>
-							<th style="width:15%;">Room</th>
-							<th style="width:5%;">Max</th>
-							<th style="width:5%;">C/O</th>
+							<th style="width:10%;">Room</th>
+							<th style="width:2%;">Max</th>
+							<th style="width:2%;">C/O</th>
 							<th style="width:5%;"></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr class="add_session_content">
+						<tr class="add_session_content" style="font-size:14pt;">
 							<td><input type="text" class="topic" name="topic" style="width:100%" value="" /></td>
 							<td><input type="date" id="startData" class="startDatePicker" name="startDatePicker" style="width:100%" value="" /></td>
 							<td><input type="date" id="endData" class="endDatePicker" name="endDatePicker" style="width:100%" value="" /></td>
