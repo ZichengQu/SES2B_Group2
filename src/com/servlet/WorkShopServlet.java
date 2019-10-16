@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -60,7 +61,6 @@ public class WorkShopServlet extends BaseServlet {
 	
 	public void archive(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Transaction ts = session.beginTransaction();
-		System.out.println("123");
 		try {
 			String hql="from WorkShop";
 			List<WorkShop> workShops = session.createQuery(hql).list();
@@ -163,7 +163,7 @@ public class WorkShopServlet extends BaseServlet {
 		try {
 			String ss = request.getParameter("ss");
 			System.out.println(ss);
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 //			for(String s:arr){
 			String s = ss;
 				String[] fields = s.split(",");
@@ -237,40 +237,80 @@ public class WorkShopServlet extends BaseServlet {
 		
 		String sql="from StudentList where workShopId=?";
 		List<StudentList> studentList = session.createQuery(sql).setParameter(0, Integer.parseInt(workShopId)).list();
+//		int total = Integer.parseInt(workShop.getMaximumPlace());
+		
+		Set<Student> students = workShop.getStudents();
 		int total = Integer.parseInt(workShop.getMaximumPlace());
 		
 		try{
-			if(studentList.size() > total){
+			if(students.size() > total){
 				System.out.println("人多了");
-				for(int temp = total ; temp < studentList.size() ;temp++ ){
-					Student student = studentList.get(temp).getStudent();
-					WaitList waitList = new WaitList();
-					waitList.setStudent(student);
-					waitList.setWorkShop(workShop);
-					session.save(waitList);
-					session.delete(studentList.get(temp));
+				for(int temp = total ; temp < students.size() ;temp++ ){
+					Iterator<Student> iterator = students.iterator();
+					while(iterator.hasNext()) {
+						Student student = iterator.next();
+						WaitList waitList = new WaitList();
+						waitList.setStudent(student);
+						waitList.setWorkShop(workShop);
+						session.save(waitList);
+						iterator.remove();
+						students.remove(student);
+						if(students.size()==total) break;
+					}
 				}
-			}else{
+			}else if(students.size() < total){
 				System.out.println("人少了");
 				String sql1="from WaitList where workShopId=?";
 				List<WaitList> tempWait = session.createQuery(sql1).setParameter(0, Integer.parseInt(workShopId)).list();
-				int avaiable = (Integer.parseInt(workShop.getMaximumPlace()) - studentList.size()) > tempWait.size() ? tempWait.size() : Integer.parseInt(workShop.getMaximumPlace()) - studentList.size(); 
+				int avaiable = (Integer.parseInt(workShop.getMaximumPlace()) - students.size()) > tempWait.size() ? tempWait.size() : Integer.parseInt(workShop.getMaximumPlace()) - students.size(); 
 				for(int i=0; i<avaiable;i++){
-					StudentList tempStuList = new StudentList();
-					tempStuList.setIsEmail("no");
-					tempStuList.setIsPresent("no");
-					tempStuList.setStudent(tempWait.get(i).getStudent());
-					tempStuList.setWorkShop(tempWait.get(i).getWorkShop());
-					session.save(tempStuList);
+//					StudentList tempStuList = new StudentList();
+//					tempStuList.setIsEmail("no");
+//					tempStuList.setIsPresent("no");
+//					tempStuList.setStudent(tempWait.get(i).getStudent());
+//					tempStuList.setWorkShop(tempWait.get(i).getWorkShop());
+//					session.save(tempStuList);
+					Student student = tempWait.get(i).getStudent();
+					students.add(student);
 					session.delete(tempWait.get(i));
 				}
 			}
+			
+			workShop.setStudents(students);
+			session.save(workShop);
+			
+			int flag = 0;
+			
+			//将t_student_workShop中的选课信息保存到studentList表中，因为studentList表中有isPresent和isEmail属性
+			Iterator<Student> iterator = students.iterator();
+			while(iterator.hasNext()) {
+				Student tempStudent = iterator.next();
+				
+				//同一学生选同一课程只能选一次
+				for(StudentList temp : studentList) {
+					if(temp.getStudent().equals(tempStudent) && temp.getWorkShop().equals(workShop)) {
+						flag = 1;
+						break;
+					}
+				}
+				
+				if(flag == 0) {
+					StudentList newStudentList = new StudentList();
+					newStudentList.setIsEmail("no");
+					newStudentList.setIsPresent("no");
+					newStudentList.setStudent(tempStudent);
+					newStudentList.setWorkShop(workShop);
+					session.save(newStudentList);
+				}
+				flag = 0;
+			}
+			
 			
 			String sql1="from WaitList where workShopId=?";
 			List<WaitList> waiting = session.createQuery(sql1).setParameter(0, Integer.parseInt(workShopId)).list();
 			
 			String sql2="from StudentList where workShopId=?";
-			List<StudentList> studentList2 = session.createQuery(sql).setParameter(0, Integer.parseInt(workShopId)).list();
+			List<StudentList> studentList2 = session.createQuery(sql2).setParameter(0, Integer.parseInt(workShopId)).list();
 			
 			ts.commit();
 			request.getSession().setAttribute("workShop", workShop);
@@ -387,13 +427,14 @@ public class WorkShopServlet extends BaseServlet {
 			StudentList student = (StudentList)session.createQuery(hql).setParameter(0, Integer.parseInt(studentListId)).uniqueResult();
 			student.setIsPresent(isPresent);
 			
-			String receiver = student.getStudent().getEmail();
-			String title = "inform";
-			String content = student.getStudent().getStudentId() + "attendent" + student.getWorkShop().getName();
-			
 			if(isPresent.compareTo("yes")==0) {
+				String receiver = student.getStudent().getEmail();
+				String title = "inform";
+				String content = student.getStudent().getStudentId() + " attendent " + student.getWorkShop().getName();
+			
 				try {
 					SendMail.Email(receiver, title, content);
+					student.setIsEmail("yes");
 				} catch (AddressException e) {
 					e.printStackTrace();
 				} catch (MessagingException e) {
