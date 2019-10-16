@@ -163,7 +163,7 @@ public class WorkShopServlet extends BaseServlet {
 		try {
 			String ss = request.getParameter("ss");
 			System.out.println(ss);
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 //			for(String s:arr){
 			String s = ss;
 				String[] fields = s.split(",");

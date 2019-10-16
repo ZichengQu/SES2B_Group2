@@ -101,35 +101,32 @@ button:hover {
 	/* border-top: none; */
 }
 
-.table_session_available{
-	padding: 1px 12px;
-	border-collapse: collapse;
-	box-sizing: border-box;
-	width: 100%;
+.wrapper .instructions_box, .wrapper .data_box {
+	display: flex;
 }
-
-.table_session_available tr:nth-child(even){
-	background-color: #f2f2f2;
+.wrapper .box {
+	float: left;
 }
-
-.table_session_available tr:hover {
-	background-color: #ddd;
+.wrapper .box.card.s1 {
+	width:100%;
+	margin-bottom: 1%;
 }
-
-.table_session_available th{
-	border: 1px solid #ddd;
-	padding: 8px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	text-align: left;
-	background-color: #ccf5ff;
-	font-weight: bold;
-	font-size: 10pt;
+.wrapper .box.card.s2 {
+	width:100%;
+	margin-top: 1%;
 }
-
-.table_session_available td{
-	border: 1px solid #ddd; 
-	padding: 8px;
+.wrapper .box.card.s0 {
+	width:100%;
+	margin-bottom: 2%;
+}
+.wrapper .box.card {
+	margin-right: 3%;
+	border-radius: 15px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	padding: 2%;
+}
+.wrapper .box.card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .attendance{
@@ -138,7 +135,4 @@ button:hover {
 	border-bottom: 2px solid #ccc;
 	
 }
-#tAddSessions th, td{
-	/* border-bottom: 1px solid #ccc; */
-	padding: 8px;
-}
+
