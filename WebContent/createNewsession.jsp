@@ -160,7 +160,7 @@
 		<br><br>
 		<div class="instructions_box">
 			<div class="box card s0">
-				<p class="header_name" id="filter_sessions_header">Session details</p>
+				<p class="header_name" id="filter_sessions_header">Session Details</p>
 				<table class="display" id="sessionDetails">
 					<thead>
 						<tr style="font-size:10pt" align="left">
@@ -192,13 +192,13 @@
 								<td>${item.maximumPlace }</td>
 								<td>${item.placeAvailable }</td>
 								<td>${fn:length(students)}</td>
-								<td><a href="workshop?action=detail&workShopId=${item.workShopId}">detail</a>
+								<td><a href="workshop?action=detail&workShopId=${item.workShopId}">Detail</a>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 				<div align="center">
-					<input type="submit"  value="delete" id="delete"/>
+					<input type="submit"  value="Delete" id="delete"/>
 				</div>
 			</div>
 		</div>
