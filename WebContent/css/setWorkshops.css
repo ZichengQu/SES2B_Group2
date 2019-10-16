@@ -59,24 +59,20 @@ header nav a:hover {
 }
 
 .wrapper .title {
-	float: left;
+	font-size: 15pt;
+    font-weight: bold;
 }
 
 .wrapper #skillsInput {
 	width: 50%;
-}
-
-.wrapper table {
-	margin-top: 10px;
-}
-
-.wrapper table tr {
-	border-bottom: 1px #cacaca solid; //
-	background-color: #eff0f3;
+    font-size: 15pt;
+    padding: 5px;
+    margin-right: 1%;
 }
 
 .wrapper table input {
 	width: 95%;
+	font-size: 12pt;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -100,6 +96,50 @@ header nav a:hover {
 .wrapper .buttonArea {
 	text-align: center;
 	padding: 5px;
+}
+
+.wrapper .instructions_box, .wrapper .data_box {
+	display: flex;
+}
+.wrapper .box {
+	float: left;
+}
+.wrapper .box.card.s1 {
+	width:100%;
+	margin-bottom: 1%;
+}
+.wrapper .box.card.s2 {
+	width:100%;
+	margin-top: 1%;
+}
+.wrapper .box.card.s0 {
+	width:100%;
+	margin-bottom: 2%;
+}
+.wrapper .box.card {
+	margin-right: 3%;
+	border-radius: 15px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	padding: 2%;
+}
+.wrapper .box.card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.buttonArea {
+	align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    margin-top: 2%; 
+    font-size: 15pt; 
+    padding: 1%;
+    color: buttontext;
+	border: 1px solid #ccc;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+.buttonArea:hover {
+	background-color: #33adff;
 }
 
 footer {
